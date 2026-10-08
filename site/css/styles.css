@@ -1,4 +1,4 @@
-/* THE FUEL: tokens and base (from context.html), keyframes, page sizing and interaction states. */
+/* THE FUEL: tokens and base (from docs/context.html), keyframes, page sizing and interaction states. */
 :root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
 html{background:var(--bg)}
 body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
