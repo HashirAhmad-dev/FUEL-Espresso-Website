@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="fuel-boot.js"></script>
+<script src="fuel-cursor.js"></script>
+<title>THE FUEL · Espresso Yourself!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300..600&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="preload" as="image" href="assets/hero/hero-poster-1280x720.webp">
+<link rel="preconnect" href="https://maps.google.com">
+<link rel="preconnect" href="https://maps.gstatic.com" crossorigin="">
+<style>
+:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
+html{background:var(--bg)}
+body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
+a{color:inherit}
+a:hover{color:inherit}
+::selection{background:#E29A64;color:#270402}
+:focus-visible{outline:2px solid #E29732;outline-offset:3px}
+@media (prefers-reduced-motion: no-preference){
+@keyframes fuel-par-a{from{transform:translateY(56px)}to{transform:translateY(-56px)}}
+@keyframes fuel-par-b{from{transform:translateY(-24px)}to{transform:translateY(32px)}}
+@keyframes fuel-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+}
+</style>
+</helmet>
+<a href="#main" style="position:fixed; top:12px; left:-9999px; z-index:200; padding:12px 18px; border-radius:999px; background:#270402; color:#FBF6EE; font:500 14px Jost, sans-serif; text-decoration:none" style-focus="left:12px">Skip to content</a>
+<dc-import name="Fuel Nav" page="home" bp="{{ bp }}" theme="{{ theme }}" chip="{{ chip }}" is-open="{{ isOpen }}" on-toggle="{{ onToggle }}" hint-size="100%,0px"></dc-import>
+
+<sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
+  <div role="status" aria-label="Loading THE FUEL" style="position:fixed; inset:0; z-index:150; background:#270402; color:#FBF6EE; display:grid; place-items:center; transform:{{ curtainT }}; opacity:{{ curtainOp }}; transition:transform .9s cubic-bezier(.7,0,.2,1), opacity .5s ease">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:28px; opacity:{{ introInner }}; transition:opacity .35s ease">
+      <span style="position:relative; width:92px; height:130px; display:block">
+        <span style="position:absolute; inset:0; background:#E29A64; clip-path:{{ fillClip }}; transition:clip-path 1.3s cubic-bezier(.16,1,.3,1); -webkit-mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat"></span>
+        <span style="position:absolute; inset:0; background:#FBF6EE; -webkit-mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat"></span>
+      </span>
+      <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:22px; letter-spacing:.32em; padding-left:.32em">THE FUEL</span>
+    </div>
+    <button type="button" onClick="{{ skipIntro }}" style="position:absolute; right:clamp(16px,5vw,72px); bottom:32px; min-height:44px; padding:0 20px; border-radius:999px; border:1px solid rgba(251,246,238,.28); background:transparent; color:#FBF6EE; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; cursor:pointer" style-hover="background:rgba(226,154,100,.2)">Skip</button>
+  </div>
+</sc-if>
+
+<main id="main">
+<section data-screen-label="01 Hero" ref="{{ heroRef }}" style="position:relative; min-height:100dvh; overflow:hidden; isolation:isolate; color:#270402; background:linear-gradient(180deg,#d2a272 0%,#c59567 28%,#b38355 55%,#9e7148 75%,#bf956d 77.5%,#d6ac84 100%)">
+  <sc-if value="{{ useVideo }}" hint-placeholder-val="{{ true }}">
+    <video ref="{{ videoRef }}" poster="assets/hero/hero-poster-1280x720.webp" muted="{{ true }}" autoPlay="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" aria-hidden="true" style="position:absolute; left:0; top:{{ videoTop }}; width:100%; height:{{ videoH }}; object-fit:cover; object-position:50% 70%; z-index:-1; transform:{{ heroShift }}; -webkit-mask-image:{{ heroMask }}; mask-image:{{ heroMask }}">
+      <source src="assets/hero/hero-loop-1280x720.webm" type="video/webm">
+      <source src="assets/hero/hero-loop-1280x720.mp4" type="video/mp4">
+    </video>
+  </sc-if>
+  <sc-if value="{{ usePoster }}" hint-placeholder-val="{{ false }}">
+    <img src="assets/hero/hero-poster-1280x720.webp" alt="" style="position:absolute; left:0; top:{{ videoTop }}; width:100%; height:{{ videoH }}; object-fit:cover; object-position:50% 70%; z-index:-2; transform:{{ heroShift }}; -webkit-mask-image:{{ heroMask }}; mask-image:{{ heroMask }}">
+  </sc-if>
+  <div style="position:relative; min-height:100dvh; box-sizing:border-box; max-width:1600px; margin:0 auto; padding:clamp(104px,15vh,148px) clamp(16px,5vw,72px) clamp(24px,5vh,44px); display:grid; grid-template-rows:1fr auto; gap:32px">
+    <div style="align-self:start; display:flex; flex-direction:column; gap:clamp(18px,2.4vh,28px); max-width:640px">
+      <h1 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(60px,9.6vw,144px); line-height:.94; letter-spacing:-.02em">
+        <span data-hero="0" style="display:block">Espresso</span>
+        <span data-hero="1" style="display:block; font-style:italic; font-weight:400; padding-bottom:.1em">Yourself.</span>
+      </h1>
+      <p data-hero="2" style="margin:0; max-width:30ch; font-size:clamp(17px,1.35vw,20px); line-height:1.5; font-weight:400; text-wrap:pretty">Flaky outside, soft inside. Baked fresh to fuel every moment.</p>
+      <div data-hero="3" style="display:flex; flex-wrap:wrap; gap:12px">
+        <a href="/menu" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:#270402; color:#FBF6EE; text-decoration:none; font-size:16px; font-weight:500; transition:transform .24s cubic-bezier(.16,1,.3,1), background-color .24s" style-hover="background:#3A1A0F; color:#FBF6EE; transform:translateY(-2px)" style-active="transform:scale(.98)">See the menu<i class="ph ph-arrow-right" style="font-size:18px"></i></a>
+        <a href="#visit" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; font-size:16px; font-weight:500; transition:background-color .24s" style-hover="background:rgba(39,4,2,.08)" style-active="transform:scale(.98)">Find us</a>
+      </div>
+    </div>
+    <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+      <div data-hero="4" style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase">
+        <span style="display:flex; flex-direction:column; gap:6px; line-height:1.4"><span>Al-Ghani Plaza, 4th Floor</span><span>DHA Phase 6, Lahore</span></span>
+        <a href="#statement" style="display:flex; align-items:center; gap:10px; min-height:44px; text-decoration:none">Scroll<i class="ph ph-arrow-down" style="font-size:16px; animation:fuel-bob 2.4s ease-in-out infinite"></i></a>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="statement" data-screen-label="02 Statement" style="background:var(--bg); color:var(--ink); padding:clamp(96px,13vw,200px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(8px,1.4vw,20px)">
+    <p data-reveal="" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(52px,9vw,144px); line-height:1; letter-spacing:-.025em">we know espresso.</p>
+    <p data-reveal="" data-delay="120" style="margin:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:.22em; font-family:'Bodoni Moda', serif; font-style:italic; font-weight:400; font-size:clamp(52px,9vw,144px); line-height:1.08; letter-spacing:-.02em; padding-bottom:.08em">
+      <span aria-hidden="true" style="width:.82em; height:1.06em; border-radius:999px 999px 14px 14px; background:#3A1A0F url('assets/brand-moments/f037_barista-pour.jpg') center 40%/cover"></span>
+      <span>it’s our craft.</span>
+    </p>
+    <p data-reveal="" data-delay="240" style="margin:clamp(32px,4vw,56px) 0 0; max-width:38ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:var(--ink2); text-wrap:pretty">Every shot is pulled to order and every croissant is baked fresh, on the fourth floor of Al-Ghani Plaza in DHA Phase 6.</p>
+  </div>
+</section>
+
+<section data-screen-label="03 The 18-hour day" style="background:var(--surface); color:var(--ink); padding:clamp(80px,10vw,160px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,400px),1fr)); align-items:center; gap:clamp(48px,6vw,96px)">
+    <div data-reveal="" style="display:flex; flex-direction:column; gap:28px">
+      <h2 style="margin:0; display:flex; align-items:flex-end; flex-wrap:wrap; gap:8px 22px">
+        <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:clamp(120px,15vw,220px); line-height:.82; letter-spacing:-.04em">18</span>
+        <span style="display:flex; flex-direction:column; padding-bottom:.5em; font:400 13px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; line-height:1.6; color:var(--ink2)"><span>hours of</span><span>pure espresso</span></span>
+      </h2>
+      <p style="margin:0; max-width:34ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:var(--ink2); text-wrap:pretty">8 AM to 2 AM, every day of the week. Morning flat whites, afternoon coolers, dessert after midnight.</p>
+    </div>
+    <div data-reveal="" data-delay="120" style="justify-self:center; width:100%; max-width:460px; display:flex; flex-direction:column; align-items:center; gap:20px">
+      <svg viewBox="0 0 400 400" role="img" aria-label="{{ clockAria }}" style="display:block; width:100%; height:auto; overflow:visible" onMouseLeave="{{ dialLeave }}">
+        <circle cx="200" cy="200" r="176" style="fill:var(--bg); transition:fill .6s"></circle>
+        <circle cx="200" cy="200" r="176" fill="none" style="stroke:var(--line)" stroke-width="10"></circle>
+        <sc-for list="{{ segs }}" as="g" hint-placeholder-count="0">
+          <path d="{{ g.d }}" fill="none" style="stroke:var(--accent)" stroke-width="10" stroke-linecap="round"></path>
+        </sc-for>
+        <sc-for list="{{ minTicks }}" as="t" hint-placeholder-count="0">
+          <line x1="{{ t.x1 }}" y1="{{ t.y1 }}" x2="{{ t.x2 }}" y2="{{ t.y2 }}" style="stroke:var(--ink2)" stroke-width="{{ t.sw }}" stroke-linecap="round"></line>
+        </sc-for>
+        <sc-for list="{{ nums }}" as="n" hint-placeholder-count="0">
+          <text x="{{ n.x }}" y="{{ n.y }}" text-anchor="middle" dominant-baseline="central" opacity="{{ n.op }}" style="fill:var(--ink); font-family:'Bodoni Moda', serif; font-size:24px; font-weight:600">{{ n.t }}</text>
+        </sc-for>
+        <text x="200" y="132" text-anchor="middle" style="fill:var(--ink2); font:400 11px 'DM Mono', monospace; letter-spacing:.14em">LAHORE</text>
+        <text x="200" y="282" text-anchor="middle" style="fill:var(--ink2); font:500 12px 'DM Mono', monospace; letter-spacing:.14em">{{ meridiem }}</text>
+        <line x1="200" y1="214" x2="200" y2="108" style="stroke:var(--ink); transform:{{ hourT }}; transform-origin:200px 200px" stroke-width="8" stroke-linecap="round"></line>
+        <line x1="200" y1="218" x2="200" y2="68" style="stroke:var(--ink); transform:{{ minT }}; transform-origin:200px 200px" stroke-width="4" stroke-linecap="round"></line>
+        <line ref="{{ secRef }}" x1="200" y1="228" x2="200" y2="56" stroke="#E29A64" stroke-width="2" stroke-linecap="round" style="transform:{{ secT }}; transform-origin:200px 200px"></line>
+        <circle cx="200" cy="200" r="8" fill="#E29A64" style="stroke:var(--bg)" stroke-width="3"></circle>
+        <sc-for list="{{ nums }}" as="n" hint-placeholder-count="0">
+          <circle cx="{{ n.x }}" cy="{{ n.y }}" r="20" fill="transparent" style="cursor:pointer" onMouseEnter="{{ n.enter }}"></circle>
+        </sc-for>
+      </svg>
+      <p role="status" style="margin:0; display:flex; align-items:center; gap:10px; font:400 13px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-align:center"><span aria-hidden="true" style="flex:none; width:8px; height:8px; border-radius:50%; background:{{ dot }}"></span>{{ clockCaption }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-spy="menu" data-screen-label="04 Product worlds" style="background:var(--bg); color:var(--ink); padding:clamp(80px,10vw,144px) 0; overflow:hidden; transition:background-color .6s, color .6s">
+  <div style="max-width:1600px; margin:0 auto; padding:0 clamp(16px,5vw,72px); box-sizing:border-box; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <h2 data-reveal="" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(36px,4.4vw,64px); line-height:1.04; letter-spacing:-.02em">Six themed <em style="font-weight:400">rooms.</em></h2>
+    <div style="display:flex; gap:8px">
+      <button type="button" onClick="{{ railPrev }}" aria-label="Previous world" style="width:52px; height:52px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:20px" style-hover="background:rgba(226,154,100,.22)" style-active="transform:scale(.95)"><i class="ph ph-arrow-left"></i></button>
+      <button type="button" onClick="{{ railNext }}" aria-label="Next world" style="width:52px; height:52px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; cursor:pointer; font-size:20px" style-active="transform:scale(.95)"><i class="ph ph-arrow-right"></i></button>
+    </div>
+  </div>
+  <div ref="{{ railRef }}" role="list" aria-label="Product worlds" style="margin-top:clamp(32px,4vw,56px); display:flex; gap:clamp(14px,1.6vw,24px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:clamp(16px,5vw,72px); padding:8px clamp(16px,5vw,72px) 24px; scrollbar-width:none; cursor:grab; user-select:none; -webkit-user-select:none; overscroll-behavior-x:contain">
+    <a role="listitem" href="/menu?world=roast" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#270402; color:#FBF6EE; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#FBF6EE">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#3A1A0F"><img src="assets/worlds/01-roast/HERO_f040_cups-latte-art.jpg" alt="Flat white with latte art among stacked pink cups" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#B28F71"><span>01 · Roast</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#E29A64"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">Pulled <em>slow.</em></span>
+    </a>
+    <a role="listitem" href="/menu?world=matcha" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#1F3A2B; color:#F2F5E4; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#F2F5E4">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#2C473C"><img src="assets/worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg" alt="Iced matcha latte breaking through green paper" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#C9D6B0"><span>02 · Matcha</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#B9CC94"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">Whisked <em>green.</em></span>
+    </a>
+    <a role="listitem" href="/menu?world=bakery" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#D99B57; color:#270402; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#270402">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#E6B677"><img src="assets/worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg" alt="Croissant on a terracotta plate" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#592D14"><span>03 · Bakery</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#592D14"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">Flaky outside, <em>soft inside.</em></span>
+    </a>
+    <a role="listitem" href="/menu?world=shakes" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#F3DAD6; color:#4A1E14; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#4A1E14">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#FBE9E5"><img src="assets/worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg" alt="Caramel shake splashing in front of the storefront sign" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#6B3A32"><span>04 · Shakes</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#8A4B45"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">Thick enough <em>for a spoon.</em></span>
+    </a>
+    <a role="listitem" href="/menu?world=coolers" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#FFF1DC; color:#3A0F10; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#3A0F10">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#FFE4BE"><img src="assets/worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg" alt="Strawberry chiller held in hand" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#6B2A24"><span>05 · Coolers</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#CB3544"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">Cold fruit, <em>warm days.</em></span>
+    </a>
+    <a role="listitem" href="/menu?world=desserts" draggable="false" onClick="{{ cardClick }}" style="flex:none; width:clamp(264px,27vw,380px); scroll-snap-align:start; display:flex; flex-direction:column; gap:18px; padding:12px 12px 24px; border-radius:18px; background:#592D14; color:#F3E6D6; text-decoration:none; transition:transform .48s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-6px); color:#F3E6D6">
+      <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#6B3A22"><img src="assets/worlds/06-desserts/HERO_f111_brownie-fork.jpg" alt="Brownie stack on a fork with chocolate drip" draggable="false" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+      <span style="display:flex; justify-content:space-between; align-items:center; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#E3CBB3"><span>06 · Desserts</span><i class="ph ph-arrow-up-right" style="font-size:18px; color:#F1B88D"></i></span>
+      <span style="padding:0 8px; font-family:'Bodoni Moda', serif; font-size:clamp(26px,2.3vw,34px); line-height:1.08">One plate, <em>four forks.</em></span>
+    </a>
+  </div>
+</section>
+
+<section data-spy="menu" data-screen-label="05 Best sellers" style="background:var(--surface); color:var(--ink); padding:clamp(80px,10vw,144px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1296px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px,4vw,56px)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <h2 data-reveal="" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(36px,4.4vw,64px); line-height:1.04; letter-spacing:-.02em">Best sellers</h2>
+      <a href="/menu" style="display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--accent); font-size:16px; font-weight:500; text-decoration:none; border-bottom:1px solid currentColor" style-hover="color:var(--ink)">Full menu<i class="ph ph-arrow-right"></i></a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,280px),1fr)); gap:clamp(16px,2vw,28px); align-items:start; perspective:1200px">
+      <div data-reveal="">
+        <article style="display:flex; flex-direction:column; gap:18px; padding:12px 12px 22px; border-radius:18px; background:var(--bg); transition:transform .48s cubic-bezier(.16,1,.3,1), box-shadow .48s, background-color .6s" style-hover="transform:rotateX(4deg) rotateY(-5deg) translateY(-6px); box-shadow:0 30px 60px -30px rgba(39,4,2,.35)">
+          <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/01-roast/f087_two-iced-lattes.jpg" alt="Two iced lattes held in cream knitwear" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+          <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 8px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(24px,2vw,30px)">Iced Latte</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Iced Latte" data-world="Roast" aria-label="Add Iced Latte to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+        </article>
+      </div>
+      <div data-reveal="" data-delay="100" style="margin-top:{{ midOffset }}">
+        <article style="display:flex; flex-direction:column; gap:18px; padding:12px 12px 22px; border-radius:18px; background:var(--bg); transition:transform .48s cubic-bezier(.16,1,.3,1), box-shadow .48s, background-color .6s" style-hover="transform:rotateX(4deg) rotateY(-5deg) translateY(-6px); box-shadow:0 30px 60px -30px rgba(39,4,2,.35)">
+          <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/03-bakery/f047_croissant-paper-bag.jpg" alt="Two croissants in a pink branded paper bag" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+          <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 8px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(24px,2vw,30px)">Butter Croissant</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Butter Croissant" data-world="Bakery" aria-label="Add Butter Croissant to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+        </article>
+      </div>
+      <div data-reveal="" data-delay="200">
+        <article style="display:flex; flex-direction:column; gap:18px; padding:12px 12px 22px; border-radius:18px; background:var(--bg); transition:transform .48s cubic-bezier(.16,1,.3,1), box-shadow .48s, background-color .6s" style-hover="transform:rotateX(4deg) rotateY(-5deg) translateY(-6px); box-shadow:0 30px 60px -30px rgba(39,4,2,.35)">
+          <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/02-matcha/f056_stacked-matcha-cups.jpg" alt="Three matcha lattes stacked mid-air" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+          <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 8px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(24px,2vw,30px)">Iced Matcha Latte</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Iced Matcha Latte" data-world="Matcha" aria-label="Add Iced Matcha Latte to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-spy="space" data-screen-label="06 Hidden in DHA" style="background:var(--bg); color:var(--ink); padding:clamp(80px,10vw,160px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,380px),1fr)); gap:clamp(48px,6vw,96px); align-items:start">
+    <div data-reveal="" style="position:sticky; top:140px; display:flex; flex-direction:column; gap:24px">
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(44px,6.6vw,96px); line-height:1; letter-spacing:-.025em">Hidden <em style="font-weight:400">in DHA.</em></h2>
+      <p style="margin:0; max-width:34ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:var(--ink2); text-wrap:pretty">Fourth floor of Al-Ghani Plaza. Pink swing seats, window light, and a counter that stays open till 2 AM.</p>
+      <a href="/space" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:var(--accent); color:var(--accentInk); text-decoration:none; font-size:16px; font-weight:500; transition:transform .24s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-2px); color:var(--accentInk)" style-active="transform:scale(.98)">See the space<i class="ph ph-arrow-right" style="font-size:18px"></i></a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:clamp(12px,1.6vw,24px)">
+      <div style="animation:fuel-par-a linear both; animation-timeline:view(); aspect-ratio:4/5; border-radius:999px 999px 18px 18px; overflow:hidden; background:#E3CBB3"><img src="assets/space/f088_interior-lattes-window.jpg" alt="Two lattes on a wooden tray under THE FUEL wall sign" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div style="margin-top:clamp(64px,10vw,160px); animation:fuel-par-b linear both; animation-timeline:view(); aspect-ratio:3/4; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/space/f055_interior-wall-sign.jpg" alt="Bright seating area with the FUEL wall letters" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div style="width:78%; justify-self:end; animation:fuel-par-b linear both; animation-timeline:view(); aspect-ratio:9/14; border-radius:18px; overflow:hidden; background:#F3DAD6"><img src="assets/space/f001_interior-pink-swings.jpg" alt="Pink room with swing seats by the window" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div style="margin-top:clamp(-40px,-3vw,-16px); animation:fuel-par-a linear both; animation-timeline:view(); aspect-ratio:9/14; border-radius:999px 999px 18px 18px; overflow:hidden; background:#E3CBB3"><img src="assets/space/f029_counter-barista-sign.jpg" alt="Counter with THE FUEL sign and a barista" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="07 Campaigns" style="background:var(--surface); padding:clamp(16px,2vw,24px) clamp(16px,2vw,24px); transition:background-color .6s">
+  <div data-reveal="" style="position:relative; max-width:1600px; margin:0 auto; min-height:clamp(440px,64vh,680px); border-radius:18px; overflow:hidden; display:flex; align-items:flex-end; color:#FBF6EE; background:#270402 url('assets/brand-moments/f036_cups-upright.jpg') center 35%/cover">
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(39,4,2,.92) 0%, rgba(39,4,2,.7) 38%, rgba(39,4,2,.1) 75%)"></div>
+    <div style="position:relative; padding:clamp(28px,5vw,72px); display:flex; flex-direction:column; gap:20px; max-width:620px">
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(44px,6.6vw,96px); line-height:1; letter-spacing:-.025em">Fuel up, <em style="font-weight:400">match on.</em></h2>
+      <p style="margin:0; max-width:36ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:#E3CBB3">Match-night specials and big-screen evenings on the fourth floor. Dates go up on Instagram first.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="08 Social wall" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px,4vw,56px)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <h2 data-reveal="" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(32px,4vw,56px); line-height:1.04; letter-spacing:-.02em"><a href="https://instagram.com/thefuelespresso" style="text-decoration:none" style-hover="color:var(--accent)">@thefuelespresso</a></h2>
+      <a href="https://instagram.com/thefuelespresso" style="display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 22px; border-radius:999px; border:1px solid var(--line); text-decoration:none; font-size:15px; font-weight:500" style-hover="background:rgba(226,154,100,.22)"><i class="ph ph-instagram-logo" style="font-size:20px"></i>Follow on Instagram</a>
+    </div>
+    <div style="display:grid; grid-template-columns:{{ socialCols }}; gap:clamp(10px,1.2vw,16px); align-items:start">
+      <a href="https://instagram.com/thefuelespresso" aria-label="Pink cups on cream, on Instagram" style="display:block; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/brand-moments/f093_pink-cups-pattern.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Iced drink and paper bag, on Instagram" style="display:block; margin-top:32px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/brand-moments/f014_iced-drink-paper-bag.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Latte art from above, on Instagram" style="display:block; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/01-roast/f067_latte-art-topdown.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Tiramisu with four forks, on Instagram" style="display:block; margin-top:32px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/06-desserts/f070_tiramisu-four-forks.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Tray of fresh croissants, on Instagram" style="display:block; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/03-bakery/f031_baker-tray.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Matcha latte in green knitwear, on Instagram" style="display:block; margin-top:32px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#E3CBB3"><img src="assets/worlds/02-matcha/f071_hands-matcha-green-knit.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Fuel Visit" hint-size="100%,820px"></dc-import>
+</main>
+<dc-import name="Fuel Footer" phone="{{ isPhone }}" home-href="/" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;latte&quot;,&quot;espresso&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;once&quot;,&quot;always&quot;,&quot;off&quot;],&quot;default&quot;:&quot;once&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroMedia&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;poster&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  introInit = (() => {
+    try {
+      const mode = (this.props && this.props.intro) || 'once';
+      if (mode === 'off') return 'none';
+      if (mode === 'once' && sessionStorage.getItem('fuel-intro')) return 'none';
+      return 'start';
+    } catch (e) { return 'none'; }
+  })();
+  state = { theme: 'latte', w: typeof window !== 'undefined' ? innerWidth : 1440, now: null, hover: null, intro: this.introInit };
+  heroRef = React.createRef(); videoRef = React.createRef(); railRef = React.createRef(); secRef = React.createRef();
+  timers = [];
+  // Live Asia/Karachi wall-clock time, independent of the visitor's own timezone.
+  clock() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(new Date());
+    const g = t => +parts.find(p => p.type === t).value;
+    const h = g('hour') % 24, m = g('minute'), s = g('second');
+    const open = h >= 8 || h < 2;
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return { h, m, s, open, chip: open ? 'Open now' : 'Opens at 8 AM', label: `${h12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}` };
+  }
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: innerWidth });
+    addEventListener('resize', this.onResize);
+    import(new URL('fuel-theme.js', location.href).href).then(m => {
+      this.m = m;
+      this.applyTheme(this.pickTheme());
+    });
+    this.setState({ now: this.clock() });
+    this.tick = setInterval(() => {
+      const c = this.clock();
+      if (this.secRef.current) this.secRef.current.style.transform = `rotate(${c.s * 6}deg)`;
+      if (!this.state.now || c.m !== this.state.now.m) this.setState({ now: c });
+    }, 1000);
+    this.setupReveal();
+    this.setupRail();
+    this.setupVideo();
+    this.runIntro();
+  }
+  componentDidUpdate(prev) {
+    if (prev.theme !== this.props.theme && this.m) this.applyTheme(this.pickTheme());
+    if (this.videoRef.current && this.videoRef.current !== this._vid) this.setupVideo();
+  }
+  componentWillUnmount() {
+    removeEventListener('resize', this.onResize);
+    clearInterval(this.tick); this.timers.forEach(clearTimeout);
+    this.io && this.io.disconnect(); this.vio && this.vio.disconnect();
+    document.removeEventListener('visibilitychange', this.onVis);
+  }
+  pickTheme() {
+    const p = this.props.theme ?? 'auto';
+    return p === 'latte' || p === 'espresso' ? p : this.m.initialTheme();
+  }
+  applyTheme(t) {
+    this.m.applyVars(this.m.THEMES[t]);
+    document.documentElement.style.colorScheme = t === 'latte' ? 'light' : 'dark';
+    this.setState({ theme: t });
+  }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+
+  runIntro() {
+    const heroEls = [...document.querySelectorAll('[data-hero]')];
+    if (this.state.intro === 'none' || this.reduce) {
+      if (this.state.intro !== 'none') {
+        this.setState({ intro: 'pour' });
+        this.later(() => this.setState({ intro: 'fade' }), 900);
+        this.later(() => this.setState({ intro: 'none' }), 1400);
+      }
+      return;
+    }
+    try { sessionStorage.setItem('fuel-intro', '1'); } catch (e) {}
+    heroEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(32px)'; });
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ intro: 'pour' })));
+    this.later(() => this.lift(), 1700);
+  }
+  lift = () => {
+    if (this.state.intro === 'lift' || this.state.intro === 'none') return;
+    this.setState({ intro: 'lift' });
+    [...document.querySelectorAll('[data-hero]')].forEach((el, i) => {
+      el.style.transition = 'opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1)';
+      el.style.transitionDelay = (380 + i * 90) + 'ms';
+      requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    });
+    this.later(() => this.setState({ intro: 'none' }), 1000);
+  };
+
+  setupReveal() {
+    if (this.reduce || !('IntersectionObserver' in window)) return;
+    const els = [...document.querySelectorAll('[data-reveal]')];
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.style.opacity = '1'; e.target.style.transform = 'none';
+      this.io.unobserve(e.target);
+    }), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.9) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
+      el.style.transitionDelay = (+el.dataset.delay || 0) + 'ms';
+      this.io.observe(el);
+    });
+  }
+
+  setupRail() {
+    const el = this.railRef.current; if (!el) return;
+    let down = false, sx = 0, sl = 0;
+    el.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; this.dragged = false; sx = e.clientX; sl = el.scrollLeft;
+      el.style.scrollSnapType = 'none'; el.style.cursor = 'grabbing';
+    });
+    el.addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - sx;
+      if (Math.abs(dx) > 5) this.dragged = true;
+      el.scrollLeft = sl - dx;
+    });
+    const up = () => {
+      if (!down) return; down = false;
+      el.style.cursor = 'grab';
+      const card = el.firstElementChild, step = card ? card.offsetWidth + parseFloat(getComputedStyle(el).columnGap || 0) : 1;
+      const target = Math.round(el.scrollLeft / step) * step;
+      el.scrollTo({ left: target, behavior: this.reduce ? 'auto' : 'smooth' });
+      this.later(() => { el.style.scrollSnapType = 'x mandatory'; }, 450);
+    };
+    el.addEventListener('pointerup', up);
+    el.addEventListener('pointerleave', up);
+  }
+  railBy(dir) {
+    const el = this.railRef.current; if (!el) return;
+    const card = el.firstElementChild;
+    const step = card ? card.offsetWidth + parseFloat(getComputedStyle(el).columnGap || 0) : 300;
+    el.scrollBy({ left: dir * step, behavior: this.reduce ? 'auto' : 'smooth' });
+  }
+
+  setupVideo() {
+    const v = this.videoRef.current; this._vid = v; if (!v) return;
+    v.muted = true;
+    const play = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    play();
+    this.vio && this.vio.disconnect();
+    if ('IntersectionObserver' in window && this.heroRef.current) {
+      this.vio = new IntersectionObserver(([e]) => { e.isIntersecting && !document.hidden ? play() : v.pause(); });
+      this.vio.observe(this.heroRef.current);
+    }
+    document.removeEventListener('visibilitychange', this.onVis);
+    this.onVis = () => { document.hidden ? v.pause() : play(); };
+    document.addEventListener('visibilitychange', this.onVis);
+  }
+
+  renderVals() {
+    const s = this.state, w = s.w;
+    const bp = w < 768 ? 'phone' : w < 1024 ? 'tablet' : 'desktop';
+    const saveData = typeof navigator !== 'undefined' && navigator.connection && navigator.connection.saveData;
+    const media = this.props.heroMedia ?? 'video';
+    const useVideo = media === 'video' && !saveData && !this.reduce;
+
+    // 12-hour analog face. Outer ring shows the open stretch of the current half-day (AM: 12-2 and 8-12, PM: all).
+    const Q = (x, r) => { const a = (x / 12) * Math.PI * 2 - Math.PI / 2; return [+(200 + r * Math.cos(a)).toFixed(2), +(200 + r * Math.sin(a)).toFixed(2)]; };
+    const arc = (x0, x1) => { const p0 = Q(x0, 176), p1 = Q(x1, 176); return `M ${p0[0]} ${p0[1]} A 176 176 0 ${x1 - x0 > 6 ? 1 : 0} 1 ${p1[0]} ${p1[1]}`; };
+    const openAt = h => h >= 8 || h < 2;
+    const now = s.now || { h: 12, m: 0, s: 0, open: true, chip: 'Open now', label: '' };
+    const am = now.h < 12;
+    const segs = (am ? [[0, 2], [8, 12]] : [[0, 6], [6, 12]]).map(([a, b]) => ({ d: arc(a, b) }));
+    const minTicks = Array.from({ length: 60 }, (_, i) => {
+      const major = i % 5 === 0, p1 = Q(i / 5, 160), p2 = Q(i / 5, major ? 150 : 155);
+      return { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], sw: major ? 2 : 1 };
+    });
+    const to24 = n => (n % 12) + (am ? 0 : 12);
+    const nums = Array.from({ length: 12 }, (_, i) => {
+      const n = i === 0 ? 12 : i, p = Q(i, 128);
+      return { x: p[0], y: p[1], t: n, op: openAt(to24(n)) ? 1 : 0.32, enter: () => this.setState({ hover: n }) };
+    });
+    const hv = s.hover;
+    const hourDeg = ((now.h % 12) + now.m / 60) * 30, minDeg = (now.m + now.s / 60) * 6;
+
+    const intro = s.intro;
+    return {
+      bp, notPhone: bp !== 'phone', theme: s.theme,
+      chip: now.chip, isOpen: now.open,
+      dot: now.open ? '#5E9E4B' : '#C0603A', dotVisit: now.open ? '#2F6B22' : '#7A1E0E',
+      nowLine: now.time ? `${now.time} in Lahore · ${now.open ? 'Open now' : 'Opens 8 AM'}` : 'Open now',
+      visitLine: now.line,
+      onToggle: (e) => {
+        if (!this.m) return;
+        const r = e.currentTarget.getBoundingClientRect();
+        const next = this.state.theme === 'latte' ? 'espresso' : 'latte';
+        const apply = () => this.applyTheme(next);
+        apply.nextBg = this.m.THEMES[next].bg;
+        this.m.saveTheme(next);
+        this.m.transition('radial', r.left + r.width / 2, r.top + r.height / 2, apply);
+      },
+      showIntro: intro !== 'none',
+      curtainT: intro === 'lift' ? 'translateY(-100%)' : 'none',
+      curtainOp: intro === 'fade' ? 0 : 1,
+      introInner: intro === 'lift' ? 0 : 1,
+      fillClip: intro === 'start' ? 'inset(100% 0 0 0)' : 'inset(0 0 0 0)',
+      skipIntro: () => (this.reduce ? this.setState({ intro: 'none' }) : this.lift()),
+      heroRef: this.heroRef, videoRef: this.videoRef, railRef: this.railRef,
+      useVideo, usePoster: true,
+      videoTop: bp === 'phone' ? '42%' : '0',
+      videoH: bp === 'phone' ? '58%' : '100%',
+      heroShift: bp === 'desktop' ? 'translateX(16%)' : bp === 'tablet' ? 'translateX(8%)' : 'none',
+      heroMask: bp === 'phone' ? 'linear-gradient(to bottom, transparent 0%, #000 24%)' : `linear-gradient(to right, transparent 0%, #000 ${bp === 'desktop' ? 24 : 16}%)`,
+      secRef: this.secRef, segs, minTicks, nums, meridiem: am ? 'AM' : 'PM',
+      hourT: `rotate(${hourDeg}deg)`, minT: `rotate(${minDeg}deg)`, secT: `rotate(${now.s * 6}deg)`,
+      clockAria: now.label ? `Clock showing ${now.label} in Lahore. THE FUEL is open 8 AM to 2 AM.` : 'Clock showing the time in Lahore',
+      clockCaption: hv != null
+        ? `${hv} ${am ? 'AM' : 'PM'} · ${openAt(to24(hv)) ? 'Open' : 'Closed'}`
+        : `${now.label} in Lahore · ${now.open ? 'Open, closes 2 AM' : 'Closed, opens 8 AM'}`,
+      dialLeave: () => this.setState({ hover: null }),
+      isPhone: bp === 'phone',
+      socialCols: bp === 'desktop' ? 'repeat(6, minmax(0,1fr))' : bp === 'tablet' ? 'repeat(3, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))',
+      addItem: (e) => { const d = e.currentTarget.dataset; dispatchEvent(new CustomEvent('fuel-add', { detail: { add: d.add, world: d.world } })); },
+      railPrev: () => this.railBy(-1), railNext: () => this.railBy(1),
+      cardClick: (e) => { if (this.dragged) { e.preventDefault(); this.dragged = false; } },
+      midOffset: bp === 'desktop' ? '72px' : '0',
+      footPad: bp === 'phone' ? '120px' : '40px'
+    };
+  }
+}
+</script>
+</body>
+</html>

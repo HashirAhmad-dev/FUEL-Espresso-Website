@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="fuel-boot.js"></script>
+<script src="fuel-cursor.js"></script>
+<title>THE FUEL · Espresso Yourself! (Variant B)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="preconnect" href="https://maps.google.com">
+<link rel="preconnect" href="https://maps.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300..600&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="preload" as="image" href="assets/hero/hero-poster-1280x720.webp">
+<style>
+:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
+html{background:var(--bg)}
+body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
+a{color:inherit}
+a:hover{color:inherit}
+::selection{background:#E29A64;color:#270402}
+:focus-visible{outline:2px solid #E29732;outline-offset:3px}
+@media (prefers-reduced-motion: no-preference){@keyframes fuel-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}}
+@media (prefers-reduced-motion: no-preference){@keyframes fuel-shimmer{from{background-position:100% 0}to{background-position:0 0}}}
+</style>
+</helmet>
+<a href="#main" style="position:fixed; top:12px; left:-9999px; z-index:200; padding:12px 18px; border-radius:999px; background:#270402; color:#FBF6EE; font:500 14px Jost, sans-serif; text-decoration:none" style-focus="left:12px">Skip to content</a>
+<dc-import name="Fuel Nav" page="home" home-href="/" bp="{{ bp }}" theme="{{ theme }}" over-dark="{{ navDark }}" chip="{{ chip }}" is-open="{{ isOpen }}" on-toggle="{{ onToggle }}" hint-size="100%,0px"></dc-import>
+
+<sc-if value="{{ showLoader }}" hint-placeholder-val="{{ true }}">
+  <div role="status" aria-label="Loading" style="position:fixed; inset:0; z-index:150; background:#270402; color:#FBF6EE; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(24px,4vw,48px) clamp(16px,5vw,72px); box-sizing:border-box; transform:{{ curtainT }}; transition:transform 1s cubic-bezier(.7,0,.2,1)">
+    <div style="display:flex; justify-content:space-between; font:400 12px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; color:#E3CBB3"><span>THE FUEL</span><span>DHA Phase 6 · Lahore</span></div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:26px">
+      <span aria-hidden="true" style="position:relative; width:84px; height:118px; display:block">
+        <span style="position:absolute; inset:0; background:#E29A64; clip-path:{{ pourClip }}; transition:clip-path .35s ease-out; -webkit-mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat"></span>
+        <span style="position:absolute; inset:0; background:#FBF6EE; -webkit-mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat"></span>
+      </span>
+      <span style="font:400 12px 'DM Mono', monospace; letter-spacing:.12em; text-transform:uppercase; color:#E3CBB3">Pulling your shot…</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end">
+        <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:clamp(56px,8vw,120px); line-height:.9; font-variant-numeric:tabular-nums">{{ pct }}</span>
+        <button type="button" onClick="{{ skipLoader }}" style="min-height:44px; padding:0 20px; border-radius:999px; border:1px solid rgba(251,246,238,.28); background:transparent; color:#FBF6EE; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; opacity:{{ skipOp }}; transition:opacity .4s" style-hover="background:rgba(226,154,100,.2)">Skip</button>
+      </div>
+      <span style="display:block; height:2px; background:rgba(251,246,238,.16)"><span style="display:block; height:100%; width:{{ pctW }}; background:#E29A64; transition:width .35s ease-out"></span></span>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+  <div aria-hidden="true" style="position:fixed; left:clamp(16px,5vw,72px); bottom:24px; z-index:40; display:flex; align-items:center; gap:10px; height:36px; padding:0 14px; border-radius:999px; background:var(--glass); color:var(--ink); border:1px solid var(--line); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase">
+    <span data-counter="">01</span><span style="opacity:.5">/ 10</span><span data-counter-name="" style="padding-left:6px; border-left:1px solid var(--line)">Espresso Yourself</span>
+  </div>
+</sc-if>
+
+<main id="main">
+<section data-scene="hero" data-n="01" data-name="Espresso Yourself" data-screen-label="01 Hero" style="position:relative; height:{{ hHero }}; background:var(--bg); color:var(--ink); transition:background-color .6s">
+  <div style="position:sticky; top:0; height:100dvh; overflow:hidden">
+    <div data-hero-media="" style="position:absolute; inset:0; clip-path:{{ heroClip0 }}; background:linear-gradient(180deg,#d2a272 0%,#c59567 28%,#b38355 55%,#9e7148 75%,#bf956d 77.5%,#d6ac84 100%); will-change:clip-path">
+      <sc-if value="{{ useVideo }}" hint-placeholder-val="{{ true }}">
+        <video ref="{{ videoRef }}" poster="assets/hero/hero-poster-1280x720.webp" muted="{{ true }}" playsInline="{{ true }}" loop="{{ loopVideo }}" autoPlay="{{ loopVideo }}" preload="{{ videoPreload }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; z-index:1">
+          <source src="assets/hero/hero-loop-1280x720.mp4" type="video/mp4">
+          <source src="assets/hero/hero-loop-1280x720.webm" type="video/webm">
+        </video>
+      </sc-if>
+      <sc-if value="{{ usePoster }}" hint-placeholder-val="{{ false }}">
+        <img src="assets/hero/hero-poster-1280x720.webp" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0">
+      </sc-if>
+    </div>
+    <div data-hero-text="" style="position:relative; height:100%; box-sizing:border-box; max-width:1600px; margin:0 auto; padding:clamp(108px,15vh,150px) clamp(16px,5vw,72px) clamp(28px,6vh,64px); display:flex; flex-direction:column; justify-content:{{ heroJustify }}; gap:clamp(18px,2.4vh,28px); will-change:transform,opacity">
+      <h1 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; line-height:.92; letter-spacing:-.015em; max-width:{{ heroTextW }}">
+        <span style="display:block; font-size:clamp(52px,7.4vw,124px)">ESPRESSO</span>
+        <span style="display:block; font-style:italic; font-weight:400; font-size:clamp(52px,7.4vw,124px); padding-bottom:.1em">Yourself.</span>
+      </h1>
+      <p style="margin:0; max-width:30ch; font-size:clamp(17px,1.35vw,20px); line-height:1.5; color:var(--ink2)">Flaky outside, soft inside. Baked fresh to fuel every moment.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center">
+        <a href="/menu" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:var(--accent); color:var(--accentInk); text-decoration:none; font-size:16px; font-weight:500; transition:transform .24s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-2px); color:var(--accentInk)" style-active="transform:scale(.98)">See the menu<i class="ph ph-arrow-right" style="font-size:18px"></i></a>
+        <span style="display:inline-flex; align-items:center; gap:10px; min-height:44px; padding:0 8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2)">Scroll to pour<i class="ph ph-arrow-down" style="font-size:16px; animation:fuel-bob 2.4s ease-in-out infinite"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-scene="words" data-n="02" data-name="Our craft" data-screen-label="02 Statement" style="position:relative; height:{{ hWords }}; background:var(--bg); color:var(--ink); transition:background-color .6s">
+  <div style="position:sticky; top:0; height:100dvh; display:flex; align-items:center; padding:0 clamp(16px,5vw,72px); box-sizing:border-box">
+    <p style="margin:0 auto; max-width:1280px; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(36px,5.6vw,92px); line-height:1.08; letter-spacing:-.02em; display:flex; flex-wrap:wrap; gap:0 .26em">
+      <sc-for list="{{ words }}" as="wd" hint-placeholder-count="0">
+        <span data-word="" style="opacity:{{ wordOp }}; font-style:{{ wd.style }}; transition:opacity .15s linear">{{ wd.t }}</span>
+      </sc-for>
+    </p>
+  </div>
+</section>
+
+<section data-scene="day" data-n="03" data-name="The 18-hour day" data-screen-label="03 The 18-hour day" style="position:relative; height:{{ hDay }}">
+  <div data-day-stage="" style="position:sticky; top:0; height:100dvh; overflow:hidden; background:#FBF6EE; color:#270402; display:flex; align-items:center; padding:clamp(88px,12vh,120px) clamp(16px,5vw,72px) clamp(24px,5vh,48px); box-sizing:border-box">
+    <div style="width:100%; max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,380px),1fr)); align-items:center; gap:clamp(24px,5vw,96px)">
+      <div style="display:flex; flex-direction:column; gap:clamp(12px,2vh,22px)">
+        <span style="font:400 12px 'DM Mono', monospace; letter-spacing:.12em; text-transform:uppercase; opacity:.8">18 hours of pure espresso</span>
+        <span data-day-time="" style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:clamp(64px,9vw,148px); line-height:.9; letter-spacing:-.03em; font-variant-numeric:tabular-nums; white-space:nowrap">{{ dayTime0 }}</span>
+        <span data-day-moment="" style="font-family:'Bodoni Moda', serif; font-style:italic; font-size:clamp(24px,2.6vw,40px); line-height:1.15">{{ dayMoment0 }}</span>
+        <span style="margin-top:8px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; opacity:.8">{{ realNow }}</span>
+      </div>
+      <div style="justify-self:center; width:100%; max-width:{{ clockMax }}">
+        <svg viewBox="0 0 400 400" role="img" aria-label="Clock moving from 8 AM to 2 AM as you scroll" style="display:block; width:100%; height:auto; overflow:visible">
+          <circle cx="200" cy="200" r="176" fill="none" stroke="currentColor" stroke-opacity=".16" stroke-width="10"></circle>
+          <circle data-day-ring="" cx="200" cy="200" r="176" fill="none" stroke="#E29A64" stroke-width="10" stroke-linecap="round" stroke-dasharray="1105.84" stroke-dashoffset="{{ ring0 }}" transform="rotate(-90 200 200)"></circle>
+          <sc-for list="{{ minTicks }}" as="t" hint-placeholder-count="0">
+            <line x1="{{ t.x1 }}" y1="{{ t.y1 }}" x2="{{ t.x2 }}" y2="{{ t.y2 }}" stroke="currentColor" stroke-opacity=".6" stroke-width="{{ t.sw }}" stroke-linecap="round"></line>
+          </sc-for>
+          <sc-for list="{{ nums }}" as="n" hint-placeholder-count="0">
+            <text x="{{ n.x }}" y="{{ n.y }}" text-anchor="middle" dominant-baseline="central" fill="currentColor" style="font-family:'Bodoni Moda', serif; font-size:24px; font-weight:600">{{ n.t }}</text>
+          </sc-for>
+          <line data-hand="h" x1="200" y1="214" x2="200" y2="108" stroke="currentColor" stroke-width="8" stroke-linecap="round" style="transform:rotate(240deg); transform-origin:200px 200px"></line>
+          <line data-hand="m" x1="200" y1="218" x2="200" y2="68" stroke="currentColor" stroke-width="4" stroke-linecap="round" style="transform-origin:200px 200px"></line>
+          <circle cx="200" cy="200" r="9" fill="#E29A64"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-scene="worlds" data-n="04" data-name="Product worlds" data-spy="menu" data-screen-label="04 Product worlds" style="position:relative; height:{{ hWorlds }}">
+  <div data-w-stage="" style="position:sticky; top:0; height:100dvh; overflow:hidden; background:#270402; color:#FBF6EE; transition:background-color .6s cubic-bezier(.16,1,.3,1); padding:clamp(88px,12vh,120px) clamp(16px,5vw,72px) clamp(24px,5vh,56px); box-sizing:border-box; display:flex; align-items:center">
+    <div style="width:100%; max-width:1456px; margin:0 auto; display:grid; grid-template-columns:{{ worldCols }}; align-items:center; gap:clamp(20px,4vw,72px)">
+      <div style="display:grid; order:{{ wTextOrder }}">
+        <sc-for list="{{ worldList }}" as="x" hint-placeholder-count="0">
+          <div data-w-text="" style="grid-area:1 / 1; display:flex; flex-direction:column; gap:clamp(12px,2vh,22px); opacity:{{ x.op0 }}; transform:{{ x.t0 }}; transition:opacity .28s ease, transform .5s cubic-bezier(.16,1,.3,1); pointer-events:{{ x.pe0 }}">
+            <span style="font:400 12px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; color:{{ x.ink2 }}">World {{ x.num }} / 06 · {{ x.name }}</span>
+            <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(40px,5.4vw,88px); line-height:1; letter-spacing:-.025em; padding-bottom:.06em">{{ x.title }} <em style="font-weight:400; color:{{ x.hl }}">{{ x.italic }}</em></h2>
+            <p style="margin:0; max-width:32ch; font-size:clamp(16px,1.3vw,19px); line-height:1.55; color:{{ x.ink2 }}">{{ x.tagline }}</p>
+            <p style="margin:0; max-width:40ch; font:400 12px 'DM Mono', monospace; letter-spacing:.06em; line-height:1.8; text-transform:uppercase; color:{{ x.ink2 }}">{{ x.itemLine }}</p>
+            <a href="{{ x.href }}" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 22px; border-radius:999px; background:{{ x.accent }}; color:{{ x.accentInk }}; text-decoration:none; font-size:15px; font-weight:500">Explore {{ x.name }}<i class="ph ph-arrow-up-right" style="font-size:16px"></i></a>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid; justify-self:center; width:100%; max-width:{{ archMax }}; aspect-ratio:4/5; max-height:{{ archMaxH }}; border-radius:999px 999px 20px 20px; overflow:hidden; background:linear-gradient(100deg,rgba(127,127,127,.18) 38%,rgba(255,255,255,.28) 50%,rgba(127,127,127,.18) 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite; order:{{ wImgOrder }}">
+        <img data-w-img="" src="assets/worlds/01-roast/HERO_f040_cups-latte-art.jpg" alt="Flat white with latte art among stacked pink cups" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:1; transition:opacity .28s ease; will-change:transform">
+        <img data-w-img="" src="assets/worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg" alt="Iced matcha latte breaking through green paper" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .28s ease; will-change:transform">
+        <img data-w-img="" src="assets/worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg" alt="Croissant on a terracotta plate" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .28s ease; will-change:transform">
+        <img data-w-img="" src="assets/worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg" alt="Caramel shake splashing in front of the storefront sign" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .28s ease; will-change:transform">
+        <img data-w-img="" src="assets/worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg" alt="Strawberry chiller held in hand" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .28s ease; will-change:transform">
+        <img data-w-img="" src="assets/worlds/06-desserts/HERO_f111_brownie-fork.jpg" alt="Brownie stack on a fork with chocolate drip" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .28s ease; will-change:transform">
+      </div>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; order:3">
+          <sc-for list="{{ worldList }}" as="x" hint-placeholder-count="0">
+            <li><button type="button" data-w-dot="" onClick="{{ x.go }}" style="display:flex; align-items:center; gap:12px; min-height:44px; padding:0 4px; border:none; background:transparent; color:inherit; font:400 12px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; opacity:{{ x.dot0 }}; transition:opacity .3s"><span style="width:22px; height:1px; background:currentColor"></span>{{ x.name }}</button></li>
+          </sc-for>
+        </ol>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section data-scene="best" data-n="05" data-name="Best sellers" data-spy="menu" data-screen-label="05 Best sellers" style="position:relative; height:{{ hBest }}; background:var(--surface); color:var(--ink); transition:background-color .6s, color .6s">
+  <div style="position:sticky; top:0; height:100dvh; overflow:hidden">
+    <div style="position:absolute; top:clamp(96px,13vh,130px); left:0; right:0; padding:0 clamp(16px,5vw,72px); display:flex; justify-content:space-between; align-items:flex-end; gap:16px; z-index:3">
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(36px,4.4vw,64px); line-height:1.04; letter-spacing:-.02em">Best sellers</h2>
+      <a href="/menu" style="display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--accent); font-size:16px; font-weight:500; text-decoration:none; border-bottom:1px solid currentColor">Full menu<i class="ph ph-arrow-right"></i></a>
+    </div>
+    <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; background:radial-gradient(60% 55% at 50% 58%, rgba(226,154,100,.42) 0%, rgba(226,154,100,0) 72%)"></div>
+    <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:72px 72px; background-position:center center; -webkit-mask-image:radial-gradient(ellipse 72% 66% at 50% 56%, #000 25%, transparent 78%); mask-image:radial-gradient(ellipse 72% 66% at 50% 56%, #000 25%, transparent 78%)"></div>
+    <div aria-hidden="true" style="position:absolute; left:50%; top:56%; transform:translate(-50%,-50%); z-index:1; display:grid; place-items:end center">
+      <span style="grid-area:1 / 1; width:clamp(380px,46vw,700px); aspect-ratio:3/4; border-radius:999px 999px 0 0; border:1px solid rgba(226,154,100,.38); border-bottom:none"></span>
+      <span style="grid-area:1 / 1; width:clamp(290px,34vw,520px); aspect-ratio:3/4; border-radius:999px 999px 0 0; border:1px solid rgba(226,154,100,.55); border-bottom:none"></span>
+      <span style="grid-area:1 / 1; width:clamp(200px,22vw,340px); aspect-ratio:3/4; border-radius:999px 999px 0 0; border:1.5px solid rgba(226,154,100,.8); border-bottom:none; background:radial-gradient(circle at 50% 40%, rgba(226,154,100,.22), rgba(226,154,100,0) 70%); display:grid; place-items:center">
+        <span style="width:clamp(56px,6vw,88px); aspect-ratio:84/118; background:#E29A64; opacity:.75; -webkit-mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat"></span>
+      </span>
+    </div>
+    <div data-best-track="" style="position:absolute; top:56%; left:0; transform:translate(100vw,-50%); display:flex; gap:clamp(24px,8vw,160px); z-index:2; will-change:transform">
+      <article style="flex:none; width:clamp(240px,22vw,320px); display:flex; flex-direction:column; gap:14px; padding:12px 12px 20px; border-radius:18px; background:var(--bg); box-shadow:0 30px 60px -30px rgba(39,4,2,.4); transition:background-color .6s">
+        <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/01-roast/f087_two-iced-lattes.jpg" alt="Two iced lattes held in cream knitwear" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+        <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 6px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,1.8vw,28px)">Iced Latte</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Iced Latte" data-world="Roast" aria-label="Add Iced Latte to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+      </article>
+      <article style="flex:none; width:clamp(240px,22vw,320px); display:flex; flex-direction:column; gap:14px; padding:12px 12px 20px; border-radius:18px; background:var(--bg); box-shadow:0 30px 60px -30px rgba(39,4,2,.4); transition:background-color .6s">
+        <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/03-bakery/f047_croissant-paper-bag.jpg" alt="Two croissants in a pink branded paper bag" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+        <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 6px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,1.8vw,28px)">Butter Croissant</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Butter Croissant" data-world="Bakery" aria-label="Add Butter Croissant to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+      </article>
+      <article style="flex:none; width:clamp(240px,22vw,320px); display:flex; flex-direction:column; gap:14px; padding:12px 12px 20px; border-radius:18px; background:var(--bg); box-shadow:0 30px 60px -30px rgba(39,4,2,.4); transition:background-color .6s">
+        <span style="aspect-ratio:4/5; border-radius:999px 999px 12px 12px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/02-matcha/f056_stacked-matcha-cups.jpg" alt="Three matcha lattes stacked mid-air" style="width:100%; height:100%; object-fit:cover; display:block"></span>
+        <span style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:0 6px"><span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,1.8vw,28px)">Iced Matcha Latte</span><span style="font:400 13px 'DM Mono', monospace; color:var(--ink2)">[PRICE]</span></span><button type="button" onClick="{{ addItem }}" data-add="Iced Matcha Latte" data-world="Matcha" aria-label="Add Iced Matcha Latte to bag" style="flex:none; width:48px; height:48px; border-radius:50%; border:none; background:var(--accent); color:var(--accentInk); display:grid; place-items:center; font-size:20px; cursor:pointer; transition:transform .2s" style-hover="transform:scale(1.06)" style-active="transform:scale(.94)"><i class="ph ph-plus"></i></button></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section data-scene="room" data-n="06" data-name="Hidden in DHA" data-spy="space" data-screen-label="06 Hidden in DHA" style="position:relative; height:{{ hRoom }}; background:var(--bg); color:var(--ink); transition:background-color .6s, color .6s">
+  <div style="position:sticky; top:0; height:100dvh; overflow:{{ roomOverflow }}; display:flex; align-items:center">
+    <div data-room-track="" style="display:flex; align-items:center; gap:clamp(20px,3vw,48px); padding:clamp(80px,10vh,110px) clamp(16px,5vw,72px) 0; will-change:transform">
+      <div style="flex:none; width:clamp(300px,34vw,520px); display:flex; flex-direction:column; gap:24px">
+        <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(48px,6.6vw,104px); line-height:1; letter-spacing:-.025em">Hidden <em style="font-weight:400">in DHA.</em></h2>
+        <p style="margin:0; max-width:32ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:var(--ink2)">Fourth floor of Al-Ghani Plaza. Pink swing seats, window light, and a counter that stays open till 2 AM.</p>
+        <a href="/space" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:var(--accent); color:var(--accentInk); text-decoration:none; font-size:16px; font-weight:500" style-hover="color:var(--accentInk)">See the space<i class="ph ph-arrow-right" style="font-size:18px"></i></a>
+      </div>
+      <div data-speed="1" style="flex:none; width:clamp(260px,30vw,460px); aspect-ratio:4/5; border-radius:999px 999px 18px 18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/space/f088_interior-lattes-window.jpg" alt="Two lattes on a wooden tray under THE FUEL wall sign" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div data-speed="-0.7" style="flex:none; width:clamp(180px,18vw,280px); aspect-ratio:9/14; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#F3DAD6 38%,#FBE9E5 50%,#F3DAD6 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/space/f001_interior-pink-swings.jpg" alt="Pink room with swing seats by the window" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div data-speed="0.5" style="flex:none; width:clamp(240px,26vw,400px); aspect-ratio:3/4; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/space/f055_interior-wall-sign.jpg" alt="Bright seating area with the FUEL wall letters" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div data-speed="-1" style="flex:none; width:clamp(180px,18vw,280px); aspect-ratio:9/14; border-radius:999px 999px 18px 18px; overflow:hidden; background:linear-gradient(100deg,#F3DAD6 38%,#FBE9E5 50%,#F3DAD6 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/space/f058_swing-seat-window.jpg" alt="Swing seat by the window at golden hour" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+      <div data-speed="0.8" style="flex:none; width:clamp(220px,22vw,340px); aspect-ratio:9/14; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/space/f029_counter-barista-sign.jpg" alt="Counter with THE FUEL sign and a barista" style="width:100%; height:100%; object-fit:cover; display:block"></div>
+    </div>
+  </div>
+</section>
+
+<section data-n="07" data-name="Campaigns" data-screen-label="07 Campaigns" style="background:var(--surface); padding:clamp(16px,2vw,24px); transition:background-color .6s">
+  <div data-banner="" style="position:relative; max-width:1600px; margin:0 auto; min-height:clamp(440px,70vh,720px); border-radius:18px; overflow:hidden; display:flex; align-items:flex-end; color:#FBF6EE; background:#270402; clip-path:{{ banner0 }}">
+    <div data-banner-img="" aria-hidden="true" style="position:absolute; inset:0; background:url('assets/brand-moments/f036_cups-upright.jpg') center 35%/cover; transform:{{ bannerImg0 }}; will-change:transform"></div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(39,4,2,.92) 0%, rgba(39,4,2,.7) 38%, rgba(39,4,2,.1) 75%)"></div>
+    <div style="position:relative; padding:clamp(28px,5vw,72px); display:flex; flex-direction:column; gap:20px; max-width:620px">
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(44px,6.6vw,96px); line-height:1; letter-spacing:-.025em">Fuel up, <em style="font-weight:400">match on.</em></h2>
+      <p style="margin:0; max-width:36ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:#E3CBB3">Match-night specials and big-screen evenings on the fourth floor. Dates go up on Instagram first.</p>
+    </div>
+  </div>
+</section>
+
+<section data-n="08" data-name="Social wall" data-screen-label="08 Social wall" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px,4vw,56px)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(32px,4vw,56px); line-height:1.04; letter-spacing:-.02em"><a href="https://instagram.com/thefuelespresso" style="text-decoration:none" style-hover="color:var(--accent)">@thefuelespresso</a></h2>
+      <a href="https://instagram.com/thefuelespresso" style="display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 22px; border-radius:999px; border:1px solid var(--line); text-decoration:none; font-size:15px; font-weight:500" style-hover="background:rgba(226,154,100,.22)"><i class="ph ph-instagram-logo" style="font-size:20px"></i>Follow on Instagram</a>
+    </div>
+    <div ref="{{ wallRef }}" onPointerMove="{{ wallMove }}" onPointerEnter="{{ wallEnter }}" onPointerLeave="{{ wallLeave }}" style="position:relative; display:grid; grid-template-columns:{{ socialCols }}; gap:clamp(10px,1.2vw,16px); align-items:start">
+      <a href="https://instagram.com/thefuelespresso" aria-label="Pink cups on cream, on Instagram" style="display:block; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/brand-moments/f093_pink-cups-pattern.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Iced drink and paper bag, on Instagram" style="display:block; margin-top:48px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/brand-moments/f014_iced-drink-paper-bag.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Latte art from above, on Instagram" style="display:block; margin-top:16px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/01-roast/f067_latte-art-topdown.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Tiramisu with four forks, on Instagram" style="display:block; margin-top:64px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/06-desserts/f070_tiramisu-four-forks.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Tray of fresh croissants, on Instagram" style="display:block; margin-top:8px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/03-bakery/f031_baker-tray.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <a href="https://instagram.com/thefuelespresso" aria-label="Matcha latte in green knitwear, on Instagram" style="display:block; margin-top:40px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:linear-gradient(100deg,#E3CBB3 38%,#F3E6D6 50%,#E3CBB3 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite"><img src="assets/worlds/02-matcha/f071_hands-matcha-green-knit.jpg" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.05)"></a>
+      <span ref="{{ tagRef }}" aria-hidden="true" style="position:absolute; left:0; top:0; z-index:3; pointer-events:none; display:flex; align-items:center; gap:8px; height:40px; padding:0 16px; border-radius:999px; background:#270402; color:#FBF6EE; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; opacity:0; transition:opacity .25s"><i class="ph ph-instagram-logo" style="font-size:16px"></i>View on Instagram</span>
+    </div>
+  </div>
+</section>
+
+<div data-n="09" data-name="Visit">
+  <dc-import name="Fuel Visit" draw="{{ true }}" hint-size="100%,820px"></dc-import>
+</div>
+
+<section data-n="10" data-name="Espresso Yourself!" data-settle="" data-screen-label="10 Settle" style="background:#270402; color:#FBF6EE; padding:clamp(80px,10vw,140px) clamp(16px,5vw,72px) 0; display:flex; flex-direction:column; align-items:center; gap:24px">
+  <span style="font:400 12px 'DM Mono', monospace; letter-spacing:.12em; text-transform:uppercase; color:#E3CBB3">See you on the fourth floor</span>
+  <div style="width:clamp(180px,20vw,280px); aspect-ratio:3/4; border-radius:999px 999px 20px 20px; overflow:hidden; background:linear-gradient(100deg,#3A1A0F 38%,#592D14 50%,#3A1A0F 62%) 0 0/300% 100%; animation:fuel-shimmer 1.6s linear infinite; margin-bottom:-1px">
+    <img src="assets/brand-moments/latte-heart-saucer.jpg" alt="Latte art heart in a cream cup on a saucer" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:50% 48%; display:block">
+  </div>
+</section>
+</main>
+<dc-import name="Fuel Footer" phone="{{ isPhone }}" home-href="/" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;latte&quot;,&quot;espresso&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;loader&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;always&quot;,&quot;once&quot;,&quot;off&quot;],&quot;default&quot;:&quot;always&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroMedia&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;video&quot;,&quot;poster&quot;],&quot;default&quot;:&quot;video&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  static P = 'assets/';
+  static W = [
+    { key: 'roast', name: 'Roast', title: 'Pulled', italic: 'slow.', tagline: 'Pulled slow. Poured pretty.', alt: 'Flat white with latte art among stacked pink cups', dark: true,
+      c: { bg: '#270402', ink: '#FBF6EE', ink2: '#C9AC92', accent: '#E29A64', accentInk: '#270402', hl: '#E29A64' }, hero: 'worlds/01-roast/HERO_f040_cups-latte-art.jpg', items: ['Espresso', 'Flat White', 'Cappuccino', 'Iced Latte'] },
+    { key: 'matcha', name: 'Matcha', title: 'Whisked', italic: 'green.', tagline: 'Whisked green, poured over ice.', alt: 'Iced matcha latte breaking through green paper', dark: true,
+      c: { bg: '#1F3A2B', ink: '#F2F5E4', ink2: '#C9D6B0', accent: '#B9CC94', accentInk: '#1F3A2B', hl: '#DDE6A8' }, hero: 'worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg', items: ['Iced Matcha Latte', 'Hot Matcha Latte', 'Matcha Cup', 'Matcha and Croissant'] },
+    { key: 'bakery', name: 'Bakery', title: 'Flaky outside,', italic: 'soft inside.', tagline: 'Baked fresh to fuel every moment.', alt: 'Croissant on a terracotta plate', dark: false,
+      c: { bg: '#D99B57', ink: '#270402', ink2: '#3E1C0B', accent: '#270402', accentInk: '#FBF6EE', hl: '#592D14' }, hero: 'worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg', items: ['Butter Croissant', 'Pain au Chocolat', 'Almond Croissant', 'Glazed Croissant'] },
+    { key: 'shakes', name: 'Shakes', title: 'Thick enough', italic: 'for a spoon.', tagline: 'Blended thick. Best with a straw and a friend.', alt: 'Caramel shake splashing in front of the storefront sign', dark: false,
+      c: { bg: '#F3DAD6', ink: '#4A1E14', ink2: '#6B3A32', accent: '#8A4B45', accentInk: '#FBF6EE', hl: '#8A4B45' }, hero: 'worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg', items: ['Caramel Blast Shake', 'Cookies and Cream Shake', 'Chocolate Shake', 'Vanilla Shake'] },
+    { key: 'coolers', name: 'Coolers', title: 'Cold fruit,', italic: 'warm days.', tagline: 'Cold fruit for warm Lahore afternoons.', alt: 'Strawberry chiller held in hand', dark: false,
+      c: { bg: '#FFF1DC', ink: '#3A0F10', ink2: '#6B2A24', accent: '#B02A38', accentInk: '#FFF1DC', hl: '#B02A38' }, hero: 'worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg', items: ['Strawberry Chiller', 'Mango Cooler', 'Watermelon Cooler', 'Matcha Berry Layer'] },
+    { key: 'desserts', name: 'Desserts', title: 'One plate,', italic: 'four forks.', tagline: 'Made with love. Shared, mostly.', alt: 'Brownie stack on a fork with chocolate drip', dark: true,
+      c: { bg: '#592D14', ink: '#F3E6D6', ink2: '#E3CBB3', accent: '#F1B88D', accentInk: '#270402', hl: '#F1B88D' }, hero: 'worlds/06-desserts/HERO_f111_brownie-fork.jpg', items: ['Fudge Brownie', 'Tiramisu', 'Baked Cheesecake', 'Chocolate Chip Cookie'] }
+  ];
+  static WORDS = 'we know espresso. *it’s *our *craft. Every shot is pulled to order, every croissant baked fresh, eighteen hours a day.';
+  static DAY = [[0, '#FBF6EE'], [0.33, '#F3E6D6'], [0.55, '#E29A64'], [0.72, '#592D14'], [1, '#270402']];
+  reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  loaderInit = (() => { const m = (this.props && this.props.loader) || 'always'; if (m === 'off') return 'none'; try { if (m === 'once' && sessionStorage.getItem('fuel-pour')) return 'none'; } catch (e) {} return 'load'; })();
+  state = { theme: 'latte', w: typeof window !== 'undefined' ? innerWidth : 1440, h: typeof window !== 'undefined' ? innerHeight : 900, open: true, loader: this.loaderInit, pct: 0, skip: false, navDark: false, world: 0, realNow: '' };
+  videoRef = React.createRef(); wallRef = React.createRef(); tagRef = React.createRef();
+  timers = [];
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: innerWidth, h: innerHeight });
+    addEventListener('resize', this.onResize);
+    import(new URL('fuel-theme.js', location.href).href).then(m => { this.m = m; this.applyTheme(this.pickTheme()); });
+    const st = () => {
+      const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+      const h = +parts.find(p => p.type === 'hour').value % 24, mi = +parts.find(p => p.type === 'minute').value;
+      const open = h >= 8 || h < 2;
+      this.setState({ open, realNow: `Right now in Lahore: ${this.fmtTime(h + mi / 60)} · ${open ? 'Open' : 'Closed'}` });
+    };
+    st(); this.t = setInterval(st, 20000);
+    this.videoPromise = this.loadScrub();
+    this.preload();
+    this.cache();
+    if (!this.reduce) { const loop = () => { this.frame(); this.raf = requestAnimationFrame(loop); }; loop(); }
+    else this.staticState();
+    const v = this.videoRef.current;
+    if (v) { v.muted = true; if (this.loopVideo()) { const p = v.play(); p && p.catch && p.catch(() => {}); } else v.pause(); }
+  }
+  // Scrubbing needs a fully seekable file, so the clip is pulled into memory as a Blob first.
+  loadScrub() {
+    const v = this.videoRef.current; if (!v || this.loopVideo()) return Promise.resolve();
+    return fetch(new URL(Component.P + 'hero/hero-loop-1280x720.mp4', location.href).href)
+      .then(r => { if (!r.ok) throw new Error('video'); return r.blob(); })
+      .then(b => new Promise(res => {
+        const done = () => { v.removeEventListener('loadeddata', done); this.scrubReady = v.readyState >= 2; v.pause(); res(); };
+        v.addEventListener('loadeddata', done);
+        v.src = URL.createObjectURL(b); v.load();
+        setTimeout(done, 4000);
+      }))
+      .catch(() => this.toLoop());
+  }
+  toLoop() {
+    const v = this.videoRef.current; this.scrubFail = true; if (!v) return;
+    v.loop = true; const p = v.play(); p && p.catch && p.catch(() => {});
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onResize); clearInterval(this.t); cancelAnimationFrame(this.raf); this.timers.forEach(clearTimeout); }
+  componentDidUpdate(prev) { if (prev.theme !== this.props.theme && this.m) this.applyTheme(this.pickTheme()); }
+  pickTheme() { const p = this.props.theme ?? 'auto'; return p === 'latte' || p === 'espresso' ? p : this.m.initialTheme(); }
+  applyTheme(t) { this.m.applyVars(this.m.THEMES[t]); document.documentElement.style.colorScheme = t === 'latte' ? 'light' : 'dark'; this.setState({ theme: t }); }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+  loopVideo() { return this.state.w < 768; }
+  fmtTime(x) { const h = Math.floor(x) % 24, m = Math.floor((x % 1) * 60); return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`; }
+
+  // Pour loader: counts real asset loads (poster, world heroes, room shots, first video data). Min 1.2 s, cap 3.5 s.
+  preload() {
+    if (this.state.loader === 'none') return;
+    try { sessionStorage.setItem('fuel-pour', '1'); } catch (e) {}
+    const P = Component.P;
+    const list = ['hero/hero-poster-1280x720.webp', ...Component.W.map(w => w.hero), 'space/f088_interior-lattes-window.jpg', 'space/f055_interior-wall-sign.jpg', 'worlds/01-roast/f087_two-iced-lattes.jpg', 'worlds/03-bakery/f047_croissant-paper-bag.jpg', 'worlds/02-matcha/f056_stacked-matcha-cups.jpg', 'brand-moments/f036_cups-upright.jpg'];
+    const total = list.length + 1; let done = 0; const t0 = performance.now();
+    const bump = () => { done++; this.setState({ pct: Math.round((done / total) * 100) }); if (done >= total) finish(); };
+    const finish = () => { if (this.finished) return; this.finished = true; const wait = Math.max(0, 1200 - (performance.now() - t0)); this.later(() => this.lift(), wait + 250); };
+    list.forEach(p => { const i = new Image(); i.onload = i.onerror = bump; i.src = P + p; });
+    this.videoPromise.then(bump, bump);
+    this.later(() => this.setState({ skip: true }), 2000);
+    this.later(() => { this.setState({ pct: 100 }); finish(); }, 3500);
+  }
+  lift = () => { if (this.state.loader !== 'load') return; this.setState({ loader: 'lift' }); this.later(() => this.setState({ loader: 'none' }), 1050); };
+
+  cache() {
+    const q = s => document.querySelector(s), qa = s => [...document.querySelectorAll(s)];
+    this.el = {
+      hero: q('[data-scene="hero"]'), heroMedia: q('[data-hero-media]'), heroText: q('[data-hero-text]'),
+      words: q('[data-scene="words"]'), wordEls: qa('[data-word]'),
+      day: q('[data-scene="day"]'), dayStage: q('[data-day-stage]'), dayTime: q('[data-day-time]'), dayMoment: q('[data-day-moment]'), hH: q('[data-hand="h"]'), hM: q('[data-hand="m"]'), ring: q('[data-day-ring]'),
+      worlds: q('[data-scene="worlds"]'), wStage: q('[data-w-stage]'), wText: qa('[data-w-text]'), wImg: qa('[data-w-img]'),
+      best: q('[data-scene="best"]'), bestTrack: q('[data-best-track]'),
+      room: q('[data-scene="room"]'), roomTrack: q('[data-room-track]'), roomItems: qa('[data-speed]'),
+      banner: q('[data-banner]'), bannerImg: q('[data-banner-img]'),
+      counter: q('[data-counter]'), counterName: q('[data-counter-name]'), scenes: qa('[data-n]'), settle: q('[data-settle]')
+    };
+    this.lastWorld = -1;
+  }
+  prog(el) { if (!el) return 0; const r = el.getBoundingClientRect(), d = r.height - innerHeight; return d <= 0 ? (r.top <= 0 ? 1 : 0) : Math.min(1, Math.max(0, -r.top / d)); }
+  heroRect() {
+    const w = innerWidth, h = innerHeight;
+    if (w < 768) { const L = w * 0.06, R = w * 0.94, T = h * 0.5, B = h * 0.93; return { t: T, r: w - R, b: h - B, l: L, rad: (R - L) / 2 }; }
+    const aw = Math.min(w * 0.36, (h * 0.78) * 0.8), L = w * 0.58 - aw * 0.1, T = h * 0.14; const R = L + aw, B = T + Math.min(h * 0.78, aw * 1.25);
+    return { t: T, r: Math.max(0, w - R), b: Math.max(0, h - B), l: L, rad: aw / 2 };
+  }
+  lerpHex(a, b, t) { const pa = [1, 3, 5].map(i => parseInt(a.slice(i, i + 2), 16)), pb = [1, 3, 5].map(i => parseInt(b.slice(i, i + 2), 16)); return pa.map((v, i) => Math.round(v + (pb[i] - v) * t)); }
+  dayColor(p) { const S = Component.DAY; let i = 0; while (i < S.length - 2 && p > S[i + 1][0]) i++; const [p0, c0] = S[i], [p1, c1] = S[i + 1]; return this.lerpHex(c0, c1, Math.min(1, Math.max(0, (p - p0) / (p1 - p0)))); }
+  moment(hr) { return hr < 12 ? 'Morning flat whites.' : hr < 18 ? 'Afternoon coolers.' : hr < 21 ? 'Golden hour on the swings.' : hr < 24 ? 'Late-night lattes.' : 'Dessert after midnight.'; }
+  setWorld(i) {
+    const E = this.el, W = Component.W[i];
+    // Background cross-fades; outgoing text/image leave first, ink + incoming swap at the 50% mark.
+    const first = this.lastWorld < 0;
+    E.wStage.style.backgroundColor = W.c.bg;
+    clearTimeout(this.wT);
+    E.wText.forEach((n, k) => { if (k !== i) { n.style.opacity = '0'; n.style.transform = `translateY(${k < i ? -24 : 24}px)`; n.style.pointerEvents = 'none'; } });
+    E.wImg.forEach((n, k) => { if (k !== i) n.style.opacity = '0'; });
+    const swap = () => {
+      E.wStage.style.color = W.c.ink;
+      const t = E.wText[i]; if (t) { t.style.opacity = '1'; t.style.transform = 'none'; t.style.pointerEvents = 'auto'; }
+      const im = E.wImg[i]; if (im) im.style.opacity = '1';
+    };
+    if (first) swap(); else this.wT = setTimeout(swap, 300);
+    document.querySelectorAll('[data-w-dot]').forEach((n, k) => { n.style.opacity = k === i ? '1' : '.45'; });
+    this.lastWorld = i;
+    if (this.state.world !== i) this.setState({ world: i });
+  }
+  goWorld(i) {
+    if (this.reduce) { this.setWorld(i); return; }
+    const el = this.el.worlds; if (!el) return;
+    const top = el.getBoundingClientRect().top + scrollY + ((i + 0.5) / 6) * (el.offsetHeight - innerHeight);
+    scrollTo({ top, behavior: 'smooth' });
+  }
+  staticState() {
+    const E = this.el; if (!E.hero) return;
+    const r = this.heroRect(); E.heroMedia.style.clipPath = `inset(${r.t}px ${r.r}px ${r.b}px ${r.l}px round ${r.rad}px ${r.rad}px 20px 20px)`;
+    E.wordEls.forEach(n => { n.style.opacity = '1'; });
+    this.setWorld(0);
+  }
+  frame() {
+    const E = this.el; if (!E || !E.hero) return;
+    const vh = innerHeight, vw = innerWidth;
+    // 01 hero: arch window grows to full bleed, text lifts away, video scrubs (desktop/tablet).
+    const p1 = this.prog(E.hero), e1 = p1 * p1 * (3 - 2 * p1), r = this.heroRect(), k = 1 - e1;
+    E.heroMedia.style.clipPath = `inset(${(r.t * k).toFixed(1)}px ${(r.r * k).toFixed(1)}px ${(r.b * k).toFixed(1)}px ${(r.l * k).toFixed(1)}px round ${(r.rad * k).toFixed(1)}px ${(r.rad * k).toFixed(1)}px ${(20 * k).toFixed(1)}px ${(20 * k).toFixed(1)}px)`;
+    E.heroText.style.opacity = Math.max(0, 1 - p1 * 2.4).toFixed(3);
+    E.heroText.style.transform = `translateY(${(-p1 * 140).toFixed(1)}px)`;
+    const v = this.videoRef.current;
+    if (v && this.scrubReady && !this.scrubFail && v.duration) {
+      if (v.seeking) { if (performance.now() - this.seekAt > 600) this.toLoop(); }
+      else { const target = p1 * (v.duration - 0.1); if (Math.abs(v.currentTime - target) > 0.04) { this.seekAt = performance.now(); v.currentTime = target; } }
+    }
+    // 02 words light up in reading order.
+    const p2 = this.prog(E.words), n = E.wordEls.length, lit = p2 * (n + 6) - 3;
+    E.wordEls.forEach((el, i) => { el.style.opacity = (0.16 + 0.84 * Math.min(1, Math.max(0, lit - i))).toFixed(3); });
+    // 03 the 18-hour day: hands run 8 AM to 2 AM, page tints day to night.
+    const p3 = this.prog(E.day), hr = 8 + 18 * p3;
+    const rgb = this.dayColor(p3), lum = (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255, darkDay = lum < 0.5;
+    E.dayStage.style.backgroundColor = `rgb(${rgb.join(',')})`; E.dayStage.style.color = darkDay ? '#FBF6EE' : '#270402';
+    E.hH.style.transform = `rotate(${((hr % 12) * 30).toFixed(2)}deg)`; E.hM.style.transform = `rotate(${(((hr % 1) * 60) * 6).toFixed(2)}deg)`;
+    E.ring.setAttribute('stroke-dashoffset', (1105.84 * (1 - p3)).toFixed(1));
+    const tl = this.fmtTime(hr % 24); if (E.dayTime.textContent !== tl) E.dayTime.textContent = tl;
+    const ml = this.moment(hr); if (E.dayMoment.textContent !== ml) E.dayMoment.textContent = ml;
+    // 04 worlds: page colour morphs per world, the arch actor turns slightly with scroll.
+    const p4 = this.prog(E.worlds), wi = Math.min(5, Math.floor(p4 * 6)), local = p4 * 6 - wi;
+    if (wi !== this.lastWorld) this.setWorld(wi);
+    const img = E.wImg[wi]; if (img) img.style.transform = `scale(${(1.04 + local * 0.05).toFixed(3)}) rotate(${((local - 0.5) * 4).toFixed(2)}deg)`;
+    // 05 best sellers slide past the fixed cup.
+    const p5 = this.prog(E.best), tw = E.bestTrack.scrollWidth;
+    E.bestTrack.style.transform = `translate(${(vw - p5 * (vw + tw)).toFixed(1)}px, -50%)`;
+    // 06 horizontal tour of the room with drifting arches.
+    const p6 = this.prog(E.room), dist = Math.max(0, E.roomTrack.scrollWidth - vw);
+    E.roomTrack.style.transform = `translateX(${(-p6 * dist).toFixed(1)}px)`;
+    E.roomItems.forEach(el => { el.style.transform = `translateY(${((p6 - 0.5) * +el.dataset.speed * 90).toFixed(1)}px)`; });
+    // 07 banner wipe.
+    const br = E.banner.getBoundingClientRect(), pb = Math.min(1, Math.max(0, (vh - br.top) / (vh * 0.75)));
+    E.banner.style.clipPath = `inset(0 ${((1 - pb) * 100).toFixed(2)}% 0 0 round 18px)`;
+    E.bannerImg.style.transform = `scale(${(1.15 - 0.15 * pb).toFixed(3)})`;
+    // Section counter + nav tone.
+    let cur = E.scenes[0];
+    for (const s of E.scenes) { if (s.getBoundingClientRect().top <= vh * 0.5) cur = s; }
+    if (E.counter && cur && E.counter.textContent !== cur.dataset.n) { E.counter.textContent = cur.dataset.n; E.counterName.textContent = cur.dataset.name; }
+    const at = (el) => { if (!el) return false; const q = el.getBoundingClientRect(); return q.top <= 40 && q.bottom > 40; };
+    const settleTop = E.settle ? E.settle.getBoundingClientRect().top : 1e9;
+    const navDark = (at(E.day) && darkDay) || (at(E.worlds) && Component.W[wi].dark) || settleTop <= 40;
+    if (navDark !== this.state.navDark) this.setState({ navDark });
+  }
+
+  renderVals() {
+    const s = this.state, w = s.w, P = Component.P;
+    const bp = w < 768 ? 'phone' : w < 1024 ? 'tablet' : 'desktop';
+    const R = this.reduce;
+    const side = bp === 'desktop' || (bp === 'tablet' && w > s.h);
+    const saveData = typeof navigator !== 'undefined' && navigator.connection && navigator.connection.saveData;
+    const useVideo = !saveData && !R && (this.props.heroMedia ?? 'video') === 'video';
+    const Q = (x, r) => { const a = (x / 12) * Math.PI * 2 - Math.PI / 2; return [+(200 + r * Math.cos(a)).toFixed(2), +(200 + r * Math.sin(a)).toFixed(2)]; };
+    const minTicks = Array.from({ length: 60 }, (_, i) => { const major = i % 5 === 0, a = Q(i / 5, 160), b = Q(i / 5, major ? 150 : 155); return { x1: a[0], y1: a[1], x2: b[0], y2: b[1], sw: major ? 2 : 1 }; });
+    const nums = Array.from({ length: 12 }, (_, i) => { const p = Q(i, 128); return { x: p[0], y: p[1], t: i === 0 ? 12 : i }; });
+    const words = Component.WORDS.split(' ').map(t => ({ t: t.replace('*', ''), style: t.startsWith('*') ? 'italic' : 'normal' }));
+    const r0 = typeof window !== 'undefined' ? this.heroRect() : { t: 0, r: 0, b: 0, l: 0, rad: 0 };
+    const worldList = Component.W.map((x, i) => ({
+      ...x.c, name: x.name, num: String(i + 1).padStart(2, '0'), title: x.title, italic: x.italic, tagline: x.tagline, alt: x.alt,
+      itemLine: x.items.join(' · '), hero: P + x.hero, href: `/menu?world=${x.key}`,
+      op0: i === 0 ? 1 : 0, t0: i === 0 ? 'none' : 'translateY(24px)', pe0: i === 0 ? 'auto' : 'none', dot0: i === 0 ? 1 : 0.45,
+      go: () => this.goWorld(i)
+    }));
+    const L = s.loader;
+    return {
+      bp, theme: s.theme, isPhone: bp === 'phone',
+      socialCols: bp === 'desktop' ? 'repeat(6, minmax(0,1fr))' : bp === 'tablet' ? 'repeat(3, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))',
+      addItem: (e) => { const d = e.currentTarget.dataset; dispatchEvent(new CustomEvent('fuel-add', { detail: { add: d.add, world: d.world } })); }, notPhone: bp !== 'phone', isDesktop: bp === 'desktop',
+      chip: s.open ? 'Open now' : 'Opens at 8 AM', isOpen: s.open, navDark: s.navDark,
+      onToggle: (e) => {
+        if (!this.m) return;
+        const r = e.currentTarget.getBoundingClientRect(), next = s.theme === 'latte' ? 'espresso' : 'latte';
+        const apply = () => this.applyTheme(next); apply.nextBg = this.m.THEMES[next].bg;
+        this.m.saveTheme(next); this.m.transition('radial', r.left + r.width / 2, r.top + r.height / 2, apply);
+      },
+      showLoader: L !== 'none', curtainT: L === 'lift' ? 'translateY(-100%)' : 'none',
+      pct: String(s.pct).padStart(3, '0'), pctW: s.pct + '%', pourClip: `inset(${100 - s.pct}% 0 0 0)`,
+      skipOp: s.skip ? 1 : 0, skipLoader: () => this.lift(),
+      videoRef: this.videoRef, useVideo, usePoster: true, loopVideo: bp === 'phone', videoPreload: bp === 'phone' ? 'auto' : 'none',
+      heroClip0: `inset(${r0.t}px ${r0.r}px ${r0.b}px ${r0.l}px round ${r0.rad}px ${r0.rad}px 20px 20px)`,
+      heroJustify: bp === 'phone' ? 'flex-start' : 'center', heroTextW: bp === 'phone' ? '100%' : '50%',
+      hHero: R ? '100dvh' : '210vh', hWords: R ? '100dvh' : '170vh', hDay: R ? '100dvh' : '260vh', hWorlds: R ? '100dvh' : '440vh', hBest: R ? 'auto' : '220vh', hRoom: R ? '100dvh' : '280vh',
+      roomOverflow: R ? 'auto' : 'hidden',
+      words, wordOp: R ? 1 : 0.16,
+      minTicks, nums, dayTime0: '8:00 AM', dayMoment0: 'Morning flat whites.', ring0: '1105.84', realNow: s.realNow, clockMax: bp === 'phone' ? '300px' : '460px',
+      worldList, worldCols: bp === 'desktop' ? 'minmax(0,1.1fr) minmax(0,1fr) auto' : side ? 'minmax(0,1.1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      wTextOrder: side ? 1 : 2, wImgOrder: side ? 2 : 1,
+      archMax: bp === 'phone' ? '260px' : '480px', archMaxH: side ? 'min(72vh, calc(100dvh - 150px))' : 'min(40vh, calc(100dvh - 460px))',
+      banner0: R ? 'none' : 'inset(0 100% 0 0 round 18px)', bannerImg0: R ? 'none' : 'scale(1.15)',
+      wallRef: this.wallRef, tagRef: this.tagRef,
+      wallEnter: () => { if (this.tagRef.current) this.tagRef.current.style.opacity = '1'; },
+      wallLeave: () => { if (this.tagRef.current) this.tagRef.current.style.opacity = '0'; },
+      wallMove: (e) => {
+        if (e.pointerType !== 'mouse') return;
+        const b = this.wallRef.current.getBoundingClientRect(), t = this.tagRef.current; if (!t) return;
+        t.style.transform = `translate(${(e.clientX - b.left + 16).toFixed(0)}px, ${(e.clientY - b.top + 16).toFixed(0)}px)`;
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

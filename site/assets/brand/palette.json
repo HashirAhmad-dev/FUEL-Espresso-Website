@@ -1,0 +1,92 @@
+{
+  "brand": "THE FUEL \u2014 Espresso Yourself!",
+  "raw_swatches_from_instagram": [
+    "#E29A64",
+    "#814D35",
+    "#F1B88D",
+    "#B28F71",
+    "#E3CBB3",
+    "#E29732",
+    "#B86C20",
+    "#B68F8A",
+    "#270402",
+    "#592D14",
+    "#936C52"
+  ],
+  "derived_neutrals": {
+    "Foam": "#FBF6EE",
+    "Milk": "#F3E6D6",
+    "RoastSurface": "#3A1A0F",
+    "Espresso": "#270402",
+    "Caramel": "#E29A64"
+  },
+  "themes": {
+    "Latte (day)": "light, Foam background, Espresso ink",
+    "Espresso (night)": "dark, Espresso background, Foam ink, Caramel accent"
+  },
+  "worlds": {
+    "roast": {
+      "bg": "#270402",
+      "surface": "#3A1A0F",
+      "ink": "#FBF6EE",
+      "ink2": "#B28F71",
+      "accent": "#E29A64",
+      "accentInk": "#270402",
+      "highlight": "#E29732"
+    },
+    "matcha": {
+      "bg": "#1F3A2B",
+      "surface": "#2C473C",
+      "ink": "#F2F5E4",
+      "ink2": "#C9D6B0",
+      "accent": "#B9CC94",
+      "accentInk": "#1F3A2B",
+      "highlight": "#DDE6A8"
+    },
+    "bakery": {
+      "bg": "#D99B57",
+      "surface": "#E6B677",
+      "ink": "#270402",
+      "ink2": "#592D14",
+      "accent": "#592D14",
+      "accentInk": "#FBF6EE",
+      "highlight": "#FBF6EE"
+    },
+    "shakes": {
+      "bg": "#F3DAD6",
+      "surface": "#FBE9E5",
+      "ink": "#4A1E14",
+      "ink2": "#6B3A32",
+      "accent": "#8A4B45",
+      "accentInk": "#FBF6EE",
+      "highlight": "#B68F8A"
+    },
+    "coolers": {
+      "bg": "#FFF1DC",
+      "surface": "#FFE4BE",
+      "ink": "#3A0F10",
+      "ink2": "#6B2A24",
+      "accent": "#CB3544",
+      "accentInk": "#FFF1DC",
+      "highlight": "#F9BD30"
+    },
+    "desserts": {
+      "bg": "#592D14",
+      "surface": "#6B3A22",
+      "ink": "#F3E6D6",
+      "ink2": "#E3CBB3",
+      "accent": "#F1B88D",
+      "accentInk": "#270402",
+      "highlight": "#E29A64"
+    }
+  },
+  "contrast_checked": {
+    "roast": "ink 17.7:1, accent 8.2:1",
+    "matcha": "ink 11.2:1, accent 7.1:1",
+    "bakery": "ink 8.0:1, accent 4.9:1",
+    "shakes": "ink 10.6:1, accent 5.0:1",
+    "coolers": "ink 15.0:1, accent 4.6:1",
+    "desserts": "ink 9.5:1, accent 6.6:1"
+  },
+  "note": "Full role mapping (Latte and Espresso themes) is on the Colour system board of the plan."
+}
