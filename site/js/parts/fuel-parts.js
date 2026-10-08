@@ -173,7 +173,7 @@
         return;
       }
       try { sessionStorage.setItem('fuel-route', '1'); } catch (err) {}
-      import(new URL('fuel-theme.js', location.href).href).then(function (m) { return m.hairline(); }).then(function () { location.href = href; }, function () { location.href = href; });
+      import(new URL('js/lib/fuel-theme.js', location.href).href).then(function (m) { return m.hairline(); }).then(function () { location.href = href; }, function () { location.href = href; });
     };
     this.placeOrder = function () {
       var s = self.state, err = {};
@@ -432,7 +432,7 @@
       api.parts[name] = new PARTS[name](props).mount(el);
     });
     addEventListener('resize', function () { api.set({ w: innerWidth, h: innerHeight }); });
-    import(new URL('fuel-theme.js', location.href).href).then(function (m) { api.m = m; applyTheme(m.initialTheme()); });
+    import(new URL('js/lib/fuel-theme.js', location.href).href).then(function (m) { api.m = m; applyTheme(m.initialTheme()); });
     return api;
   }
 
