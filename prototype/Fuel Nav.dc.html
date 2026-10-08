@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"><link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"><style>@keyframes fuel-ring{to{stroke-dashoffset:0}}</style></helmet>
+<sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+<header data-fuel-nav="" style="view-transition-name:fuel-nav; position:{{ pos }}; top:16px; left:0; right:0; z-index:50; display:flex; justify-content:center; padding:0 clamp(16px,5vw,72px); pointer-events:none">
+  <nav aria-label="Main" style="pointer-events:auto; position:relative; width:100%; max-width:1296px; height:64px; box-sizing:border-box; display:flex; align-items:center; gap:10px; padding:0 10px; border-radius:999px; background:{{ navBg }}; color:{{ navInk }}; border:1px solid {{ navBorder }}; backdrop-filter:blur(18px) saturate(140%); -webkit-backdrop-filter:blur(18px) saturate(140%); box-shadow:{{ navShadow }}; transition:background-color .6s, color .6s, box-shadow .4s, border-color .6s; font-family:Jost, sans-serif">
+    <a href="{{ homeHref }}" onClick="{{ go }}" data-href="{{ homeHref }}" aria-label="THE FUEL home" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; min-height:44px; padding-right:8px; border-radius:999px">
+      <span style="position:relative; width:44px; height:44px; display:grid; place-items:center; flex:none">
+        <svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" style="position:absolute; inset:0; transform:rotate(-90deg)"><circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.5"></circle><circle cx="22" cy="22" r="20" fill="none" stroke="#E29A64" stroke-width="2" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" style="animation:fuel-ring linear both; animation-timeline:scroll(root)"></circle></svg>
+        <span style="width:19px; height:27px; background:currentColor; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span>
+      </span>
+      <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:17px; letter-spacing:.16em; white-space:nowrap">THE FUEL</span>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex; gap:2px; margin-left:auto">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" data-href="{{ l.href }}" onClick="{{ go }}" aria-current="{{ l.current }}" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:{{ l.ink }}; background:{{ l.bg }}; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s" style-hover="background:rgba(226,154,100,.24)">{{ l.label }}</a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showChip }}" hint-placeholder-val="{{ true }}">
+      <span role="status" style="display:flex; align-items:center; gap:8px; min-height:32px; padding:0 14px; border-radius:999px; border:1px solid {{ navBorder }}; font-family:'DM Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; margin-left:{{ chipMargin }}">
+        <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:{{ dot }}"></span>{{ chip }}
+      </span>
+    </sc-if>
+    <button type="button" onClick="{{ onToggle }}" aria-label="{{ toggleLabel }}" title="{{ toggleLabel }}" style="width:44px; height:44px; flex:none; margin-left:{{ toggleMargin }}; border-radius:50%; border:1px solid {{ navBorder }}; background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px" style-hover="background:rgba(226,154,100,.24)" style-active="transform:scale(.95)"><i class="{{ toggleIcon }}"></i></button>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <button type="button" onClick="{{ openRes }}" style="height:44px; flex:none; padding:0 18px; border-radius:999px; border:none; background:{{ resBg }}; color:{{ resInk }}; display:flex; align-items:center; gap:8px; cursor:pointer; font:500 15px Jost, sans-serif; white-space:nowrap; transition:transform .24s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-1px)" style-active="transform:scale(.97)"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve</button>
+    </sc-if>
+    <button type="button" onClick="{{ openBag }}" aria-label="{{ bagLabel }}" style="position:relative; width:44px; height:44px; flex:none; border-radius:50%; border:1px solid {{ navBorder }}; background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px" style-hover="background:rgba(226,154,100,.24)" style-active="transform:scale(.95)">
+      <i class="ph ph-handbag"></i>
+      <sc-if value="{{ hasBag }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position:absolute; top:-3px; right:-3px; min-width:20px; height:20px; padding:0 5px; box-sizing:border-box; border-radius:999px; background:#E29A64; color:#270402; font:500 11px/20px 'DM Mono', monospace; text-align:center">{{ bagCount }}</span></sc-if>
+    </button>
+    <sc-if value="{{ isTablet }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-label="Menu" style="height:44px; padding:0 18px; flex:none; border-radius:999px; border:none; background:{{ resBg }}; color:{{ resInk }}; display:flex; align-items:center; gap:8px; cursor:pointer; font:500 15px Jost, sans-serif"><i class="{{ menuIcon }}" style="font-size:18px"></i>Menu</button>
+    </sc-if>
+    <sc-if value="{{ showSheet }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute; top:76px; right:0; width:min(340px, 100%); padding:12px; border-radius:32px; background:var(--glass); color:var(--ink); border:1px solid var(--line); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 24px 60px rgba(39,4,2,.22); display:flex; flex-direction:column; gap:2px">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" data-href="{{ l.href }}" onClick="{{ go }}" style="display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 18px; border-radius:24px; text-decoration:none; color:var(--ink); font-family:'Bodoni Moda', serif; font-size:26px" style-hover="background:rgba(226,154,100,.2)">{{ l.label }}<i class="ph ph-arrow-up-right" style="font-size:18px; color:var(--accent)"></i></a>
+        </sc-for>
+        <button type="button" onClick="{{ openRes }}" style="margin-top:8px; min-height:52px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; font:500 16px Jost, sans-serif"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve a table</button>
+        <a href="https://instagram.com/thefuelespresso" style="min-height:48px; display:flex; align-items:center; gap:8px; padding:0 18px; color:var(--ink2); font:400 13px 'DM Mono', monospace; text-decoration:none"><i class="ph ph-instagram-logo" style="font-size:18px"></i>@thefuelespresso</a>
+      </div>
+    </sc-if>
+  </nav>
+</header>
+</sc-if>
+<sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}">
+  <header data-fuel-nav="" style="view-transition-name:fuel-nav; position:{{ pos }}; top:12px; left:12px; right:12px; z-index:50; height:56px; box-sizing:border-box; display:flex; align-items:center; gap:8px; padding:0 6px 0 6px; border-radius:999px; background:{{ navBg }}; color:{{ navInk }}; border:1px solid {{ navBorder }}; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:{{ navShadow }}; transition:background-color .6s, color .6s; font-family:Jost, sans-serif">
+    <a href="{{ homeHref }}" data-href="{{ homeHref }}" onClick="{{ go }}" aria-label="THE FUEL home" style="display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit; min-height:44px">
+      <span style="position:relative; width:44px; height:44px; display:grid; place-items:center"><svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" style="position:absolute; inset:0; transform:rotate(-90deg)"><circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.5"></circle><circle cx="22" cy="22" r="20" fill="none" stroke="#E29A64" stroke-width="2" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" style="animation:fuel-ring linear both; animation-timeline:scroll(root)"></circle></svg><span style="width:17px; height:24px; background:currentColor; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span></span>
+      <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:15px; letter-spacing:.14em">THE FUEL</span>
+    </a>
+    <button type="button" onClick="{{ openRes }}" style="margin-left:auto; height:44px; padding:0 14px; border-radius:999px; border:none; background:{{ resBg }}; color:{{ resInk }}; display:flex; align-items:center; gap:6px; cursor:pointer; font:500 14px Jost, sans-serif"><i class="ph ph-calendar-check" style="font-size:17px"></i>Reserve</button>
+    <button type="button" onClick="{{ openBag }}" aria-label="{{ bagLabel }}" style="position:relative; width:44px; height:44px; flex:none; border-radius:50%; border:1px solid {{ navBorder }}; background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px">
+      <i class="ph ph-handbag"></i>
+      <sc-if value="{{ hasBag }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position:absolute; top:-3px; right:-3px; min-width:20px; height:20px; padding:0 5px; box-sizing:border-box; border-radius:999px; background:#E29A64; color:#270402; font:500 11px/20px 'DM Mono', monospace; text-align:center">{{ bagCount }}</span></sc-if>
+    </button>
+  </header>
+  <nav aria-label="Main" style="view-transition-name:fuel-dock; position:{{ pos }}; bottom:12px; left:12px; right:12px; z-index:50; height:68px; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); align-items:center; padding:0 6px; border-radius:999px; background:var(--glass); color:var(--ink); border:1px solid var(--line); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 12px 40px rgba(39,4,2,.22); margin-top:{{ dockGap }}; font-family:Jost, sans-serif">
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+      <a href="{{ l.href }}" data-href="{{ l.href }}" onClick="{{ go }}" aria-current="{{ l.current }}" style="height:56px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; border-radius:999px; text-decoration:none; color:{{ l.dockInk }}; background:{{ l.dockBg }}; font-size:11px; font-weight:500"><i class="{{ l.icon }}" style="font-size:21px"></i>{{ l.short }}</a>
+    </sc-for>
+    <button type="button" onClick="{{ onToggle }}" aria-label="{{ toggleLabel }}" style="height:56px; border:none; background:transparent; color:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font:500 11px Jost, sans-serif; cursor:pointer; border-radius:999px"><i class="{{ toggleIcon }}" style="font-size:21px"></i>{{ toggleShort }}</button>
+  </nav>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position:fixed; z-index:60; top:{{ toastTop }}; right:clamp(12px,5vw,72px); display:flex; align-items:center; gap:14px; padding:8px 8px 8px 18px; border-radius:999px; background:var(--ink); color:var(--bg); box-shadow:0 18px 40px -12px rgba(39,4,2,.4); font:500 14px Jost, sans-serif">
+    <i class="ph-fill ph-check-circle" style="font-size:18px; color:#E29A64"></i><span>{{ toastText }}</span>
+    <button type="button" onClick="{{ openBag }}" style="min-height:40px; padding:0 16px; border-radius:999px; border:none; background:#E29A64; color:#270402; font:500 14px Jost, sans-serif; cursor:pointer">View bag</button>
+  </div>
+</sc-if>
+
+<sc-if value="{{ bagOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; inset:0; z-index:120; font-family:Jost, sans-serif">
+    <div onClick="{{ closeAll }}" style="position:absolute; inset:0; background:rgba(39,4,2,.45); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px)"></div>
+    <aside role="dialog" aria-modal="true" aria-label="Your bag" style="position:absolute; top:0; right:0; bottom:0; width:min(460px,100vw); box-sizing:border-box; background:var(--bg); color:var(--ink); display:flex; flex-direction:column; box-shadow:-30px 0 80px -30px rgba(39,4,2,.5)">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 20px 16px 28px; border-bottom:1px solid var(--line)">
+        <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:30px">Your bag</h2>
+        <button type="button" onClick="{{ closeAll }}" aria-label="Close bag" style="width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:20px" style-hover="background:rgba(226,154,100,.2)"><i class="ph ph-x"></i></button>
+      </div>
+      <sc-if value="{{ orderDone }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:18px; padding:28px">
+          <i class="ph-fill ph-check-circle" style="font-size:44px; color:var(--accent)"></i>
+          <h3 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(32px,4vw,44px); line-height:1.05">Order received.</h3>
+          <p style="margin:0; font-size:17px; line-height:1.6; color:var(--ink2)">{{ orderMsg }}</p>
+          <button type="button" onClick="{{ closeAll }}" style="align-self:flex-start; min-height:52px; padding:0 26px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); font:500 16px Jost, sans-serif; cursor:pointer">Done</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ bagEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:18px; padding:28px">
+          <span style="width:64px; height:80px; border-radius:999px 999px 12px 12px; background:var(--surface); display:grid; place-items:center; font-size:28px; color:var(--accent)"><i class="ph ph-handbag"></i></span>
+          <h3 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:32px">Your bag is empty.</h3>
+          <p style="margin:0; max-width:30ch; font-size:16px; line-height:1.6; color:var(--ink2)">Add a flat white, a croissant or a shake from the menu and it will wait here.</p>
+          <a href="Fuel Products.dc.html" data-href="Fuel Products.dc.html" onClick="{{ go }}" style="min-height:52px; display:inline-flex; align-items:center; gap:10px; padding:0 26px; border-radius:999px; background:var(--accent); color:var(--accentInk); text-decoration:none; font-size:16px; font-weight:500">Browse the menu<i class="ph ph-arrow-right"></i></a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ bagFull }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1; overflow:auto; padding:8px 28px 24px; display:flex; flex-direction:column; gap:24px">
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column">
+            <sc-for list="{{ bag }}" as="b" hint-placeholder-count="0">
+              <li style="display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 16px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line)">
+                <span style="display:flex; flex-direction:column; gap:4px"><span style="font-family:'Bodoni Moda', serif; font-size:22px">{{ b.name }}</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2)">{{ b.world }} · [PRICE]</span></span>
+                <span style="display:flex; align-items:center; gap:4px; border:1px solid var(--line); border-radius:999px; padding:2px">
+                  <button type="button" onClick="{{ b.dec }}" aria-label="{{ b.decLabel }}" style="width:40px; height:40px; border-radius:50%; border:none; background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:16px" style-hover="background:rgba(226,154,100,.2)"><i class="{{ b.decIcon }}"></i></button>
+                  <span style="min-width:22px; text-align:center; font:500 14px 'DM Mono', monospace">{{ b.qty }}</span>
+                  <button type="button" onClick="{{ b.inc }}" aria-label="{{ b.incLabel }}" style="width:40px; height:40px; border-radius:50%; border:none; background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:16px" style-hover="background:rgba(226,154,100,.2)"><i class="ph ph-plus"></i></button>
+                </span>
+              </li>
+            </sc-for>
+          </ul>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:14px; font-weight:500">How would you like it?</span>
+            <div role="radiogroup" aria-label="Order type" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:4px; border-radius:999px; background:var(--surface)">
+              <sc-for list="{{ modes }}" as="m" hint-placeholder-count="2">
+                <button type="button" role="radio" aria-checked="{{ m.on }}" onClick="{{ m.pick }}" style="min-height:44px; border-radius:999px; border:none; background:{{ m.bg }}; color:{{ m.ink }}; font:500 15px Jost, sans-serif; cursor:pointer; box-shadow:{{ m.shadow }}; transition:background-color .2s">{{ m.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <span style="font-size:14px; font-weight:500">{{ whenLabel }}</span>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <sc-for list="{{ whens }}" as="x" hint-placeholder-count="3">
+                <button type="button" aria-pressed="{{ x.on }}" onClick="{{ x.pick }}" style="min-height:44px; padding:0 18px; border-radius:999px; border:1px solid {{ x.border }}; background:{{ x.bg }}; color:{{ x.ink }}; font:500 14px Jost, sans-serif; cursor:pointer">{{ x.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:14px">
+            <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:500">Name
+              <input type="text" value="{{ oName }}" onChange="{{ setOName }}" autocomplete="name" style="min-height:48px; padding:0 16px; border-radius:14px; border:1px solid {{ oNameBorder }}; background:var(--bg); color:var(--ink); font:400 16px Jost, sans-serif; outline:none" style-focus="border-color:var(--accent)">
+              <span style="min-height:16px; font-size:13px; font-weight:400; color:#B3261E">{{ oNameErr }}</span>
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:500">Phone
+              <input type="tel" value="{{ oPhone }}" onChange="{{ setOPhone }}" autocomplete="tel" inputMode="tel" style="min-height:48px; padding:0 16px; border-radius:14px; border:1px solid {{ oPhoneBorder }}; background:var(--bg); color:var(--ink); font:400 16px Jost, sans-serif; outline:none" style-focus="border-color:var(--accent)">
+              <span style="min-height:16px; font-size:13px; font-weight:400; color:#B3261E">{{ oPhoneErr }}</span>
+            </label>
+          </div>
+          <a href="[LINK]" style="align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; color:var(--accent); font-size:15px; font-weight:500; text-decoration:none; border-bottom:1px solid currentColor">Prefer delivery? Order on foodpanda<i class="ph ph-arrow-up-right"></i></a>
+        </div>
+        <div style="padding:18px 28px 24px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:14px; background:var(--surface)">
+          <div style="display:flex; justify-content:space-between; align-items:baseline"><span style="font-size:16px">Subtotal · {{ bagCount }} {{ itemWord }}</span><span style="font:500 15px 'DM Mono', monospace">[PRICE]</span></div>
+          <button type="button" onClick="{{ placeOrder }}" style="min-height:56px; border-radius:999px; border:none; background:var(--ink); color:var(--bg); display:flex; align-items:center; justify-content:center; gap:10px; font:500 16px Jost, sans-serif; cursor:pointer; transition:transform .2s" style-active="transform:scale(.98)">Place order<i class="ph ph-arrow-right"></i></button>
+        </div>
+      </sc-if>
+    </aside>
+  </div>
+</sc-if>
+
+<sc-if value="{{ resOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; inset:0; z-index:120; display:flex; align-items:{{ dlgAlign }}; justify-content:center; padding:{{ dlgPad }}; box-sizing:border-box; font-family:Jost, sans-serif">
+    <div onClick="{{ closeAll }}" style="position:absolute; inset:0; background:rgba(39,4,2,.45); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px)"></div>
+    <div role="dialog" aria-modal="true" aria-label="Reserve a table" style="position:relative; width:min(600px,100%); max-height:{{ dlgMaxH }}; overflow:auto; box-sizing:border-box; border-radius:{{ dlgRadius }}; background:var(--bg); color:var(--ink); box-shadow:0 40px 100px -30px rgba(39,4,2,.6)">
+      <div style="position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 20px 16px 28px; background:var(--bg); border-bottom:1px solid var(--line)">
+        <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:30px">Reserve a <em style="font-weight:400">table</em></h2>
+        <button type="button" onClick="{{ closeAll }}" aria-label="Close" style="width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:20px" style-hover="background:rgba(226,154,100,.2)"><i class="ph ph-x"></i></button>
+      </div>
+      <sc-if value="{{ resDone }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:32px 28px 32px; display:flex; flex-direction:column; gap:22px">
+          <i class="ph-fill ph-calendar-check" style="font-size:44px; color:var(--accent)"></i>
+          <h3 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(32px,4vw,44px); line-height:1.05">Table requested.</h3>
+          <dl style="margin:0; display:grid; grid-template-columns:auto 1fr; gap:12px 24px; padding:20px; border-radius:18px; background:var(--surface); font-size:16px">
+            <dt style="font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2); align-self:center">Date</dt><dd style="margin:0">{{ sumDate }}</dd>
+            <dt style="font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2); align-self:center">Time</dt><dd style="margin:0">{{ sumTime }}</dd>
+            <dt style="font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2); align-self:center">Guests</dt><dd style="margin:0">{{ sumSeats }}</dd>
+            <dt style="font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2); align-self:center">Seating</dt><dd style="margin:0">{{ sumSeat }}</dd>
+          </dl>
+          <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink2)">We’ll confirm on WhatsApp at {{ sumPhone }}. Al-Ghani Plaza, 4th Floor, DHA Phase 6.</p>
+          <button type="button" onClick="{{ closeAll }}" style="align-self:flex-start; min-height:52px; padding:0 26px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); font:500 16px Jost, sans-serif; cursor:pointer">Done</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ resForm }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:20px 28px 28px; display:flex; flex-direction:column; gap:26px">
+          <fieldset style="margin:0; padding:0; border:none; display:flex; flex-direction:column; gap:10px; min-width:0">
+            <legend style="padding:0; margin-bottom:10px; font-size:14px; font-weight:500">Date</legend>
+            <div style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin">
+              <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+                <button type="button" aria-pressed="{{ d.on }}" onClick="{{ d.pick }}" style="flex:none; width:64px; height:76px; border-radius:999px 999px 14px 14px; border:1px solid {{ d.border }}; background:{{ d.bg }}; color:{{ d.ink }}; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; cursor:pointer; transition:background-color .2s">
+                  <span style="font:400 10px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase">{{ d.wd }}</span>
+                  <span style="font-family:'Bodoni Moda', serif; font-size:24px; line-height:1">{{ d.n }}</span>
+                  <span style="font:400 10px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; opacity:.8">{{ d.mo }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </fieldset>
+          <fieldset style="margin:0; padding:0; border:none; display:flex; flex-direction:column; gap:12px; min-width:0">
+            <legend style="padding:0; margin-bottom:10px; font-size:14px; font-weight:500">Time</legend>
+            <div role="tablist" aria-label="Time of day" style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:4px; padding:4px; border-radius:999px; background:var(--surface)">
+              <sc-for list="{{ parts }}" as="p" hint-placeholder-count="4">
+                <button type="button" role="tab" aria-selected="{{ p.on }}" onClick="{{ p.pick }}" style="min-height:40px; padding:0 6px; border-radius:999px; border:none; background:{{ p.bg }}; color:{{ p.ink }}; font:500 13px Jost, sans-serif; cursor:pointer; white-space:nowrap; box-shadow:{{ p.shadow }}">{{ p.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(96px,1fr)); gap:8px">
+              <sc-for list="{{ slots }}" as="t" hint-placeholder-count="8">
+                <button type="button" aria-pressed="{{ t.on }}" disabled="{{ t.off }}" onClick="{{ t.pick }}" style="min-height:44px; border-radius:999px; border:1px solid {{ t.border }}; background:{{ t.bg }}; color:{{ t.ink }}; font:500 14px 'DM Mono', monospace; cursor:{{ t.cursor }}; opacity:{{ t.op }}; text-decoration:{{ t.strike }}">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <span style="min-height:16px; font-size:13px; color:#B3261E">{{ timeErr }}</span>
+          </fieldset>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px">
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <span style="font-size:14px; font-weight:500">Guests</span>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px; border-radius:999px; border:1px solid var(--line)">
+                <button type="button" onClick="{{ seatDec }}" aria-label="Fewer guests" style="width:44px; height:44px; border-radius:50%; border:none; background:var(--surface); color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:18px"><i class="ph ph-minus"></i></button>
+                <span aria-live="polite" style="display:flex; align-items:baseline; gap:8px"><span style="font-family:'Bodoni Moda', serif; font-size:32px; line-height:1">{{ seats }}</span><span style="font:400 12px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; color:var(--ink2)">{{ seatWord }}</span></span>
+                <button type="button" onClick="{{ seatInc }}" aria-label="More guests" style="width:44px; height:44px; border-radius:50%; border:none; background:var(--surface); color:var(--ink); display:grid; place-items:center; cursor:pointer; font-size:18px"><i class="ph ph-plus"></i></button>
+              </div>
+              <span style="font-size:13px; line-height:1.5; color:var(--ink2)">{{ seatNote }}</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <span style="font-size:14px; font-weight:500">Seating</span>
+              <div style="display:flex; flex-wrap:wrap; gap:8px">
+                <sc-for list="{{ seatPrefs }}" as="s" hint-placeholder-count="4">
+                  <button type="button" aria-pressed="{{ s.on }}" onClick="{{ s.pick }}" style="min-height:40px; padding:0 14px; border-radius:999px; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.ink }}; font:500 14px Jost, sans-serif; cursor:pointer">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:14px">
+            <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:500">Name
+              <input type="text" value="{{ rName }}" onChange="{{ setRName }}" autocomplete="name" style="min-height:48px; padding:0 16px; border-radius:14px; border:1px solid {{ rNameBorder }}; background:var(--bg); color:var(--ink); font:400 16px Jost, sans-serif; outline:none" style-focus="border-color:var(--accent)">
+              <span style="min-height:16px; font-size:13px; font-weight:400; color:#B3261E">{{ rNameErr }}</span>
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:500">Phone (WhatsApp)
+              <input type="tel" value="{{ rPhone }}" onChange="{{ setRPhone }}" autocomplete="tel" inputMode="tel" style="min-height:48px; padding:0 16px; border-radius:14px; border:1px solid {{ rPhoneBorder }}; background:var(--bg); color:var(--ink); font:400 16px Jost, sans-serif; outline:none" style-focus="border-color:var(--accent)">
+              <span style="min-height:16px; font-size:13px; font-weight:400; color:#B3261E">{{ rPhoneErr }}</span>
+            </label>
+          </div>
+          <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; font-weight:500">Note <span style="font-weight:400; color:var(--ink2)">Optional. Birthdays, allergies, a high chair.</span>
+            <textarea rows="2" value="{{ rNote }}" onChange="{{ setRNote }}" style="padding:12px 16px; border-radius:14px; border:1px solid var(--line); background:var(--bg); color:var(--ink); font:400 16px Jost, sans-serif; resize:vertical; outline:none" style-focus="border-color:var(--accent)"></textarea>
+          </label>
+        </div>
+        <div style="position:sticky; bottom:0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:16px 28px 22px; background:var(--surface); border-top:1px solid var(--line)">
+          <span style="font:400 12px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; color:var(--ink2)">{{ resSummary }}</span>
+          <button type="button" onClick="{{ submitRes }}" style="min-height:52px; padding:0 28px; border-radius:999px; border:none; background:var(--ink); color:var(--bg); display:flex; align-items:center; gap:10px; font:500 16px Jost, sans-serif; cursor:pointer" style-active="transform:scale(.98)">Reserve table<i class="ph ph-arrow-right"></i></button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;menu&quot;,&quot;space&quot;,&quot;visit&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bp&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;phone&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;latte&quot;,&quot;espresso&quot;],&quot;default&quot;:&quot;latte&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;overDark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;inline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;demo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;scrolled&quot;,&quot;hover&quot;,&quot;menu&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;chip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Open now&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;isOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;homeHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Fuel Home A.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onToggle&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(e) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = {
+    menuOpen: false, bagOpen: false, resOpen: false, bag: [], toast: null, w: typeof window !== 'undefined' ? innerWidth : 1440,
+    mode: 'Pickup', when: 'As soon as possible', oName: '', oPhone: '', oErr: {}, orderDone: false, orderMsg: '',
+    day: 0, part: 0, time: null, seats: 2, seat: 'Any', rName: '', rPhone: '', rNote: '', rErr: {}, resDone: false
+  };
+  componentDidMount() {
+    this.load();
+    this.onSpy = () => { cancelAnimationFrame(this.spR); this.spR = requestAnimationFrame(() => {
+      const y = innerHeight * 0.45; let hit = null;
+      document.querySelectorAll('[data-spy]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top <= y && r.bottom > y) hit = el.getAttribute('data-spy'); });
+      if (hit !== this.state.spy) this.setState({ spy: hit });
+    }); };
+    if (!this.props.inline) { addEventListener('scroll', this.onSpy, { passive: true }); addEventListener('resize', this.onSpy); setTimeout(this.onSpy, 400); }
+    this.onBag = (e) => {
+      const d = e.detail || {};
+      if (d.add) {
+        const bag = this.read(), f = bag.find(x => x.name === d.add);
+        if (f) f.qty++; else bag.push({ name: d.add, world: d.world || 'Menu', qty: 1 });
+        this.write(bag);
+        clearTimeout(this.tt);
+        this.setState({ toast: `${d.add} added`, orderDone: false });
+        this.tt = setTimeout(() => this.setState({ toast: null }), 2800);
+      }
+    };
+    this.onRes = () => this.openRes();
+    this.onStorage = (e) => { if (e.key === 'fuel-bag') this.load(); };
+    this.onKey = (e) => { if (e.key === 'Escape') this.closeAll(); };
+    this.onResize = () => this.setState({ w: innerWidth });
+    addEventListener('fuel-add', this.onBag); addEventListener('fuel-reserve', this.onRes); addEventListener('storage', this.onStorage);
+    addEventListener('keydown', this.onKey); addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() {
+    removeEventListener('fuel-add', this.onBag); removeEventListener('fuel-reserve', this.onRes); removeEventListener('storage', this.onStorage);
+    removeEventListener('keydown', this.onKey); removeEventListener('resize', this.onResize); clearTimeout(this.tt); removeEventListener('scroll', this.onSpy); removeEventListener('resize', this.onSpy);
+    document.documentElement.style.overflow = '';
+  }
+  read() { try { return JSON.parse(localStorage.getItem('fuel-bag') || '[]'); } catch (e) { return []; } }
+  write(bag) { try { localStorage.setItem('fuel-bag', JSON.stringify(bag)); } catch (e) {} this.setState({ bag }); }
+  load() { this.setState({ bag: this.read() }); }
+  lock(on) { document.documentElement.style.overflow = on ? 'hidden' : ''; }
+  openBag = () => { clearTimeout(this.tt); this.lock(true); this.setState({ bagOpen: true, resOpen: false, menuOpen: false, toast: null }); };
+  openRes = () => { this.lock(true); this.setState({ resOpen: true, bagOpen: false, menuOpen: false, resDone: false, rErr: {} }); };
+  closeAll = () => { this.lock(false); this.setState({ bagOpen: false, resOpen: false, orderDone: false }); };
+  go = (e) => {
+    const href = e.currentTarget.getAttribute('data-href');
+    if (!href || this.props.inline) { if (this.props.inline) e.preventDefault(); return; }
+    e.preventDefault();
+    this.lock(false);
+    this.setState({ menuOpen: false, bagOpen: false });
+    const u = new URL(href, location.href);
+    if (u.pathname === location.pathname) {
+      const t = u.searchParams.get('page') === 'visit' ? document.getElementById('visit') : null;
+      scrollTo({ top: t ? t.getBoundingClientRect().top + scrollY : 0, behavior: 'smooth' });
+      return;
+    }
+    try { sessionStorage.setItem('fuel-route', '1'); } catch (err) {}
+    import(new URL('fuel-theme.js', location.href).href).then(m => m.hairline()).then(() => { location.href = href; }, () => { location.href = href; });
+  };
+  lahoreNow() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    return +parts.find(p => p.type === 'hour').value % 24 + +parts.find(p => p.type === 'minute').value / 60;
+  }
+  fmt(x) { const h = Math.floor(x) % 24, m = Math.round((x % 1) * 60); return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`; }
+  days() {
+    const out = [];
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(Date.now() + i * 864e5), f = (o) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', ...o }).format(d);
+      out.push({ wd: i === 0 ? 'Today' : f({ weekday: 'short' }), n: f({ day: 'numeric' }), mo: f({ month: 'short' }), long: f({ weekday: 'long', day: 'numeric', month: 'long' }) });
+    }
+    return out;
+  }
+  placeOrder = () => {
+    const s = this.state, err = {};
+    if (!s.oName.trim()) err.name = 'Add a name for the order.';
+    if (s.oPhone.replace(/\D/g, '').length < 10) err.phone = 'Enter a phone number we can message.';
+    if (Object.keys(err).length) { this.setState({ oErr: err }); return; }
+    const msg = `${s.mode === 'Pickup' ? 'Pickup' : 'Dine in'}, ${s.when.toLowerCase()}. We’ll message ${s.oPhone} on WhatsApp when it’s ready at the 4th floor counter.`;
+    this.write([]);
+    this.setState({ orderDone: true, orderMsg: msg, oErr: {} });
+  };
+  submitRes = () => {
+    const s = this.state, err = {};
+    if (s.time == null) err.time = 'Pick a time.';
+    if (!s.rName.trim()) err.name = 'Add a name for the booking.';
+    if (s.rPhone.replace(/\D/g, '').length < 10) err.phone = 'Enter a WhatsApp number.';
+    if (Object.keys(err).length) { this.setState({ rErr: err }); return; }
+    this.setState({ resDone: true, rErr: {} });
+  };
+  renderVals() {
+    const p = this.props, s = this.state;
+    const bp = p.bp ?? 'desktop';
+    const demo = p.demo ?? 'none';
+    const dark = (p.overDark ?? false) && demo !== 'scrolled';
+    const theme = p.theme ?? 'latte';
+    const menuOpen = s.menuOpen || demo === 'menu';
+    const page = p.page ?? 'home';
+    const homeHref = p.homeHref ?? 'Fuel Home A.dc.html';
+    const active = (!p.inline && s.spy) || page;
+    const raw = [
+      { k: 'home', label: 'Home', short: 'Home', href: homeHref, icon: 'ph ph-house' },
+      { k: 'menu', label: 'Menu', short: 'Menu', href: 'Fuel Products.dc.html', icon: 'ph ph-coffee' },
+      { k: 'space', label: 'Our Space', short: 'Space', href: 'Fuel Space and Visit.dc.html', icon: 'ph ph-armchair' },
+      { k: 'visit', label: 'Visit', short: 'Visit', href: 'Fuel Space and Visit.dc.html?page=visit', icon: 'ph ph-map-pin' }
+    ];
+    const links = raw.map((l, i) => {
+      const on = l.k === active, hov = demo === 'hover' && i === 2;
+      return { ...l, current: on ? 'page' : undefined,
+        bg: on ? (dark ? '#E29A64' : 'var(--accent)') : hov ? 'rgba(226,154,100,.24)' : 'transparent',
+        ink: on ? (dark ? '#270402' : 'var(--accentInk)') : 'inherit',
+        dockBg: on ? 'var(--accent)' : 'transparent', dockInk: on ? 'var(--accentInk)' : 'var(--ink)' };
+    });
+    const count = s.bag.reduce((a, b) => a + b.qty, 0);
+    const chip = (on, a, b) => ({ bg: on ? 'var(--ink)' : 'transparent', ink: on ? 'var(--bg)' : 'var(--ink)', border: on ? 'var(--ink)' : 'var(--line)', on: on ? 'true' : 'false' });
+    const seg = (on) => ({ bg: on ? 'var(--bg)' : 'transparent', ink: 'var(--ink)', shadow: on ? '0 2px 8px rgba(39,4,2,.12)' : 'none', on: on ? 'true' : 'false' });
+    // Reservation slots: last seating 1:00 AM; today hides slots less than 30 minutes away.
+    const PARTS = [['Morning', 8, 12], ['Afternoon', 12, 17], ['Evening', 17, 21], ['Late night', 21, 25.01]];
+    const now = this.lahoreNow(), nowAdj = now < 2 ? now + 24 : now;
+    const [, a0, a1] = PARTS[s.part];
+    const slots = [];
+    for (let t = a0; t < a1; t += 0.5) {
+      const past = s.day === 0 && t < nowAdj + 0.5, on = s.time === t;
+      slots.push({ label: this.fmt(t), on: on ? 'true' : 'false', off: past, op: past ? 0.35 : 1, cursor: past ? 'not-allowed' : 'pointer', strike: past ? 'line-through' : 'none',
+        bg: on ? 'var(--ink)' : 'transparent', ink: on ? 'var(--bg)' : 'var(--ink)', border: on ? 'var(--ink)' : 'var(--line)', pick: () => this.setState({ time: t, rErr: { ...this.state.rErr, time: null } }) });
+    }
+    const days = this.days();
+    const dayList = days.map((d, i) => ({ ...d, ...chip(i === s.day), pick: () => this.setState({ day: i, time: null }) }));
+    const err = s.rErr, oe = s.oErr;
+    const phone = bp === 'phone';
+    return {
+      notPhone: !phone, isPhone: phone, isDesktop: bp === 'desktop', isTablet: bp === 'tablet',
+      pos: p.inline ? 'relative' : 'fixed', dockGap: p.inline ? '12px' : '0',
+      navBg: dark ? 'rgba(39,4,2,.30)' : 'var(--glass)', navInk: dark ? '#FBF6EE' : 'var(--ink)',
+      navBorder: dark ? 'rgba(251,246,238,.28)' : 'var(--line)', navShadow: !dark ? '0 10px 40px rgba(39,4,2,.14)' : 'none',
+      resBg: dark ? '#E29A64' : 'var(--accent)', resInk: dark ? '#270402' : 'var(--accentInk)',
+      chip: p.chip ?? 'Open now', dot: (p.isOpen ?? true) ? '#7FBF6A' : '#E29A64',
+      showChip: bp === 'tablet' || (bp === 'desktop' && s.w >= 1200),
+      chipMargin: bp === 'desktop' ? '0' : 'auto', toggleMargin: bp === 'desktop' && s.w < 1200 ? '0' : '0',
+      links, menuOpen, showSheet: bp === 'tablet' && menuOpen,
+      menuIcon: menuOpen ? 'ph ph-x' : 'ph ph-list',
+      toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
+      onToggle: p.onToggle || (() => {}),
+      toggleIcon: theme === 'latte' ? 'ph ph-moon' : 'ph ph-sun',
+      toggleLabel: theme === 'latte' ? 'Switch to Espresso (night) theme' : 'Switch to Latte (day) theme',
+      toggleShort: theme === 'latte' ? 'Night' : 'Day',
+      go: this.go, homeHref,
+      // bag
+      openBag: this.openBag, openRes: this.openRes, closeAll: this.closeAll,
+      bagOpen: s.bagOpen, hasBag: count > 0, bagCount: count, itemWord: count === 1 ? 'item' : 'items', bagLabel: count ? `Bag, ${count} ${count === 1 ? 'item' : 'items'}` : 'Bag, empty',
+      toast: !!s.toast && !s.bagOpen, toastText: s.toast || '', toastTop: phone ? '80px' : '92px',
+      orderDone: s.orderDone, orderMsg: s.orderMsg, bagEmpty: !s.orderDone && count === 0, bagFull: !s.orderDone && count > 0,
+      bag: s.bag.map((b, i) => ({ ...b,
+        inc: () => { const bag = this.read(); bag[i].qty++; this.write(bag); },
+        dec: () => { const bag = this.read(); if (bag[i].qty > 1) bag[i].qty--; else bag.splice(i, 1); this.write(bag); },
+        decIcon: b.qty > 1 ? 'ph ph-minus' : 'ph ph-trash', decLabel: b.qty > 1 ? `One less ${b.name}` : `Remove ${b.name}`, incLabel: `One more ${b.name}` })),
+      modes: ['Pickup', 'Dine in'].map(m => ({ label: m, ...seg(s.mode === m), pick: () => this.setState({ mode: m }) })),
+      whenLabel: s.mode === 'Pickup' ? 'Pickup time' : 'Serve it',
+      whens: ['As soon as possible', 'In 15 minutes', 'In 30 minutes'].map(x => ({ label: x, ...chip(s.when === x), pick: () => this.setState({ when: x }) })),
+      oName: s.oName, oPhone: s.oPhone,
+      setOName: (e) => this.setState({ oName: e.target.value, oErr: { ...this.state.oErr, name: null } }),
+      setOPhone: (e) => this.setState({ oPhone: e.target.value, oErr: { ...this.state.oErr, phone: null } }),
+      oNameErr: oe.name || '', oPhoneErr: oe.phone || '',
+      oNameBorder: oe.name ? '#B3261E' : 'var(--line)', oPhoneBorder: oe.phone ? '#B3261E' : 'var(--line)',
+      placeOrder: this.placeOrder,
+      // reserve
+      resOpen: s.resOpen, resDone: s.resDone, resForm: !s.resDone,
+      dlgAlign: phone ? 'flex-end' : 'center', dlgPad: phone ? '0' : '24px', dlgMaxH: phone ? '92dvh' : 'calc(100dvh - 48px)', dlgRadius: phone ? '24px 24px 0 0' : '24px',
+      days: dayList,
+      parts: PARTS.map(([l], i) => ({ label: l, ...seg(s.part === i), pick: () => this.setState({ part: i, time: null }) })),
+      slots, timeErr: err.time || '',
+      seats: s.seats, seatWord: s.seats === 1 ? 'guest' : 'guests',
+      seatDec: () => this.setState(st => ({ seats: Math.max(1, st.seats - 1) })),
+      seatInc: () => this.setState(st => ({ seats: Math.min(12, st.seats + 1) })),
+      seatNote: s.seats > 8 ? 'For groups over 8 we call to confirm the swing room.' : 'Up to 12 guests online.',
+      seatPrefs: ['Any', 'Swing seats', 'Window', 'Counter'].map(x => ({ label: x, ...chip(s.seat === x), pick: () => this.setState({ seat: x }) })),
+      rName: s.rName, rPhone: s.rPhone, rNote: s.rNote,
+      setRName: (e) => this.setState({ rName: e.target.value, rErr: { ...this.state.rErr, name: null } }),
+      setRPhone: (e) => this.setState({ rPhone: e.target.value, rErr: { ...this.state.rErr, phone: null } }),
+      setRNote: (e) => this.setState({ rNote: e.target.value }),
+      rNameErr: err.name || '', rPhoneErr: err.phone || '',
+      rNameBorder: err.name ? '#B3261E' : 'var(--line)', rPhoneBorder: err.phone ? '#B3261E' : 'var(--line)',
+      resSummary: `${days[s.day].wd === 'Today' ? 'Today' : days[s.day].wd + ' ' + days[s.day].n} · ${s.time == null ? 'Pick a time' : this.fmt(s.time)} · ${s.seats} ${s.seats === 1 ? 'guest' : 'guests'}`,
+      submitRes: this.submitRes,
+      sumDate: days[s.day].long, sumTime: s.time == null ? '' : this.fmt(s.time), sumSeats: `${s.seats} ${s.seats === 1 ? 'guest' : 'guests'}`, sumSeat: s.seat === 'Any' ? 'Any table' : s.seat, sumPhone: s.rPhone
+    };
+  }
+}
+</script>
+</body>
+</html>

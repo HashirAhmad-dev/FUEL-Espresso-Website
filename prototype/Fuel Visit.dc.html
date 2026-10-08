@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section id="visit" ref="{{ rootRef }}" data-spy="visit" data-screen-label="Visit" style="background:#E29A64; color:#270402; padding:clamp(80px,10vw,144px) clamp(16px,5vw,72px); font-family:Jost, sans-serif; scroll-margin-top:0">
+  <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,400px),1fr)); gap:clamp(48px,6vw,96px); align-items:center">
+    <div style="display:flex; flex-direction:column; gap:28px">
+      <sc-if value="{{ draw }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="position:relative; width:46px; height:65px; display:block">
+          <span style="position:absolute; inset:0; background:#270402; clip-path:{{ fillClip }}; transition:clip-path 1.4s cubic-bezier(.16,1,.3,1) .2s; -webkit-mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-fill-only-traced.svg') center/contain no-repeat; opacity:.9"></span>
+          <span style="position:absolute; inset:0; background:#270402; -webkit-mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-line-only-traced.svg') center/contain no-repeat"></span>
+        </span>
+      </sc-if>
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(44px,6.2vw,92px); line-height:1; letter-spacing:-.025em; text-wrap:balance">Al-Ghani Plaza, <em style="font-weight:400"><span style="font-weight:600; font-style:normal; font-variant-numeric:lining-nums">4</span>th Floor</em></h2>
+        <p style="margin:0; font-size:clamp(18px,1.5vw,22px); line-height:1.5">Sector-C, DHA Phase 6, Lahore</p>
+      </div>
+      <p role="status" style="margin:0; display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; font:400 13px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase">
+        <span style="display:flex; align-items:center; gap:10px"><span aria-hidden="true" style="width:8px; height:8px; border-radius:50%; background:{{ dot }}"></span>{{ line }}</span>
+        <span>8 AM to 2 AM, every day</span>
+      </p>
+      <button type="button" onClick="{{ reserve }}" style="max-width:560px; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:72px; padding:0 10px 0 28px; border-radius:999px; border:none; background:#270402; color:#FBF6EE; cursor:pointer; text-align:left; transition:transform .24s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-2px)" style-active="transform:scale(.98)">
+        <span style="display:flex; flex-direction:column; gap:2px"><span style="font:500 18px Jost, sans-serif">Reserve a table</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; color:#E3CBB3">Pick a date, time and seats</span></span>
+        <span aria-hidden="true" style="width:52px; height:52px; border-radius:50%; background:#E29A64; color:#270402; display:grid; place-items:center; font-size:22px"><i class="ph ph-calendar-check"></i></span>
+      </button>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px; max-width:560px">
+        <a href="[LINK]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s" style-hover="background:rgba(39,4,2,.08); color:#270402" style-active="transform:scale(.98)"><span style="font-size:16px; font-weight:500">foodpanda</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">DELIVERY · [LINK]</span></a>
+        <a href="[NUMBER]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s" style-hover="background:rgba(39,4,2,.08); color:#270402" style-active="transform:scale(.98)"><span style="font-size:16px; font-weight:500">WhatsApp</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">[NUMBER]</span></a>
+        <a href="[NUMBER]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s" style-hover="background:rgba(39,4,2,.08); color:#270402" style-active="transform:scale(.98)"><span style="font-size:16px; font-weight:500">Call</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">[NUMBER]</span></a>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Al-Ghani+Plaza+DHA+Phase+6+Lahore" target="_blank" rel="noopener" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; min-height:44px; color:#270402; font-size:16px; font-weight:500; text-decoration:none; border-bottom:1px solid currentColor">Get directions<i class="ph ph-arrow-up-right"></i></a>
+    </div>
+    <div ref="{{ mapRef }}" style="position:relative; justify-self:center; width:100%; max-width:480px; aspect-ratio:4/5; border-radius:999px 999px 18px 18px; overflow:hidden; background:#F1B88D; box-shadow:0 0 0 1.5px #270402">
+      <div aria-hidden="true" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; background:radial-gradient(circle at 50% 46%, #F6CBA6 0%, #F1B88D 46%, #E8A574 100%)">
+        <span style="width:64px; height:64px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#270402; display:grid; place-items:center; box-shadow:0 14px 30px -10px rgba(39,4,2,.5)"><span style="transform:rotate(45deg); width:20px; height:28px; background:#E29A64; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span></span>
+        <span style="display:flex; flex-direction:column; align-items:center; gap:4px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; text-align:center"><span>THE FUEL · 4th Floor</span><span>Al-Ghani Plaza, DHA Phase 6</span></span>
+        <span style="font:400 11px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; opacity:{{ loadingOp }}; transition:opacity .4s">Loading map…</span>
+      </div>
+      <sc-if value="{{ mapOn }}" hint-placeholder-val="{{ false }}">
+        <iframe title="Map of Al-Ghani Plaza, DHA Phase 6, Lahore" src="https://maps.google.com/maps?q=Al-Ghani%20Plaza%20DHA%20Phase%206%20Lahore&amp;z=16&amp;output=embed" onLoad="{{ onMapLoad }}" referrerpolicy="no-referrer-when-downgrade" style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block; opacity:{{ mapOp }}; transition:opacity .7s ease; filter:sepia(.35) saturate(.85) contrast(.96)"></iframe>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1280px&quot;,&quot;height&quot;:&quot;820px&quot;},&quot;draw&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { now: null, mapOn: false, mapLoaded: false, seen: false };
+  rootRef = React.createRef(); mapRef = React.createRef();
+  componentDidMount() {
+    const tick = () => this.setState({ now: this.status() });
+    tick(); this.t = setInterval(tick, 20000);
+    const on = () => this.setState({ mapOn: true });
+    if (!('IntersectionObserver' in window)) { on(); return; }
+    // Start the heavy map request far ahead of the viewport so it is ready on arrival.
+    this.io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { on(); this.io.disconnect(); } }, { rootMargin: '2400px 0px' });
+    this.mapRef.current && this.io.observe(this.mapRef.current);
+    this.io2 = new IntersectionObserver(([e]) => { if (e.isIntersecting) { this.setState({ seen: true }); this.io2.disconnect(); } }, { threshold: 0.35 });
+    this.rootRef.current && this.io2.observe(this.rootRef.current);
+  }
+  componentWillUnmount() { clearInterval(this.t); this.io && this.io.disconnect(); this.io2 && this.io2.disconnect(); }
+  status() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    const h = +parts.find(p => p.type === 'hour').value % 24;
+    const open = h >= 8 || h < 2;
+    return { open, line: open ? 'Open now. Closes at 2 AM.' : 'Closed now. Opens at 8 AM.' };
+  }
+  renderVals() {
+    const n = this.state.now || { open: true, line: 'Open now. Closes at 2 AM.' };
+    return {
+      rootRef: this.rootRef, mapRef: this.mapRef,
+      draw: !!this.props.draw, fillClip: this.state.seen ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)',
+      dot: n.open ? '#2F6B22' : '#7A1E0E', line: n.line,
+      mapOn: this.state.mapOn, mapOp: this.state.mapLoaded ? 1 : 0, loadingOp: this.state.mapLoaded ? 0 : 1,
+      onMapLoad: () => this.setState({ mapLoaded: true }),
+      reserve: () => dispatchEvent(new CustomEvent('fuel-reserve'))
+    };
+  }
+}
+</script>
+</body>
+</html>

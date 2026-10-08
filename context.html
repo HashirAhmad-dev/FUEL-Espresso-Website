@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FUEL · Design &amp; brand context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=DM+Mono:wght@400;500&family=Jost:wght@300..600&display=swap">
+<style>
+:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--caramel:#E29A64;--line:rgba(39,4,2,.16)}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--ink);font:17px/1.6 Jost,system-ui,sans-serif;font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)} a:hover{color:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,5vw,56px)}
+header.top{background:#270402;color:#FBF6EE;padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
+header.top .eyebrow{font:400 12px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#E3CBB3}
+h1,h2,h3{font-family:'Bodoni Moda',serif;font-weight:500;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(48px,8vw,104px);line-height:.95;margin:18px 0 20px}
+h1 em,h2 em{font-weight:400}
+h2{font-size:clamp(32px,4vw,48px);line-height:1.05;margin-bottom:20px}
+h3{font-size:24px;line-height:1.15;margin:28px 0 10px}
+section{padding:clamp(48px,6vw,80px) 0;border-bottom:1px solid var(--line)}
+section:nth-of-type(even){background:var(--surface)}
+p{margin:0 0 14px;max-width:70ch;text-wrap:pretty}
+.mono,code{font-family:'DM Mono',monospace;font-size:.88em}
+code{background:rgba(39,4,2,.06);padding:1px 6px;border-radius:6px}
+.lead{font-size:19px;color:#E3CBB3;max-width:56ch}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+nav.toc a{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(251,246,238,.28);color:#FBF6EE;text-decoration:none;font-size:14px}
+nav.toc a:hover{background:rgba(226,154,100,.22);color:#FBF6EE}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0 18px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:12px 0 20px}
+.sw div{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw span{display:block;height:72px}
+.sw p{margin:0;padding:10px 12px;font:400 12px/1.5 'DM Mono',monospace}
+.worlds{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.world{border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.world .t{font-family:'Bodoni Moda',serif;font-size:28px;line-height:1.05}
+.world .m{font:400 11px/1.6 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.type{display:grid;gap:18px;margin:12px 0}
+.type div{display:grid;grid-template-columns:minmax(0,160px) minmax(0,1fr);gap:16px;align-items:baseline;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.type .k{font:400 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+ul{padding-left:20px;margin:0 0 14px;max-width:72ch} li{margin:4px 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:20px}
+.arch{width:64px;height:84px;border-radius:999px 999px 10px 10px;background:var(--caramel)}
+.flag{display:inline-block;padding:2px 10px;border-radius:999px;background:#270402;color:#FBF6EE;font:400 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+footer{background:#270402;color:#E3CBB3;padding:40px 0;font:400 12px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="eyebrow">Design &amp; brand context · Website build</span>
+    <h1>THE FUEL<br><em>Espresso Yourself!</em></h1>
+    <p class="lead">Everything an engineer needs to build the café's website from the HTML prototypes in <code style="background:rgba(251,246,238,.12);color:#FBF6EE">/prototype</code>: brand facts, voice, tokens, components, motion, pages and open items.</p>
+    <nav class="toc" aria-label="Contents">
+      <a href="#brand">Brand</a><a href="#voice">Voice &amp; copy</a><a href="#color">Colour</a><a href="#worlds">Product worlds</a><a href="#type">Type</a><a href="#shape">Shape &amp; layout</a><a href="#motion">Motion</a><a href="#pages">Pages</a><a href="#components">Components</a><a href="#build">Build notes</a><a href="#open">Open items</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="brand"><div class="wrap">
+  <h2>Brand <em>facts</em></h2>
+  <table>
+    <tr><th>Name</th><td><strong>THE FUEL</strong> (always caps in the wordmark). Never "Fuel Expresso".</td></tr>
+    <tr><th>Tagline</th><td>Espresso Yourself!</td></tr>
+    <tr><th>Address</th><td>The Fuel Espresso, Al-Ghani Plaza, 4th Floor, Sector-C, DHA Phase 6, Lahore</td></tr>
+    <tr><th>Hours</th><td>8 AM to 2 AM, every day ("18 hours of pure espresso"). Timezone <code>Asia/Karachi</code>. Last reservation slot 1:00 AM.</td></tr>
+    <tr><th>Instagram</th><td><a href="https://instagram.com/thefuelespresso">@thefuelespresso</a></td></tr>
+    <tr><th>Positioning</th><td>A hidden fourth-floor coffee shop in DHA: specialty espresso, fresh croissants, shakes, coolers and desserts, a pink swing room and late hours. Premium but warm, not corporate.</td></tr>
+    <tr><th>Unknown (placeholders)</th><td><code>[PRICE]</code> prices · <code>[NUMBER]</code> phone / WhatsApp · <code>[LINK]</code> foodpanda and map · <code>[EMAIL]</code></td></tr>
+  </table>
+  <h3>Logo</h3>
+  <p>The emblem has <strong>no wordmark</strong>; set "THE FUEL" in live type (Bodoni Moda 600, letter-spacing .16em at nav size, .32em in the loader). Files in <code>assets/brand/logo/</code>:</p>
+  <ul>
+    <li><code>emblem-two-tone.svg</code>: master (caramel fill, brown line).</li>
+    <li><code>emblem-mono-currentColor.svg</code>: used as a CSS <code>mask</code> so it takes any colour (nav, footer, map pin).</li>
+    <li><code>emblem-fill-only-traced.svg</code> + <code>emblem-line-only-traced.svg</code>: stacked to animate a "pour" fill in the loader and the Visit section.</li>
+  </ul>
+  <p>Do not rely on the logo printed on the cup in the hero video; it blurs. The live type and emblem are overlaid in HTML.</p>
+</div></section>
+
+<section id="voice"><div class="wrap">
+  <h2>Voice <em>&amp; copy</em></h2>
+  <p>Short, sensory and confident. Lowercase playfulness in the big statement, sentence case elsewhere. A display headline is usually a roman phrase finished by an <em>italic</em> second half ("Pulled <em>slow.</em>", "Hidden <em>in DHA.</em>").</p>
+  <div class="cols">
+    <div class="card"><h3 style="margin-top:0">Client's own lines (keep verbatim)</h3><ul><li>Espresso Yourself!</li><li>Flaky outside, soft inside.</li><li>Baked fresh to fuel every moment.</li><li>Made with love.</li><li>Hidden coffee shop in DHA</li><li>18 hours of pure espresso</li><li>It's okay to take a break.</li></ul></div>
+    <div class="card"><h3 style="margin-top:0">Written for the site <span class="flag">needs client OK</span></h3><ul><li>we know espresso. <em>it's our craft.</em></li><li>Open early. <em>Open late.</em></li><li>Six themed <em>rooms.</em></li><li>Fuel up, <em>match on.</em> (campaign band)</li><li>World taglines and item names on the menu</li><li>Bag / reservation confirmations ("We'll confirm on WhatsApp")</li></ul></div>
+  </div>
+  <p style="margin-top:18px">Rules: no emoji, no exclamation marks beyond the tagline, no third-party sports marks (UEFA etc.) in campaign work.</p>
+</div></section>
+
+<section id="color"><div class="wrap">
+  <h2>Colour</h2>
+  <p>Two site themes exposed as CSS custom properties on <code>:root</code>. Default theme is chosen by Lahore time (Latte 7 AM–7 PM, Espresso otherwise), overridable by <code>?theme=</code> and persisted in <code>localStorage['fuel-theme']</code>. <code>fuel-boot.js</code> applies it before first paint.</p>
+  <h3>Latte (day)</h3>
+  <div class="sw">
+    <div><span style="background:#FBF6EE"></span><p>--bg<br>#FBF6EE</p></div>
+    <div><span style="background:#F3E6D6"></span><p>--surface<br>#F3E6D6</p></div>
+    <div><span style="background:#270402"></span><p>--ink<br>#270402</p></div>
+    <div><span style="background:#592D14"></span><p>--ink2<br>#592D14</p></div>
+    <div><span style="background:#814D35"></span><p>--accent<br>#814D35</p></div>
+    <div><span style="background:#E29A64"></span><p>--caramel<br>#E29A64</p></div>
+  </div>
+  <p class="mono">--accentInk #FBF6EE · --line rgba(39,4,2,.16) · --glass rgba(251,246,238,.82)</p>
+  <h3>Espresso (night)</h3>
+  <div class="sw">
+    <div><span style="background:#270402"></span><p>--bg<br>#270402</p></div>
+    <div><span style="background:#3A1A0F"></span><p>--surface<br>#3A1A0F</p></div>
+    <div><span style="background:#FBF6EE"></span><p>--ink<br>#FBF6EE</p></div>
+    <div><span style="background:#E3CBB3"></span><p>--ink2<br>#E3CBB3</p></div>
+    <div><span style="background:#E29A64"></span><p>--accent<br>#E29A64</p></div>
+  </div>
+  <p class="mono">--accentInk #270402 · --line rgba(251,246,238,.16) · --glass rgba(39,4,2,.78)</p>
+  <h3>Fixed colours (theme-independent)</h3>
+  <table>
+    <tr><th>Use</th><th>Value</th></tr>
+    <tr><td>Visit section background</td><td class="mono">#E29A64 with ink #270402</td></tr>
+    <tr><td>Footer / loader / campaign band</td><td class="mono">#270402, text #FBF6EE, secondary #E3CBB3</td></tr>
+    <tr><td>Focus ring</td><td class="mono">2px solid #E29732, offset 3px</td></tr>
+    <tr><td>Selection</td><td class="mono">bg #E29A64, text #270402</td></tr>
+    <tr><td>Open / closed dot</td><td class="mono">#7FBF6A / #5E9E4B / #2F6B22 open · #C0603A / #7A1E0E closed (by background)</td></tr>
+    <tr><td>Form error</td><td class="mono">#B3261E</td></tr>
+    <tr><td>Hero video backdrop gradient</td><td class="mono">#d2a272 → #c59567 → #b38355 → #9e7148 → #bf956d → #d6ac84 (matches the video's edge pixels)</td></tr>
+  </table>
+  <p>Contrast rule: body text at least 4.5:1 against its background. Never mute type with opacity on accent or photo backgrounds.</p>
+</div></section>
+
+<section id="worlds"><div class="wrap">
+  <h2>Product <em>worlds</em></h2>
+  <p>The menu is six "rooms", each with its own palette, which takes over the whole stage when selected. Source of truth: <code>WORLDS</code> in <code>prototype/fuel-theme.js</code>. Deep link: <code>Fuel Products.dc.html?world=matcha</code>.</p>
+  <div class="worlds">
+    <div class="world" style="background:#270402;color:#FBF6EE"><span class="m" style="color:#B28F71">01 · Roast</span><span class="t">Pulled <em style="color:#E29A64">slow.</em></span><span class="m" style="color:#B28F71">bg #270402 · ink #FBF6EE · accent #E29A64</span><span class="m" style="color:#B28F71">Espresso · Flat White · Cappuccino · Iced Latte</span></div>
+    <div class="world" style="background:#1F3A2B;color:#F2F5E4"><span class="m" style="color:#C9D6B0">02 · Matcha</span><span class="t">Whisked <em style="color:#DDE6A8">green.</em></span><span class="m" style="color:#C9D6B0">bg #1F3A2B · ink #F2F5E4 · accent #B9CC94</span><span class="m" style="color:#C9D6B0">Iced Matcha Latte · Hot Matcha Latte · Matcha Cup · Matcha and Croissant</span></div>
+    <div class="world" style="background:#D99B57;color:#270402"><span class="m" style="color:#3E1C0B">03 · Bakery</span><span class="t">Flaky outside, <em style="color:#592D14">soft inside.</em></span><span class="m" style="color:#3E1C0B">bg #D99B57 · ink #270402 · accent #270402</span><span class="m" style="color:#3E1C0B">Butter Croissant · Pain au Chocolat · Almond Croissant · Glazed Croissant</span></div>
+    <div class="world" style="background:#F3DAD6;color:#4A1E14"><span class="m" style="color:#6B3A32">04 · Shakes</span><span class="t">Thick enough <em style="color:#8A4B45">for a spoon.</em></span><span class="m" style="color:#6B3A32">bg #F3DAD6 · ink #4A1E14 · accent #8A4B45</span><span class="m" style="color:#6B3A32">Caramel Blast · Cookies and Cream · Chocolate · Vanilla</span></div>
+    <div class="world" style="background:#FFF1DC;color:#3A0F10"><span class="m" style="color:#6B2A24">05 · Coolers</span><span class="t">Cold fruit, <em style="color:#B02A38">warm days.</em></span><span class="m" style="color:#6B2A24">bg #FFF1DC · ink #3A0F10 · accent #B02A38</span><span class="m" style="color:#6B2A24">Strawberry Chiller · Mango Cooler · Watermelon Cooler · Matcha Berry Layer</span></div>
+    <div class="world" style="background:#592D14;color:#F3E6D6"><span class="m" style="color:#E3CBB3">06 · Desserts</span><span class="t">One plate, <em style="color:#F1B88D">four forks.</em></span><span class="m" style="color:#E3CBB3">bg #592D14 · ink #F3E6D6 · accent #F1B88D</span><span class="m" style="color:#E3CBB3">Fudge Brownie · Tiramisu · Baked Cheesecake · Chocolate Chip Cookie</span></div>
+  </div>
+  <p style="margin-top:18px">Morph rule: cross-fade the background colour over 600 ms <code>cubic-bezier(.16,1,.3,1)</code>. The outgoing text/image fade out (280 ms), then text colour plus incoming content swap at the 50% mark (300 ms). Never show two palettes overlapping.</p>
+</div></section>
+
+<section id="type"><div class="wrap">
+  <h2>Type</h2>
+  <p>Google Fonts: <strong>Bodoni Moda</strong> (display, optical size 6–96, 400–700 + italic), <strong>Jost</strong> (UI and body, 300–600), <strong>DM Mono</strong> (labels, meta, prices, 400/500). Icons: Phosphor Icons 2.1.1 (regular + fill).</p>
+  <div class="type">
+    <div><span class="k">Hero H1</span><span style="font-family:'Bodoni Moda';font-weight:500;font-size:64px;line-height:.94">Espresso <em style="font-weight:400">Yourself.</em></span></div>
+    <div><span class="k">Section H2</span><span style="font-family:'Bodoni Moda';font-weight:500;font-size:40px;line-height:1.04">Best sellers</span></div>
+    <div><span class="k">Card title</span><span style="font-family:'Bodoni Moda';font-size:28px">Butter Croissant</span></div>
+    <div><span class="k">Body</span><span style="font-family:Jost;font-size:18px;line-height:1.6;color:var(--ink2)">Every shot is pulled to order and every croissant is baked fresh.</span></div>
+    <div><span class="k">Button</span><span style="font-family:Jost;font-weight:500;font-size:16px">See the menu</span></div>
+    <div><span class="k">Label (mono)</span><span style="font:400 12px 'DM Mono';letter-spacing:.08em;text-transform:uppercase">01 · Roast · [PRICE]</span></div>
+  </div>
+  <table>
+    <tr><th>Role</th><th>Font</th><th>Size (clamp)</th><th>Weight / LH / tracking</th></tr>
+    <tr><td>Hero H1</td><td>Bodoni Moda</td><td>clamp(60px, 9.6vw, 144px) A · clamp(52px, 7.4vw, 124px) B</td><td>500 (italic line 400) / .92–.94 / -.02em</td></tr>
+    <tr><td>Statement</td><td>Bodoni Moda</td><td>clamp(52px, 9vw, 144px)</td><td>500 / 1 / -.025em</td></tr>
+    <tr><td>H2 section</td><td>Bodoni Moda</td><td>clamp(36px, 4.4vw, 64px) · large clamp(44px, 6.6vw, 96px)</td><td>500 / 1–1.04 / -.02em</td></tr>
+    <tr><td>Card title</td><td>Bodoni Moda</td><td>clamp(24px, 2vw, 34px)</td><td>400–500 / 1.08</td></tr>
+    <tr><td>Body / lead</td><td>Jost</td><td>clamp(17px, 1.3vw, 20px)</td><td>400 / 1.5–1.6</td></tr>
+    <tr><td>UI / buttons</td><td>Jost</td><td>15–16px</td><td>500</td></tr>
+    <tr><td>Meta labels</td><td>DM Mono</td><td>11–13px</td><td>400 / uppercase / .06–.12em</td></tr>
+    <tr><td>Footer wordmark</td><td>Bodoni Moda</td><td>clamp(60px, 14.5vw, 236px)</td><td>500 / .9 / .04em</td></tr>
+  </table>
+  <p><strong>Numerals:</strong> Bodoni's hairline "4" reads as "I" at display sizes. Set <code>font-variant-numeric: lining-nums</code> globally and use weight 600+ for digits in Bodoni (e.g. <code>&lt;span style="font-weight:600"&gt;4&lt;/span&gt;th Floor</code>, clock numerals, the "18").</p>
+</div></section>
+
+<section id="shape"><div class="wrap">
+  <h2>Shape <em>&amp; layout</em></h2>
+  <div class="cols">
+    <div><div class="arch"></div><h3>The arch</h3><p>Signature motif from the café's windows: <code>border-radius: 999px 999px 12–20px 12–20px</code> on image frames, cards, date chips and the hero video window. Mix arches with plain 18px-radius frames to keep rhythm.</p></div>
+    <div><h3>Radii</h3><p class="mono">pill 999px (buttons, chips, nav) · cards 18px · inputs 14px · dialogs 24px · arch top 999px</p><h3>Shadows</h3><p class="mono">nav 0 10px 40px rgba(39,4,2,.14) · card hover 0 30px 60px -30px rgba(39,4,2,.35) · dialog 0 40px 100px -30px rgba(39,4,2,.6)</p></div>
+    <div><h3>Grid</h3><p>Max content width 1296px (wide 1456–1600px). Side padding <code>clamp(16px, 5vw, 72px)</code>. Section padding <code>clamp(80px, 10vw, 160px)</code>. Breakpoints: phone &lt; 768, tablet 768–1023, desktop ≥ 1024.</p></div>
+  </div>
+  <p>Hit targets are at least 44px. Glass surfaces (nav, pill bar, phone dock) use <code>var(--glass)</code> + <code>backdrop-filter: blur(18px) saturate(140%)</code>.</p>
+</div></section>
+
+<section id="motion"><div class="wrap">
+  <h2>Motion</h2>
+  <p>Signature easing <code>cubic-bezier(.16,1,.3,1)</code> (out-expo). Curtains use <code>cubic-bezier(.7,0,.2,1)</code>. Everything collapses to static under <code>prefers-reduced-motion: reduce</code>, and video is skipped under Save-Data.</p>
+  <table>
+    <tr><th>Moment</th><th>Spec</th></tr>
+    <tr><td>Intro (A)</td><td>Dark curtain, emblem fills bottom-up with caramel over 1.3 s, curtain lifts translateY(-100%) .9 s, hero lines rise 32px with 90 ms stagger. Once per session (<code>sessionStorage['fuel-intro']</code>). Skip button.</td></tr>
+    <tr><td>Pour loader (B)</td><td>Counts real asset loads (poster, world heroes, room shots, video blob). Min 1.2 s, max 3.5 s. Skip after 2 s. Emblem fill and bar follow the % value.</td></tr>
+    <tr><td>Theme toggle</td><td>Circular reveal from the toggle via View Transitions (700 ms). Backdrop is the <em>destination</em> theme's bg (<code>--fuel-vt-bg</code>). Navbar has <code>view-transition-name: fuel-nav</code> so it never disappears. Fallback: solid overlay in the new bg at z-index 49 (below nav at 50).</td></tr>
+    <tr><td>Route change</td><td>"Hairline" loader: 2px caramel bar runs 0→70% (380 ms) on leave, and the next page continues 70→94% then completes and fades. A cover in the destination theme's bg sits under the nav during arrival. Never a blank frame.</td></tr>
+    <tr><td>Reveal on scroll (A)</td><td>Opacity 0→1 + translateY 28px, .8 s, per-element delay 0/100–120/200–240 ms.</td></tr>
+    <tr><td>Parallax (A)</td><td>CSS <code>animation-timeline: view()</code>, ±56px / ±32px.</td></tr>
+    <tr><td>Hover</td><td>Buttons lift -2px, press scale .98. Cards lift -6px; best sellers tilt rotateX(4deg) rotateY(-5deg). Instagram tiles scale 1.05 over .7 s.</td></tr>
+    <tr><td>Cursor</td><td>Fine pointer only. 34px circle ring (1.5px #E29A64) follows the pointer with lerp 0.18 and grows to 48px over links, buttons and cards. A 10×13px coffee-bean dot with a caramel crease sits at the real pointer, rotated toward the direction of movement. Click fires a 6-bean burst (620 ms). Native cursor in inputs and iframes. Off under reduced motion.</td></tr>
+    <tr><td>Image loading (B)</td><td>Arch frames show a shimmer (linear-gradient 300% width, 1.6 s loop) until the image paints.</td></tr>
+  </table>
+  <h3>Variant B scroll theatre</h3>
+  <p>One rAF loop reads each pinned section's progress <code>p = -rect.top / (height - innerHeight)</code> and writes styles directly. No smooth-scroll library is used, on purpose, so trackpads and phones don't get trapped scrolling.</p>
+  <ul>
+    <li><strong>01 Hero</strong> (210vh, sticky): the video sits in an arch window clip-path that grows to full bleed; text fades and lifts; on desktop and tablet the video is scrubbed by scroll (blob-loaded mp4, falls back to a loop if a seek stalls for more than 600 ms). Phones play a plain loop. The poster always sits under the video.</li>
+    <li><strong>02 Statement</strong> (170vh): words go from 16% to 100% opacity in reading order.</li>
+    <li><strong>03 Day</strong> (260vh): clock hands run 8 AM → 2 AM, the progress ring fills, the background interpolates #FBF6EE → #F3E6D6 → #E29A64 → #592D14 → #270402, and the ink flips at luminance .5.</li>
+    <li><strong>04 Worlds</strong> (440vh): six steps of 1/6 each; palette morph as above; the arch image scales 1.04→1.09 and rotates ±2°.</li>
+    <li><strong>05 Best sellers</strong> (220vh): the card track slides right→left over a caramel glow, a 72px line grid and three nested arch outlines.</li>
+    <li><strong>06 Room tour</strong> (280vh): a horizontal track with per-item vertical drift (<code>data-speed</code>).</li>
+    <li><strong>07 Campaign</strong>: clip-path wipe left→right, image scales 1.15→1.</li>
+    <li>A fixed section counter "01 / 10 · name" sits bottom-left (not on phones). The nav turns dark over dark scenes.</li>
+  </ul>
+</div></section>
+
+<section id="pages"><div class="wrap">
+  <h2>Pages</h2>
+  <table>
+    <tr><th>File</th><th>Purpose</th><th>Sections</th></tr>
+    <tr><td><code>Fuel Home A.dc.html</code></td><td>Home, Variant A ("cinematic", calmer)</td><td>01 Hero video (object-position 50% 70%) · 02 Statement · 03 18-hour day (live Lahore analog clock, open-hours ring) · 04 Product worlds drag rail · 05 Best sellers (add to bag) · 06 Hidden in DHA parallax collage · 07 Campaign band · 08 Instagram wall (6/3/2 cols) · 09 Visit · Footer</td></tr>
+    <tr><td><code>Fuel Home B.dc.html</code></td><td>Home, Variant B ("scroll theatre")</td><td>The same story told as pinned, scroll-driven scenes (see Motion), plus a closing "See you on the fourth floor" arch with the latte-heart photo</td></tr>
+    <tr><td><code>Fuel Products.dc.html</code></td><td>Menu</td><td>Header · fixed world pill bar (10px under the measured nav bottom, hides after the stage) · world stage: title, tagline, 4 items with [PRICE] + Add, foodpanda + "Next world", arch hero + 2 supporting shots</td></tr>
+    <tr><td><code>Fuel Space and Visit.dc.html</code></td><td>Our Space + Visit (<code>?page=visit</code> scrolls to Visit)</td><td>Hero with Reserve CTA · masonry "Inside the fourth floor" · quote · Visit · info cards (hours, floor, events)</td></tr>
+  </table>
+  <p>Production routes suggestion: <code>/</code> (choose A or B), <code>/menu</code> (+ <code>?world=</code>), <code>/space</code>, <code>/visit</code>.</p>
+</div></section>
+
+<section id="components"><div class="wrap">
+  <h2>Shared <em>components</em></h2>
+  <div class="cols">
+    <div class="card"><h3 style="margin-top:0">Nav (<code>Fuel Nav.dc.html</code>)</h3><p>Desktop and tablet: a floating 64px glass pill, top 16px, max-width 1296px. It holds the emblem with a scroll-progress ring, links (Home, Menu, Our Space, Visit), the open-now chip (≥1200px), theme toggle, Reserve and the bag with a count badge. Tablet uses a "Menu" sheet. Phone: a 56px top bar (logo, Reserve, bag) plus a 68px bottom dock with 5 slots. The active link is scroll-spied from <code>[data-spy="menu|space|visit"]</code> at 45% of the viewport height. Overlays: bag drawer, reservation dialog, toast.</p></div>
+    <div class="card"><h3 style="margin-top:0">Bag</h3><p>A right drawer, 460px wide (bottom sheet on phones), saved in <code>localStorage['fuel-bag']</code> as <code>[{name, world, qty}]</code>. Any page adds through <code>dispatchEvent(new CustomEvent('fuel-add', {detail:{add, world}}))</code>. Fields: qty ±, Pickup / Dine in, time (ASAP / 15 / 30 min), name (required), phone (≥10 digits). Shows a foodpanda link and a success state.</p></div>
+    <div class="card"><h3 style="margin-top:0">Reservation</h3><p>Opened by <code>fuel-reserve</code> event. Fields:</p><ul><li>date: the next 14 days, shown as arch chips</li><li>time: four time-of-day tabs (Morning, Afternoon, Evening, Late night) with 30-minute slots from 8:00 AM to 1:00 AM; slots less than 30 minutes ahead are struck through</li><li>guests: 1–12 (above 8 shows a "we call to confirm" note)</li><li>seating: Any / Swing seats / Window / Counter</li><li>name, WhatsApp number, optional note</li></ul><p>Validation errors appear under each field. Success shows a summary.</p></div>
+    <div class="card"><h3 style="margin-top:0">Visit (<code>Fuel Visit.dc.html</code>)</h3><p>Caramel section: address, live open status, Reserve CTA, foodpanda / WhatsApp / Call, directions. The map is a facade (pin card) that loads the Google embed 2400px before it scrolls into view and fades in once loaded.</p></div>
+    <div class="card"><h3 style="margin-top:0">Footer</h3><p>Dark: emblem rule, giant THE FUEL wordmark, links, tagline and hours bar. Bottom padding is 120px on phones to clear the dock.</p></div>
+    <div class="card"><h3 style="margin-top:0">Open status</h3><p>Computed from <code>Intl.DateTimeFormat(..., {timeZone:'Asia/Karachi'})</code>: open if hour ≥ 8 or &lt; 2. Updates every 20–30 s. Chip text "Open now" or "Opens at 8 AM".</p></div>
+  </div>
+</div></section>
+
+<section id="build"><div class="wrap">
+  <h2>Build <em>notes</em></h2>
+  <ul>
+    <li><strong>The prototypes are references, not production code.</strong> They are "Design Component" files (<code>*.dc.html</code>) run by <code>support.js</code>: a template with <code>{{ holes }}</code> plus a small logic class per file. Recreate them in your stack (Next.js / Astro + React recommended) and treat the logic classes as behaviour specs.</li>
+    <li>To view them, serve the <code>prototype/</code> folder over HTTP (e.g. <code>npx serve prototype</code>) and open <code>Fuel Home B.dc.html</code>. Opening them as <code>file://</code> breaks the dynamic imports and fetches.</li>
+    <li>Pure helpers to port directly: <code>fuel-theme.js</code> (tokens, worlds, Lahore time, transitions), <code>fuel-boot.js</code> (pre-paint theme, view-transition CSS, route arrival), <code>fuel-cursor.js</code> (cursor).</li>
+    <li>Cross-page transitions use <code>@view-transition { navigation: auto }</code>. Keep the nav in its own named transition layer.</li>
+    <li>Images: serve AVIF/WebP with responsive <code>srcset</code>. Originals are around 1280×1600 and the LOW-RES story images about 640×1136, so never use those full-bleed on desktop. Lazy-load everything below the fold except the B room-tour images (they sit off-screen horizontally).</li>
+    <li>The hero video is a 6.5 s seamless muted loop (mp4 + webm, 1280×720). For scrubbing, re-encode with a keyframe every frame (<code>-g 1</code>) or use an image sequence.</li>
+    <li>Accessibility: skip link, <code>aria-current</code> on nav, dialogs with <code>aria-modal</code> and Escape to close, live status regions, focus ring #E29732, reduced-motion fallbacks for every pinned scene.</li>
+  </ul>
+</div></section>
+
+<section id="open"><div class="wrap">
+  <h2>Open <em>items</em></h2>
+  <ul>
+    <li>Real prices, phone / WhatsApp, foodpanda link, email.</li>
+    <li>A backend for orders and reservations (the prototypes only show the front end). WhatsApp Business API or a booking tool.</li>
+    <li>Client sign-off on the site copy marked above.</li>
+    <li>A transparent cup cut-out for a true "sticky cup" stage in B, and higher-res originals of the story images.</li>
+    <li>Pick Variant A or B for launch (B can sit behind a feature flag).</li>
+    <li>Do not use anything in the original pack's <code>reference-only-baked-text/</code> in the UI.</li>
+  </ul>
+</div></section>
+</main>
+<footer><div class="wrap">THE FUEL · Espresso Yourself! · Al-Ghani Plaza, 4th Floor, DHA Phase 6, Lahore</div></footer>
+</body>
+</html>
