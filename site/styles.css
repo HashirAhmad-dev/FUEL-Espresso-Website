@@ -49,3 +49,18 @@ html,body{height:100%;margin:0}
 .ps7:active{transform:scale(.98) !important}
 .ps13:active{transform:scale(.94) !important}
 .ps29:active{transform:scale(.96) !important}
+
+/* Footer credit. */
+.fuel-credit-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.fuel-credit-sep{width:1px;height:12px;background:rgba(251,246,238,.28)}
+.fuel-credit{color:inherit;text-decoration:none;transition:color .2s}
+.fuel-credit:hover{color:#FBF6EE}
+@media (max-width:767px){.fuel-credit-row{flex-direction:column;align-items:flex-start}.fuel-credit-sep{display:none}}
+
+/* Review-only switch between the two home variants. Delete it (and its <nav> in index.html / home-a.html) once a variant is chosen. */
+.fuel-variant{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:4px;height:40px;padding:0 4px 0 14px;box-sizing:border-box;border-radius:999px;background:var(--glass);color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(39,4,2,.12);font:400 12px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+.fuel-variant span{padding-right:6px;opacity:.7}
+.fuel-variant a{min-width:32px;height:32px;display:grid;place-items:center;border-radius:999px;color:var(--ink);text-decoration:none;transition:background-color .2s}
+.fuel-variant a:hover{background:rgba(226,154,100,.24);color:var(--ink)}
+.fuel-variant a[aria-current]{background:var(--ink);color:var(--bg)}
+@media (max-width:767px){.fuel-variant{bottom:92px}}

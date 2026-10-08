@@ -282,7 +282,7 @@ window.FuelViews = {
       <a class="ps5" href="https://instagram.com/thefuelespresso" style="min-height:44px; display:flex; align-items:center; gap:8px; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px"><i class="ph ph-instagram-logo" style="font-size:18px"></i>Instagram</a>
     </nav>
     <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; padding-top:24px; border-top:1px solid rgba(251,246,238,.16); font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#E3CBB3">
-      <span>Espresso Yourself!</span>
+      <span class="fuel-credit-row"><span>Espresso Yourself!</span><span class="fuel-credit-sep" aria-hidden="true"></span><a class="fuel-credit" href="https://www.prismovector.com" target="_blank" rel="noopener">Developed by PrismoVector</a></span>
       <span>8 AM to 2 AM · DHA Phase 6, Lahore</span>
     </div>
   </div></footer>`
