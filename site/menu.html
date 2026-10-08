@@ -3,11 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
 <script src="fuel-boot.js"></script>
 <script src="fuel-cursor.js"></script>
 <title>Menu · THE FUEL</title>
@@ -15,156 +10,159 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300..600&amp;display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<style>
-:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
-html{background:var(--bg)}
-body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
-a{color:inherit}
-a:hover{color:inherit}
-::selection{background:#E29A64;color:#270402}
-:focus-visible{outline:2px solid #E29732;outline-offset:3px}
-</style>
-</helmet>
-<a href="#stage" style="position:fixed; top:12px; left:-9999px; z-index:200; padding:12px 18px; border-radius:999px; background:#270402; color:#FBF6EE; font:500 14px Jost, sans-serif; text-decoration:none" style-focus="left:12px">Skip to menu</a>
-<dc-import name="Fuel Nav" page="menu" bp="{{ bp }}" theme="{{ theme }}" chip="{{ chip }}" is-open="{{ isOpen }}" on-toggle="{{ onToggle }}" hint-size="100%,0px"></dc-import>
-<main>
-<header data-screen-label="Menu header" style="background:var(--bg); color:var(--ink); padding:clamp(190px,24vh,230px) clamp(16px,5vw,72px) clamp(40px,4vw,56px); transition:background-color .6s, color .6s">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"><div class="page">
+<a class="ps10" href="#stage" style="position:fixed; top:12px; left:-9999px; z-index:200; padding:12px 18px; border-radius:999px; background:#270402; color:#FBF6EE; font:500 14px Jost, sans-serif; text-decoration:none">Skip to menu</a><div data-part="nav"><header data-fuel-nav="" style="view-transition-name:fuel-nav; position:fixed; top:16px; left:0; right:0; z-index:50; display:flex; justify-content:center; padding:0 clamp(16px,5vw,72px); pointer-events:none" data-k="if1">
+  <nav aria-label="Main" style="pointer-events:auto; position:relative; width:100%; max-width:1296px; height:64px; box-sizing:border-box; display:flex; align-items:center; gap:10px; padding:0 10px; border-radius:999px; background:var(--glass); color:var(--ink); border:1px solid var(--line); backdrop-filter:blur(18px) saturate(140%); -webkit-backdrop-filter:blur(18px) saturate(140%); box-shadow:0 10px 40px rgba(39,4,2,.14); transition:background-color .6s, color .6s, box-shadow .4s, border-color .6s; font-family:Jost, sans-serif">
+    <a href="/" data-h-click="0" data-href="/" aria-label="THE FUEL home" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; min-height:44px; padding-right:8px; border-radius:999px">
+      <span style="position:relative; width:44px; height:44px; display:grid; place-items:center; flex:none">
+        <svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" style="position:absolute; inset:0; transform:rotate(-90deg)"><circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.5"></circle><circle cx="22" cy="22" r="20" fill="none" stroke="#E29A64" stroke-width="2" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" style="animation:fuel-ring linear both; animation-timeline:scroll(root)"></circle></svg>
+        <span style="width:19px; height:27px; background:currentColor; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span>
+      </span>
+      <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:17px; letter-spacing:.16em; white-space:nowrap">THE FUEL</span>
+    </a>
+    
+      <div style="display:flex; gap:2px; margin-left:auto" data-k="if2">
+        
+          <a class="ps1" href="/" data-href="/" data-h-click="1" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Home</span></a>
+        
+          <a class="ps1" href="/menu" data-href="/menu" data-h-click="2" aria-current="page" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:var(--accentInk); background:var(--accent); font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Menu</span></a>
+        
+          <a class="ps1" href="/space" data-href="/space" data-h-click="3" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Our Space</span></a>
+        
+          <a class="ps1" href="/space?page=visit" data-href="/space?page=visit" data-h-click="4" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Visit</span></a>
+        
+      </div>
+    
+    
+      <span role="status" style="display:flex; align-items:center; gap:8px; min-height:32px; padding:0 14px; border-radius:999px; border:1px solid var(--line); font-family:'DM Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; margin-left:0" data-k="if3">
+        <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:#7FBF6A"></span><span>Open now</span>
+      </span>
+    
+    <button class="ps1 ps2" type="button" data-h-click="5" aria-label="Switch to Espresso (night) theme" title="Switch to Espresso (night) theme" style="width:44px; height:44px; flex:none; margin-left:0; border-radius:50%; border:1px solid var(--line); background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px"><i class="ph ph-moon"></i></button>
+    
+      <button class="ps3 ps4" type="button" data-h-click="6" style="height:44px; flex:none; padding:0 18px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); display:flex; align-items:center; gap:8px; cursor:pointer; font:500 15px Jost, sans-serif; white-space:nowrap; transition:transform .24s cubic-bezier(.16,1,.3,1)" data-k="if4"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve</button>
+    
+    <button class="ps1 ps2" type="button" data-h-click="7" aria-label="Bag, empty" style="position:relative; width:44px; height:44px; flex:none; border-radius:50%; border:1px solid var(--line); background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px">
+      <i class="ph ph-handbag"></i>
+      
+    </button>
+    
+    
+  </nav></header></div><main><header data-screen-label="Menu header" style="background:var(--bg); color:var(--ink); padding:clamp(190px,24vh,230px) clamp(16px,5vw,72px) clamp(40px,4vw,56px); transition:background-color .6s, color .6s">
   <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:20px">
     <h1 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(56px,8vw,128px); line-height:.95; letter-spacing:-.025em">The <em style="font-weight:400">menu.</em></h1>
     <p style="margin:0; max-width:40ch; font-size:clamp(17px,1.3vw,19px); line-height:1.6; color:var(--ink2)">Six rooms, one counter. Pick a world to see what we pour and bake in it.</p>
-  </div>
-</header>
-<div style="position:fixed; top:{{ pickerTop }}; left:0; right:0; z-index:45; display:flex; justify-content:center; padding:0 clamp(16px,5vw,72px); pointer-events:none; transform:{{ barT }}; opacity:{{ barOp }}; visibility:{{ barVis }}; transition:transform .4s cubic-bezier(.16,1,.3,1), opacity .3s, visibility .3s">
+  </div></header><div data-bar style="position:fixed; top:90px; left:0; right:0; z-index:45; display:flex; justify-content:center; padding:0 clamp(16px,5vw,72px); pointer-events:none; transform:none; opacity:1; visibility:visible; transition:transform .4s cubic-bezier(.16,1,.3,1), opacity .3s, visibility .3s">
   <div role="tablist" aria-label="Product worlds" style="pointer-events:auto; width:100%; max-width:1296px; box-sizing:border-box; padding:6px; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; border-radius:999px; background:var(--glass); border:1px solid var(--line); backdrop-filter:blur(18px) saturate(140%); -webkit-backdrop-filter:blur(18px) saturate(140%); box-shadow:0 10px 40px rgba(39,4,2,.12); transition:background-color .6s">
-    <sc-for list="{{ worlds }}" as="x" hint-placeholder-count="6">
-      <button type="button" role="tab" aria-selected="{{ x.sel }}" aria-controls="stage" onClick="{{ x.pick }}" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid {{ x.border }}; background:{{ x.bg }}; color:{{ x.ink }}; font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s" style-active="transform:scale(.97)">
-        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:{{ x.swatch }}; box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span>{{ x.name }}
+    
+      <button class="ps4" type="button" role="tab" aria-selected="true" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #270402 50%, #E29A64 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Roast</span>
       </button>
-    </sc-for>
-  </div>
-</div>
-<section id="stage" role="tabpanel" data-screen-label="World stage" aria-label="{{ w.name }}" style="background:{{ stageBg }}; color:{{ w.ink }}; padding:clamp(56px,7vw,112px) clamp(16px,5vw,72px) clamp(80px,9vw,140px); transition:background-color .6s cubic-bezier(.16,1,.3,1); scroll-margin-top:170px">
-  <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,420px),1fr)); gap:clamp(48px,6vw,96px); align-items:start; opacity:{{ stageOp }}; transition:opacity .3s ease">
+    
+      <button class="ps4" type="button" role="tab" aria-selected="false" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #1F3A2B 50%, #B9CC94 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Matcha</span>
+      </button>
+    
+      <button class="ps4" type="button" role="tab" aria-selected="false" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #D99B57 50%, #270402 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Bakery</span>
+      </button>
+    
+      <button class="ps4" type="button" role="tab" aria-selected="false" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #F3DAD6 50%, #8A4B45 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Shakes</span>
+      </button>
+    
+      <button class="ps4" type="button" role="tab" aria-selected="false" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #FFF1DC 50%, #B02A38 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Coolers</span>
+      </button>
+    
+      <button class="ps4" type="button" role="tab" aria-selected="false" aria-controls="stage" data-on-click="x.pick" style="flex:none; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 18px 0 6px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font:500 15px Jost, sans-serif; cursor:pointer; transition:background-color .3s, color .3s, border-color .3s">
+        <span aria-hidden="true" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, #592D14 50%, #F1B88D 50%); box-shadow:inset 0 0 0 1px rgba(39,4,2,.12)"></span><span>Desserts</span>
+      </button>
+    
+  </div></div><section id="stage" role="tabpanel" data-screen-label="World stage" aria-label="Roast" style="background:#270402; color:#FBF6EE; padding:clamp(56px,7vw,112px) clamp(16px,5vw,72px) clamp(80px,9vw,140px); transition:background-color .6s cubic-bezier(.16,1,.3,1); scroll-margin-top:170px">
+  <div data-stage-inner style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,420px),1fr)); gap:clamp(48px,6vw,96px); align-items:start; opacity:1; transition:opacity .3s ease">
     <div style="display:flex; flex-direction:column; gap:28px">
-      <p style="margin:0; font:400 12px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; color:{{ w.ink2 }}">World {{ w.num }} / 06 · {{ w.name }}</p>
-      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(48px,6.6vw,96px); line-height:1; letter-spacing:-.025em; padding-bottom:.06em; text-wrap:balance">{{ w.title }} <em style="font-weight:400; color:{{ w.hl }}">{{ w.italic }}</em></h2>
-      <p style="margin:0; max-width:34ch; font-size:clamp(17px,1.3vw,20px); line-height:1.55; color:{{ w.ink2 }}">{{ w.tagline }}</p>
-      <ul style="list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; border-top:1px solid {{ w.line }}">
-        <sc-for list="{{ w.items }}" as="it" hint-placeholder-count="4">
-          <li style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid {{ w.line }}">
-            <span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,2vw,30px)">{{ it.name }}</span>
+      <p data-ink2 style="margin:0; font:400 12px 'DM Mono', monospace; letter-spacing:.1em; text-transform:uppercase; color:#B28F71">World <span data-num>01</span> / 06 · <span data-name>Roast</span></p>
+      <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(48px,6.6vw,96px); line-height:1; letter-spacing:-.025em; padding-bottom:.06em; text-wrap:balance"><span data-title>Pulled</span> <em data-hl style="font-weight:400; color:#E29A64"><span data-italic>slow.</span></em></h2>
+      <p data-ink2 style="margin:0; max-width:34ch; font-size:clamp(17px,1.3vw,20px); line-height:1.55; color:#B28F71"><span data-tagline>Pulled slow. Poured pretty.</span></p>
+      <ul data-line-top style="list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; border-top:1px solid rgba(251,246,238,.16)">
+        
+          <li data-line-bottom style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid rgba(251,246,238,.16)">
+            <span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,2vw,30px)"><span data-item>Espresso</span></span>
             <span style="display:flex; align-items:center; gap:14px; flex:none">
-              <span style="font:400 13px 'DM Mono', monospace; color:{{ w.ink2 }}">[PRICE]</span>
-              <button type="button" onClick="{{ it.add }}" aria-label="{{ it.label }}" style="display:flex; align-items:center; gap:6px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid {{ w.line }}; background:transparent; color:inherit; font:500 14px Jost, sans-serif; cursor:pointer; transition:background-color .2s" style-hover="background:rgba(127,127,127,.14)" style-active="transform:scale(.96)"><i class="ph ph-plus" style="font-size:15px"></i>Add</button>
+              <span data-ink2 style="font:400 13px 'DM Mono', monospace; color:#B28F71">[PRICE]</span>
+              <button class="ps28 ps29" type="button" data-line-border data-on-click="it.add" aria-label="Add Espresso to bag" style="display:flex; align-items:center; gap:6px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid rgba(251,246,238,.16); background:transparent; color:inherit; font:500 14px Jost, sans-serif; cursor:pointer; transition:background-color .2s"><i class="ph ph-plus" style="font-size:15px"></i>Add</button>
             </span>
           </li>
-        </sc-for>
+        
+          <li data-line-bottom style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid rgba(251,246,238,.16)">
+            <span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,2vw,30px)"><span data-item>Flat White</span></span>
+            <span style="display:flex; align-items:center; gap:14px; flex:none">
+              <span data-ink2 style="font:400 13px 'DM Mono', monospace; color:#B28F71">[PRICE]</span>
+              <button class="ps28 ps29" type="button" data-line-border data-on-click="it.add" aria-label="Add Flat White to bag" style="display:flex; align-items:center; gap:6px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid rgba(251,246,238,.16); background:transparent; color:inherit; font:500 14px Jost, sans-serif; cursor:pointer; transition:background-color .2s"><i class="ph ph-plus" style="font-size:15px"></i>Add</button>
+            </span>
+          </li>
+        
+          <li data-line-bottom style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid rgba(251,246,238,.16)">
+            <span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,2vw,30px)"><span data-item>Cappuccino</span></span>
+            <span style="display:flex; align-items:center; gap:14px; flex:none">
+              <span data-ink2 style="font:400 13px 'DM Mono', monospace; color:#B28F71">[PRICE]</span>
+              <button class="ps28 ps29" type="button" data-line-border data-on-click="it.add" aria-label="Add Cappuccino to bag" style="display:flex; align-items:center; gap:6px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid rgba(251,246,238,.16); background:transparent; color:inherit; font:500 14px Jost, sans-serif; cursor:pointer; transition:background-color .2s"><i class="ph ph-plus" style="font-size:15px"></i>Add</button>
+            </span>
+          </li>
+        
+          <li data-line-bottom style="display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid rgba(251,246,238,.16)">
+            <span style="font-family:'Bodoni Moda', serif; font-size:clamp(22px,2vw,30px)"><span data-item>Iced Latte</span></span>
+            <span style="display:flex; align-items:center; gap:14px; flex:none">
+              <span data-ink2 style="font:400 13px 'DM Mono', monospace; color:#B28F71">[PRICE]</span>
+              <button class="ps28 ps29" type="button" data-line-border data-on-click="it.add" aria-label="Add Iced Latte to bag" style="display:flex; align-items:center; gap:6px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid rgba(251,246,238,.16); background:transparent; color:inherit; font:500 14px Jost, sans-serif; cursor:pointer; transition:background-color .2s"><i class="ph ph-plus" style="font-size:15px"></i>Add</button>
+            </span>
+          </li>
+        
       </ul>
       <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:8px">
-        <a href="[LINK]" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:{{ w.accent }}; color:{{ w.accentInk }}; text-decoration:none; font-size:16px; font-weight:500; transition:transform .24s cubic-bezier(.16,1,.3,1), background-color .6s" style-hover="transform:translateY(-2px)" style-active="transform:scale(.98)">Order on foodpanda<i class="ph ph-arrow-up-right" style="font-size:18px"></i></a>
-        <button type="button" onClick="{{ nextWorld }}" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:999px; border:1.5px solid currentColor; background:transparent; color:inherit; font:500 16px Jost, sans-serif; cursor:pointer" style-hover="background:rgba(127,127,127,.12)" style-active="transform:scale(.98)">Next: {{ w.nextName }}<i class="ph ph-arrow-right" style="font-size:18px"></i></button>
+        <a class="ps8 ps7" href="[LINK]" data-accent style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; background:#E29A64; color:#270402; text-decoration:none; font-size:16px; font-weight:500; transition:transform .24s cubic-bezier(.16,1,.3,1), background-color .6s">Order on foodpanda<i class="ph ph-arrow-up-right" style="font-size:18px"></i></a>
+        <button class="ps30 ps7" type="button" data-on-click="nextWorld" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:999px; border:1.5px solid currentColor; background:transparent; color:inherit; font:500 16px Jost, sans-serif; cursor:pointer">Next: <span data-next>Matcha</span><i class="ph ph-arrow-right" style="font-size:18px"></i></button>
       </div>
     </div>
     <div style="position:relative; display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:clamp(10px,1.4vw,18px)">
-      <div style="grid-column:1 / span 6; display:grid; aspect-ratio:4/5; max-height:72vh; border-radius:999px 999px 18px 18px; overflow:hidden; background:{{ w.surface }}; transition:background-color .6s">
-        <img src="assets/worlds/01-roast/HERO_f040_cups-latte-art.jpg" alt="Flat white with latte art among stacked pink cups" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h0 }}; transition:opacity .6s ease"><img src="assets/worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg" alt="Iced matcha latte breaking through green paper" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h1 }}; transition:opacity .6s ease"><img src="assets/worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg" alt="Croissant on a terracotta plate" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h2 }}; transition:opacity .6s ease"><img src="assets/worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg" alt="Caramel shake splashing in front of the storefront sign" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h3 }}; transition:opacity .6s ease"><img src="assets/worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg" alt="Strawberry chiller held in hand" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h4 }}; transition:opacity .6s ease"><img src="assets/worlds/06-desserts/HERO_f111_brownie-fork.jpg" alt="Brownie stack on a fork with chocolate drip" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:{{ h5 }}; transition:opacity .6s ease">
+      <div data-surface style="grid-column:1 / span 6; display:grid; aspect-ratio:4/5; max-height:72vh; border-radius:999px 999px 18px 18px; overflow:hidden; background:#3A1A0F; transition:background-color .6s">
+        <img data-hero src="assets/worlds/01-roast/HERO_f040_cups-latte-art.jpg" alt="Flat white with latte art among stacked pink cups" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:1; transition:opacity .6s ease"><img data-hero src="assets/worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg" alt="Iced matcha latte breaking through green paper" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .6s ease"><img data-hero src="assets/worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg" alt="Croissant on a terracotta plate" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .6s ease"><img data-hero src="assets/worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg" alt="Caramel shake splashing in front of the storefront sign" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .6s ease"><img data-hero src="assets/worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg" alt="Strawberry chiller held in hand" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .6s ease"><img data-hero src="assets/worlds/06-desserts/HERO_f111_brownie-fork.jpg" alt="Brownie stack on a fork with chocolate drip" style="grid-area:1 / 1; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .6s ease">
       </div>
-      <div style="grid-column:1 / span 3; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:{{ w.surface }}; transition:background-color .6s">
-        <sc-if value="{{ imgsReady }}" hint-placeholder-val="{{ false }}"><img src="{{ w.sup1 }}" alt="" loading="lazy" onLoad="{{ onImg }}" style="width:100%; height:100%; object-fit:cover; display:block; opacity:{{ w.sup1Op }}; transition:opacity .7s ease"></sc-if>
+      <div data-surface style="grid-column:1 / span 3; aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#3A1A0F; transition:background-color .6s">
+        <img data-sup src="assets/worlds/01-roast/f067_latte-art-topdown.jpg" alt="" loading="lazy" data-on-load="onImg" style="width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .7s ease">
       </div>
-      <div style="grid-column:4 / span 3; margin-top:clamp(32px,5vw,72px); aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:{{ w.surface }}; transition:background-color .6s">
-        <sc-if value="{{ imgsReady }}" hint-placeholder-val="{{ false }}"><img src="{{ w.sup2 }}" alt="" loading="lazy" onLoad="{{ onImg }}" style="width:100%; height:100%; object-fit:cover; display:block; opacity:{{ w.sup2Op }}; transition:opacity .7s ease"></sc-if>
+      <div data-surface style="grid-column:4 / span 3; margin-top:clamp(32px,5vw,72px); aspect-ratio:4/5; border-radius:18px; overflow:hidden; background:#3A1A0F; transition:background-color .6s">
+        <img data-sup src="assets/worlds/01-roast/f087_two-iced-lattes.jpg" alt="" loading="lazy" data-on-load="onImg" style="width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .7s ease">
       </div>
     </div>
-  </div>
-</section>
-</main>
-<dc-import name="Fuel Footer" phone="{{ isPhone }}" hint-size="100%,560px"></dc-import>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;latte&quot;,&quot;espresso&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
-class Component extends DCLogic {
-  static P = 'assets/';
-  static W = [
-    { key: 'roast', name: 'Roast', title: 'Pulled', italic: 'slow.', tagline: 'Pulled slow. Poured pretty.', alt: 'Flat white with latte art among stacked pink cups',
-      c: { bg: '#270402', surface: '#3A1A0F', ink: '#FBF6EE', ink2: '#B28F71', accent: '#E29A64', accentInk: '#270402', hl: '#E29A64', line: 'rgba(251,246,238,.16)' },
-      hero: 'worlds/01-roast/HERO_f040_cups-latte-art.jpg', sup: ['worlds/01-roast/f067_latte-art-topdown.jpg', 'worlds/01-roast/f087_two-iced-lattes.jpg'], items: ['Espresso', 'Flat White', 'Cappuccino', 'Iced Latte'] },
-    { key: 'matcha', name: 'Matcha', title: 'Whisked', italic: 'green.', tagline: 'Whisked green, poured over ice.', alt: 'Iced matcha latte breaking through green paper',
-      c: { bg: '#1F3A2B', surface: '#2C473C', ink: '#F2F5E4', ink2: '#C9D6B0', accent: '#B9CC94', accentInk: '#1F3A2B', hl: '#DDE6A8', line: 'rgba(242,245,228,.18)' },
-      hero: 'worlds/02-matcha/HERO_f097_torn-paper-matcha.jpg', sup: ['worlds/02-matcha/f068_tray-matcha-croissant.jpg', 'worlds/02-matcha/f071_hands-matcha-green-knit.jpg'], items: ['Iced Matcha Latte', 'Hot Matcha Latte', 'Matcha Cup', 'Matcha and Croissant'] },
-    { key: 'bakery', name: 'Bakery', title: 'Flaky outside,', italic: 'soft inside.', tagline: 'Baked fresh to fuel every moment.', alt: 'Croissant on a terracotta plate',
-      c: { bg: '#D99B57', surface: '#E6B677', ink: '#270402', ink2: '#4A2410', accent: '#270402', accentInk: '#FBF6EE', hl: '#592D14', line: 'rgba(39,4,2,.2)' },
-      hero: 'worlds/03-bakery/HERO_f033_croissant-terracotta-plate.jpg', sup: ['worlds/03-bakery/f028_pain-au-chocolat-stack.jpg', 'worlds/03-bakery/f031_baker-tray.jpg'], items: ['Butter Croissant', 'Pain au Chocolat', 'Almond Croissant', 'Glazed Croissant'] },
-    { key: 'shakes', name: 'Shakes', title: 'Thick enough', italic: 'for a spoon.', tagline: 'Blended thick. Best with a straw and a friend.', alt: 'Caramel shake splashing in front of the storefront sign',
-      c: { bg: '#F3DAD6', surface: '#FBE9E5', ink: '#4A1E14', ink2: '#6B3A32', accent: '#8A4B45', accentInk: '#FBF6EE', hl: '#8A4B45', line: 'rgba(74,30,20,.18)' },
-      hero: 'worlds/04-shakes/HERO_f092_shake-splash-storefront.jpg', sup: ['brand-moments/f014_iced-drink-paper-bag.jpg', 'brand-moments/f036_cups-upright.jpg'], items: ['Caramel Blast Shake', 'Cookies and Cream Shake', 'Chocolate Shake', 'Vanilla Shake'] },
-    { key: 'coolers', name: 'Coolers', title: 'Cold fruit,', italic: 'warm days.', tagline: 'Cold fruit for warm Lahore afternoons.', alt: 'Strawberry chiller held in hand',
-      c: { bg: '#FFF1DC', surface: '#FFE4BE', ink: '#3A0F10', ink2: '#6B2A24', accent: '#B02A38', accentInk: '#FFF1DC', hl: '#B02A38', line: 'rgba(58,15,16,.16)' },
-      hero: 'worlds/05-coolers/HERO_f100_strawberry-chiller-hand.jpg', sup: ['worlds/05-coolers/f102_mango-cooler-dark.jpg', 'worlds/05-coolers/f077_cooler-car-window.jpg'], items: ['Strawberry Chiller', 'Mango Cooler', 'Watermelon Cooler', 'Matcha Berry Layer'] },
-    { key: 'desserts', name: 'Desserts', title: 'One plate,', italic: 'four forks.', tagline: 'Made with love. Shared, mostly.', alt: 'Brownie stack on a fork with chocolate drip',
-      c: { bg: '#592D14', surface: '#6B3A22', ink: '#F3E6D6', ink2: '#E3CBB3', accent: '#F1B88D', accentInk: '#270402', hl: '#F1B88D', line: 'rgba(243,230,214,.18)' },
-      hero: 'worlds/06-desserts/HERO_f111_brownie-fork.jpg', sup: ['worlds/06-desserts/f070_tiramisu-four-forks.jpg', 'worlds/06-desserts/f035_cheesecake-terracotta.jpg'], items: ['Fudge Brownie', 'Tiramisu', 'Baked Cheesecake', 'Chocolate Chip Cookie'] }
-  ];
-  initIdx = (() => { try { const k = new URLSearchParams(location.search).get('world'); const i = Component.W.findIndex(w => w.key === k); return i < 0 ? 0 : i; } catch (e) { return 0; } })();
-  state = { idx: this.initIdx, shown: this.initIdx, fade: false, barTop: 0, barHide: false, theme: 'latte', w: typeof window !== 'undefined' ? innerWidth : 1440, loaded: {}, open: true };
-  componentDidMount() {
-    this.onResize = () => this.setState({ w: innerWidth });
-    addEventListener('resize', this.onResize);
-    this.onScroll = () => { cancelAnimationFrame(this.sr); this.sr = requestAnimationFrame(() => {
-      const nav = document.querySelector('[data-fuel-nav]'), nb = nav ? nav.getBoundingClientRect().bottom : 80;
-      const st = document.getElementById('stage'), sb = st ? st.getBoundingClientRect().bottom : 1e9;
-      const top = Math.round(nb + 10), hide = sb < top + 160;
-      if (top !== this.state.barTop || hide !== this.state.barHide) this.setState({ barTop: top, barHide: hide });
-    }); };
-    addEventListener('scroll', this.onScroll, { passive: true }); addEventListener('resize', this.onScroll); setTimeout(this.onScroll, 300);
-    import(new URL('fuel-theme.js', location.href).href).then(m => { this.m = m; this.applyTheme(this.pickTheme()); });
-    const st = () => { const h = +new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', hour12: false }).format(new Date()) % 24; this.setState({ open: h >= 8 || h < 2 }); };
-    st(); this.t = setInterval(st, 30000);
-    Component.W.forEach(w => [w.hero, ...w.sup].forEach(p => { const i = new Image(); i.src = Component.P + p; }));
-  }
-  componentWillUnmount() { removeEventListener('scroll', this.onScroll); removeEventListener('resize', this.onScroll); clearTimeout(this.ft); removeEventListener('resize', this.onResize); clearInterval(this.t); }
-  componentDidUpdate(prev) { if (prev.theme !== this.props.theme && this.m) this.applyTheme(this.pickTheme()); }
-  pickTheme() { const p = this.props.theme ?? 'auto'; return p === 'latte' || p === 'espresso' ? p : this.m.initialTheme(); }
-  applyTheme(t) { this.m.applyVars(this.m.THEMES[t]); document.documentElement.style.colorScheme = t === 'latte' ? 'light' : 'dark'; this.setState({ theme: t }); }
-  pick(i) {
-    if (i === this.state.idx) return;
-    this.setState({ idx: i, fade: true });
-    clearTimeout(this.ft); this.ft = setTimeout(() => this.setState({ shown: i, fade: false }), 300);
-    const st = document.getElementById('stage');
-    if (st && st.getBoundingClientRect().top < 0) scrollTo({ top: st.getBoundingClientRect().top + scrollY - 170, behavior: 'smooth' });
-    try { const u = new URL(location.href); u.searchParams.set('world', Component.W[i].key); history.replaceState(null, '', u); } catch (e) {}
-  }
-  renderVals() {
-    const s = this.state, P = Component.P, W = Component.W;
-    const bp = s.w < 768 ? 'phone' : s.w < 1024 ? 'tablet' : 'desktop';
-    const cur = W[s.shown], c = cur.c, L = s.loaded;
-    const src = p => P + p;
-    return {
-      bp, theme: s.theme, isPhone: bp === 'phone', chip: s.open ? 'Open now' : 'Opens at 8 AM', isOpen: s.open,
-      pickerTop: s.barTop ? s.barTop + 'px' : (bp === 'phone' ? '76px' : '90px'), barT: s.barHide ? 'translateY(-14px)' : 'none', barOp: s.barHide ? 0 : 1, barVis: s.barHide ? 'hidden' : 'visible',
-      onToggle: (e) => {
-        if (!this.m) return;
-        const r = e.currentTarget.getBoundingClientRect(), next = s.theme === 'latte' ? 'espresso' : 'latte';
-        const apply = () => this.applyTheme(next); apply.nextBg = this.m.THEMES[next].bg;
-        this.m.saveTheme(next); this.m.transition('radial', r.left + r.width / 2, r.top + r.height / 2, apply);
-      },
-      worlds: W.map((w, i) => ({
-        name: w.name, sel: i === s.idx ? 'true' : 'false', swatch: `linear-gradient(135deg, ${w.c.bg} 50%, ${w.c.accent} 50%)`,
-        bg: i === s.idx ? 'var(--ink)' : 'transparent', ink: i === s.idx ? 'var(--bg)' : 'var(--ink)', border: i === s.idx ? 'var(--ink)' : 'var(--line)',
-        pick: () => this.pick(i)
-      })),
-      w: {
-        ...c, name: cur.name, num: String(s.shown + 1).padStart(2, '0'), title: cur.title, italic: cur.italic, tagline: cur.tagline,
-        items: cur.items.map(n => ({ name: n, label: `Add ${n} to bag`, add: () => dispatchEvent(new CustomEvent('fuel-add', { detail: { add: n, world: cur.name } })) })),
-        heroSrc: src(cur.hero), heroAlt: cur.alt, sup1: src(cur.sup[0]), sup2: src(cur.sup[1]),
-        heroOp: L[src(cur.hero)] ? 1 : 0, heroScale: L[src(cur.hero)] ? 'scale(1)' : 'scale(1.04)',
-        sup1Op: L[src(cur.sup[0])] ? 1 : 0, sup2Op: L[src(cur.sup[1])] ? 1 : 0,
-        nextName: W[(s.shown + 1) % W.length].name
-      },
-      onImg: (e) => { const k = e.currentTarget.getAttribute('src'); if (!this.state.loaded[k]) this.setState(st => ({ loaded: { ...st.loaded, [k]: true } })); },
-      nextWorld: () => this.pick((s.idx + 1) % W.length), imgsReady: true, h0: s.shown === 0 ? 1 : 0, h1: s.shown === 1 ? 1 : 0, h2: s.shown === 2 ? 1 : 0, h3: s.shown === 3 ? 1 : 0, h4: s.shown === 4 ? 1 : 0, h5: s.shown === 5 ? 1 : 0, stageBg: W[s.idx].c.bg, stageOp: s.fade ? 0 : 1
-    };
-  }
-}
-</script>
+  </div></section></main><div data-part="footer"><footer data-screen-label="Footer" style="background:#270402; color:#FBF6EE; padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px) 40px; font-family:Jost, sans-serif">
+  <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(40px,5vw,72px)">
+    <div aria-hidden="true" style="display:flex; align-items:center; gap:20px">
+      <span style="flex:1; height:1px; background:rgba(251,246,238,.22)"></span>
+      <span style="width:28px; height:40px; background:#E29A64; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span>
+      <span style="flex:1; height:1px; background:rgba(251,246,238,.22)"></span>
+    </div>
+    <p style="margin:0; text-align:center; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(60px,14.5vw,236px); line-height:.9; letter-spacing:.04em; white-space:nowrap">THE FUEL</p>
+    <nav aria-label="Footer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 8px">
+      <a class="ps5" href="/" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Home</a>
+      <a class="ps5" href="/menu" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Menu</a>
+      <a class="ps5" href="/space" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Our Space</a>
+      <a class="ps5" href="/space?page=visit" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Visit</a>
+      <a class="ps5" href="https://instagram.com/thefuelespresso" style="min-height:44px; display:flex; align-items:center; gap:8px; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px"><i class="ph ph-instagram-logo" style="font-size:18px"></i>Instagram</a>
+    </nav>
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; padding-top:24px; border-top:1px solid rgba(251,246,238,.16); font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#E3CBB3">
+      <span>Espresso Yourself!</span>
+      <span>8 AM to 2 AM · DHA Phase 6, Lahore</span>
+    </div>
+  </div></footer></div>
+</div></div>
+<script src="fuel-views.js"></script>
+<script src="fuel-parts.js"></script>
+<script src="menu.js"></script>
 </body>
 </html>
