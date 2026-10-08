@@ -1,0 +1,51 @@
+/* THE FUEL: tokens and base (from context.html), keyframes, page sizing and interaction states. */
+:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
+html{background:var(--bg)}
+body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
+a{color:inherit}
+a:hover{color:inherit}
+::selection{background:#E29A64;color:#270402}
+:focus-visible{outline:2px solid #E29732;outline-offset:3px}
+@media (prefers-reduced-motion: no-preference){@keyframes fuel-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}}
+@media (prefers-reduced-motion: no-preference){@keyframes fuel-shimmer{from{background-position:100% 0}to{background-position:0 0}}}
+@media (prefers-reduced-motion: no-preference){
+@keyframes fuel-par-a{from{transform:translateY(56px)}to{transform:translateY(-56px)}}
+@keyframes fuel-par-b{from{transform:translateY(-24px)}to{transform:translateY(32px)}}
+@keyframes fuel-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+}
+@keyframes fuel-ring{to{stroke-dashoffset:0}}
+html,body{height:100%;margin:0}
+#root,#root>.page{height:100%}
+
+/* Hover / focus / active states (were style-hover, style-focus, style-active in the prototypes). */
+.ps1:hover{background:rgba(226,154,100,.24) !important}
+.ps3:hover{transform:translateY(-1px) !important}
+.ps5:hover{background:rgba(226,154,100,.2) !important}
+.ps8:hover{transform:translateY(-2px) !important}
+.ps9:hover{background:rgba(39,4,2,.08) !important;color:#270402 !important}
+.ps11:hover{transform:translateY(-2px) !important;color:var(--accentInk) !important}
+.ps12:hover{transform:scale(1.06) !important}
+.ps14:hover{color:var(--accentInk) !important}
+.ps15:hover{color:var(--accent) !important}
+.ps16:hover{background:rgba(226,154,100,.22) !important}
+.ps17:hover{transform:scale(1.05) !important}
+.ps18:hover{background:#3A1A0F !important;color:#FBF6EE !important;transform:translateY(-2px) !important}
+.ps19:hover{background:rgba(39,4,2,.08) !important}
+.ps20:hover{transform:translateY(-6px) !important;color:#FBF6EE !important}
+.ps21:hover{transform:translateY(-6px) !important;color:#F2F5E4 !important}
+.ps22:hover{transform:translateY(-6px) !important;color:#270402 !important}
+.ps23:hover{transform:translateY(-6px) !important;color:#4A1E14 !important}
+.ps24:hover{transform:translateY(-6px) !important;color:#3A0F10 !important}
+.ps25:hover{transform:translateY(-6px) !important;color:#F3E6D6 !important}
+.ps26:hover{color:var(--ink) !important}
+.ps27:hover{transform:rotateX(4deg) rotateY(-5deg) translateY(-6px) !important;box-shadow:0 30px 60px -30px rgba(39,4,2,.35) !important}
+.ps28:hover{background:rgba(127,127,127,.14) !important}
+.ps30:hover{background:rgba(127,127,127,.12) !important}
+.ps31:hover{background:rgba(127,127,127,.1) !important}
+.ps6:focus{border-color:var(--accent) !important}
+.ps10:focus{left:12px !important}
+.ps2:active{transform:scale(.95) !important}
+.ps4:active{transform:scale(.97) !important}
+.ps7:active{transform:scale(.98) !important}
+.ps13:active{transform:scale(.94) !important}
+.ps29:active{transform:scale(.96) !important}

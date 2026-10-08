@@ -3,11 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
 <script src="fuel-boot.js"></script>
 <script src="fuel-cursor.js"></script>
 <title>Our space · THE FUEL</title>
@@ -17,35 +12,62 @@
 <link rel="preconnect" href="https://maps.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300..600&amp;display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<style>
-:root{--bg:#FBF6EE;--surface:#F3E6D6;--ink:#270402;--ink2:#592D14;--accent:#814D35;--accentInk:#FBF6EE;--caramel:#E29A64;--line:rgba(39,4,2,.16);--glass:rgba(251,246,238,.82)}
-html{background:var(--bg)}
-body{margin:0;font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font-family:Jost,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .6s,color .6s}
-a{color:inherit}
-a:hover{color:inherit}
-::selection{background:#E29A64;color:#270402}
-:focus-visible{outline:2px solid #E29732;outline-offset:3px}
-</style>
-</helmet>
-<dc-import name="Fuel Nav" page="{{ navPage }}" bp="{{ bp }}" theme="{{ theme }}" chip="{{ chip }}" is-open="{{ isOpen }}" on-toggle="{{ onToggle }}" hint-size="100%,0px"></dc-import>
-<main>
-<section data-spy="space" data-screen-label="Space hero" style="background:var(--bg); color:var(--ink); padding:clamp(120px,15vh,164px) clamp(16px,5vw,72px) clamp(64px,8vw,120px); transition:background-color .6s, color .6s">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"><div class="page">
+<div data-part="nav"><header data-fuel-nav="" style="view-transition-name:fuel-nav; position:fixed; top:16px; left:0; right:0; z-index:50; display:flex; justify-content:center; padding:0 clamp(16px,5vw,72px); pointer-events:none" data-k="if1">
+  <nav aria-label="Main" style="pointer-events:auto; position:relative; width:100%; max-width:1296px; height:64px; box-sizing:border-box; display:flex; align-items:center; gap:10px; padding:0 10px; border-radius:999px; background:var(--glass); color:var(--ink); border:1px solid var(--line); backdrop-filter:blur(18px) saturate(140%); -webkit-backdrop-filter:blur(18px) saturate(140%); box-shadow:0 10px 40px rgba(39,4,2,.14); transition:background-color .6s, color .6s, box-shadow .4s, border-color .6s; font-family:Jost, sans-serif">
+    <a href="/" data-h-click="0" data-href="/" aria-label="THE FUEL home" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; min-height:44px; padding-right:8px; border-radius:999px">
+      <span style="position:relative; width:44px; height:44px; display:grid; place-items:center; flex:none">
+        <svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" style="position:absolute; inset:0; transform:rotate(-90deg)"><circle cx="22" cy="22" r="20" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.5"></circle><circle cx="22" cy="22" r="20" fill="none" stroke="#E29A64" stroke-width="2" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" style="animation:fuel-ring linear both; animation-timeline:scroll(root)"></circle></svg>
+        <span style="width:19px; height:27px; background:currentColor; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span>
+      </span>
+      <span style="font-family:'Bodoni Moda', serif; font-weight:600; font-size:17px; letter-spacing:.16em; white-space:nowrap">THE FUEL</span>
+    </a>
+    
+      <div style="display:flex; gap:2px; margin-left:auto" data-k="if2">
+        
+          <a class="ps1" href="/" data-href="/" data-h-click="1" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Home</span></a>
+        
+          <a class="ps1" href="/menu" data-href="/menu" data-h-click="2" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Menu</span></a>
+        
+          <a class="ps1" href="/space" data-href="/space" data-h-click="3" aria-current="page" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:var(--accentInk); background:var(--accent); font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Our Space</span></a>
+        
+          <a class="ps1" href="/space?page=visit" data-href="/space?page=visit" data-h-click="4" style="display:flex; align-items:center; min-height:44px; padding:0 16px; border-radius:999px; text-decoration:none; color:inherit; background:transparent; font-size:15px; font-weight:500; letter-spacing:.01em; white-space:nowrap; transition:background-color .25s"><span>Visit</span></a>
+        
+      </div>
+    
+    
+      <span role="status" style="display:flex; align-items:center; gap:8px; min-height:32px; padding:0 14px; border-radius:999px; border:1px solid var(--line); font-family:'DM Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; margin-left:0" data-k="if3">
+        <span aria-hidden="true" style="width:7px; height:7px; border-radius:50%; background:#7FBF6A"></span><span>Open now</span>
+      </span>
+    
+    <button class="ps1 ps2" type="button" data-h-click="5" aria-label="Switch to Espresso (night) theme" title="Switch to Espresso (night) theme" style="width:44px; height:44px; flex:none; margin-left:0; border-radius:50%; border:1px solid var(--line); background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px"><i class="ph ph-moon"></i></button>
+    
+      <button class="ps3 ps4" type="button" data-h-click="6" style="height:44px; flex:none; padding:0 18px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); display:flex; align-items:center; gap:8px; cursor:pointer; font:500 15px Jost, sans-serif; white-space:nowrap; transition:transform .24s cubic-bezier(.16,1,.3,1)" data-k="if4"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve</button>
+    
+    <button class="ps1 ps2" type="button" data-h-click="7" aria-label="Bag, empty" style="position:relative; width:44px; height:44px; flex:none; border-radius:50%; border:1px solid var(--line); background:transparent; color:inherit; display:grid; place-items:center; cursor:pointer; font-size:20px">
+      <i class="ph ph-handbag"></i>
+      
+    </button>
+    
+    
+  </nav></header></div><main><section data-spy="space" data-screen-label="Space hero" style="background:var(--bg); color:var(--ink); padding:clamp(120px,15vh,164px) clamp(16px,5vw,72px) clamp(64px,8vw,120px); transition:background-color .6s, color .6s">
   <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,420px),1fr)); gap:clamp(40px,6vw,96px); align-items:end">
     <div style="display:flex; flex-direction:column; gap:28px; padding-bottom:clamp(0px,3vw,48px)">
       <h1 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(56px,8vw,128px); line-height:.95; letter-spacing:-.025em">Hidden <em style="font-weight:400">in DHA.</em></h1>
       <p style="margin:0; max-width:36ch; font-size:clamp(17px,1.35vw,20px); line-height:1.6; color:var(--ink2); text-wrap:pretty">Fourth floor of Al-Ghani Plaza, Sector-C. Pink swing seats, window light, and a counter that stays open till 2 AM.</p>
       <div style="display:flex; flex-wrap:wrap; gap:12px">
-        <button type="button" onClick="{{ reserve }}" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); font:500 16px Jost, sans-serif; cursor:pointer; transition:transform .24s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-2px)" style-active="transform:scale(.98)"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve a table</button>
-        <a href="#visit" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:999px; border:1.5px solid var(--ink); color:var(--ink); text-decoration:none; font-size:16px; font-weight:500" style-hover="background:rgba(127,127,127,.1)">Plan your visit<i class="ph ph-arrow-down" style="font-size:18px"></i></a>
+        <button class="ps8 ps7" type="button" data-on-click="reserve" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 26px; border-radius:999px; border:none; background:var(--accent); color:var(--accentInk); font:500 16px Jost, sans-serif; cursor:pointer; transition:transform .24s cubic-bezier(.16,1,.3,1)"><i class="ph ph-calendar-check" style="font-size:18px"></i>Reserve a table</button>
+        <a class="ps31" href="#visit" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:999px; border:1.5px solid var(--ink); color:var(--ink); text-decoration:none; font-size:16px; font-weight:500">Plan your visit<i class="ph ph-arrow-down" style="font-size:18px"></i></a>
       </div>
     </div>
     <div style="aspect-ratio:4/5; max-height:78vh; border-radius:999px 999px 18px 18px; overflow:hidden; background:#E3CBB3">
       <img src="assets/space/f088_interior-lattes-window.jpg" alt="Two lattes on a wooden tray under THE FUEL wall sign" style="width:100%; height:100%; object-fit:cover; display:block">
     </div>
-  </div>
-</section>
-
-<section data-spy="space" data-screen-label="Inside" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,140px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  </div></section><section data-spy="space" data-screen-label="Inside" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,140px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
   <div style="max-width:1296px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px,4vw,56px)">
     <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(36px,4.4vw,64px); line-height:1.04; letter-spacing:-.02em">Inside the <em style="font-weight:400">fourth floor.</em></h2>
     <div style="columns:3 260px; column-gap:clamp(12px,1.6vw,24px)">
@@ -82,16 +104,39 @@ a:hover{color:inherit}
         <figcaption style="font-size:15px; color:var(--ink2)">Counter seating</figcaption>
       </figure>
     </div>
-  </div>
-</section>
-
-<section data-spy="space" data-screen-label="Quote" style="background:var(--bg); color:var(--ink); padding:clamp(96px,12vw,180px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
-  <p style="margin:0 auto; max-width:1100px; text-align:center; font-family:'Bodoni Moda', serif; font-style:italic; font-weight:400; font-size:clamp(44px,7vw,112px); line-height:1.05; letter-spacing:-.02em; text-wrap:balance; padding-bottom:.08em">It’s okay to take a break.</p>
-</section>
-
-<dc-import name="Fuel Visit" hint-size="100%,820px"></dc-import>
-
-<section data-spy="visit" data-screen-label="Hours" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  </div></section><section data-spy="space" data-screen-label="Quote" style="background:var(--bg); color:var(--ink); padding:clamp(96px,12vw,180px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
+  <p style="margin:0 auto; max-width:1100px; text-align:center; font-family:'Bodoni Moda', serif; font-style:italic; font-weight:400; font-size:clamp(44px,7vw,112px); line-height:1.05; letter-spacing:-.02em; text-wrap:balance; padding-bottom:.08em">It’s okay to take a break.</p></section><div data-part="visit"><section id="visit" data-ref="rootRef" data-spy="visit" data-screen-label="Visit" style="background:#E29A64; color:#270402; padding:clamp(80px,10vw,144px) clamp(16px,5vw,72px); font-family:Jost, sans-serif; scroll-margin-top:0">
+  <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,400px),1fr)); gap:clamp(48px,6vw,96px); align-items:center">
+    <div style="display:flex; flex-direction:column; gap:28px">
+      
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <h2 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(44px,6.2vw,92px); line-height:1; letter-spacing:-.025em; text-wrap:balance">Al-Ghani Plaza, <em style="font-weight:400"><span style="font-weight:600; font-style:normal; font-variant-numeric:lining-nums">4</span>th Floor</em></h2>
+        <p style="margin:0; font-size:clamp(18px,1.5vw,22px); line-height:1.5">Sector-C, DHA Phase 6, Lahore</p>
+      </div>
+      <p role="status" style="margin:0; display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; font:400 13px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase">
+        <span style="display:flex; align-items:center; gap:10px"><span aria-hidden="true" style="width:8px; height:8px; border-radius:50%; background:#2F6B22"></span><span>Open now. Closes at 2 AM.</span></span>
+        <span>8 AM to 2 AM, every day</span>
+      </p>
+      <button class="ps8 ps7" type="button" data-h-click="0" style="max-width:560px; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:72px; padding:0 10px 0 28px; border-radius:999px; border:none; background:#270402; color:#FBF6EE; cursor:pointer; text-align:left; transition:transform .24s cubic-bezier(.16,1,.3,1)">
+        <span style="display:flex; flex-direction:column; gap:2px"><span style="font:500 18px Jost, sans-serif">Reserve a table</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; color:#E3CBB3">Pick a date, time and seats</span></span>
+        <span aria-hidden="true" style="width:52px; height:52px; border-radius:50%; background:#E29A64; color:#270402; display:grid; place-items:center; font-size:22px"><i class="ph ph-calendar-check"></i></span>
+      </button>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px; max-width:560px">
+        <a class="ps9 ps7" href="[LINK]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s"><span style="font-size:16px; font-weight:500">foodpanda</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">DELIVERY · [LINK]</span></a>
+        <a class="ps9 ps7" href="[NUMBER]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s"><span style="font-size:16px; font-weight:500">WhatsApp</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">[NUMBER]</span></a>
+        <a class="ps9 ps7" href="[NUMBER]" style="display:flex; flex-direction:column; justify-content:center; gap:2px; min-height:64px; padding:0 22px; border-radius:999px; border:1.5px solid #270402; color:#270402; text-decoration:none; transition:background-color .24s"><span style="font-size:16px; font-weight:500">Call</span><span style="font:400 11px 'DM Mono', monospace; letter-spacing:.06em">[NUMBER]</span></a>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Al-Ghani+Plaza+DHA+Phase+6+Lahore" target="_blank" rel="noopener" style="align-self:flex-start; display:inline-flex; align-items:center; gap:8px; min-height:44px; color:#270402; font-size:16px; font-weight:500; text-decoration:none; border-bottom:1px solid currentColor">Get directions<i class="ph ph-arrow-up-right"></i></a>
+    </div>
+    <div data-ref="mapRef" style="position:relative; justify-self:center; width:100%; max-width:480px; aspect-ratio:4/5; border-radius:999px 999px 18px 18px; overflow:hidden; background:#F1B88D; box-shadow:0 0 0 1.5px #270402">
+      <div aria-hidden="true" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; background:radial-gradient(circle at 50% 46%, #F6CBA6 0%, #F1B88D 46%, #E8A574 100%)">
+        <span style="width:64px; height:64px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#270402; display:grid; place-items:center; box-shadow:0 14px 30px -10px rgba(39,4,2,.5)"><span style="transform:rotate(45deg); width:20px; height:28px; background:#E29A64; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span></span>
+        <span style="display:flex; flex-direction:column; align-items:center; gap:4px; font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; text-align:center"><span>THE FUEL · 4th Floor</span><span>Al-Ghani Plaza, DHA Phase 6</span></span>
+        <span style="font:400 11px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; opacity:1; transition:opacity .4s">Loading map…</span>
+      </div>
+      
+    </div>
+  </div></section></div><section data-spy="visit" data-screen-label="Hours" style="background:var(--surface); color:var(--ink); padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px); transition:background-color .6s, color .6s">
   <div style="max-width:1296px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,300px),1fr)); gap:clamp(16px,2vw,28px)">
     <div style="display:flex; flex-direction:column; gap:14px; padding:28px; border-radius:18px; background:var(--bg); transition:background-color .6s">
       <i class="ph ph-clock" style="font-size:28px; color:var(--accent)"></i>
@@ -108,45 +153,29 @@ a:hover{color:inherit}
       <h3 style="margin:0; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(24px,2vw,32px)">Events and groups</h3>
       <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink2)">Write to [EMAIL] or message [NUMBER] on WhatsApp.</p>
     </div>
-  </div>
-</section>
-</main>
-<dc-import name="Fuel Footer" phone="{{ isPhone }}" hint-size="100%,560px"></dc-import>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;latte&quot;,&quot;espresso&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
-class Component extends DCLogic {
-  isVisit = (() => { try { return new URLSearchParams(location.search).get('page') === 'visit'; } catch (e) { return false; } })();
-  state = { theme: 'latte', w: typeof window !== 'undefined' ? innerWidth : 1440, open: true };
-  componentDidMount() {
-    this.onResize = () => this.setState({ w: innerWidth });
-    addEventListener('resize', this.onResize);
-    import(new URL('fuel-theme.js', location.href).href).then(m => { this.m = m; this.applyTheme(this.pickTheme()); });
-    const st = () => { const h = +new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', hour12: false }).format(new Date()) % 24; this.setState({ open: h >= 8 || h < 2 }); };
-    st(); this.t = setInterval(st, 30000);
-    if (this.isVisit) {
-      const go = (n) => { const el = document.getElementById('visit'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY, behavior: 'auto' }); else if (n < 20) setTimeout(() => go(n + 1), 100); };
-      setTimeout(() => go(0), 60);
-    }
-  }
-  componentWillUnmount() { removeEventListener('resize', this.onResize); clearInterval(this.t); }
-  componentDidUpdate(prev) { if (prev.theme !== this.props.theme && this.m) this.applyTheme(this.pickTheme()); }
-  pickTheme() { const p = this.props.theme ?? 'auto'; return p === 'latte' || p === 'espresso' ? p : this.m.initialTheme(); }
-  applyTheme(t) { this.m.applyVars(this.m.THEMES[t]); document.documentElement.style.colorScheme = t === 'latte' ? 'light' : 'dark'; this.setState({ theme: t }); }
-  renderVals() {
-    const s = this.state, bp = s.w < 768 ? 'phone' : s.w < 1024 ? 'tablet' : 'desktop';
-    return {
-      bp, theme: s.theme, isPhone: bp === 'phone', navPage: this.isVisit ? 'visit' : 'space',
-      chip: s.open ? 'Open now' : 'Opens at 8 AM', isOpen: s.open,
-      reserve: () => dispatchEvent(new CustomEvent('fuel-reserve')),
-      onToggle: (e) => {
-        if (!this.m) return;
-        const r = e.currentTarget.getBoundingClientRect(), next = s.theme === 'latte' ? 'espresso' : 'latte';
-        const apply = () => this.applyTheme(next); apply.nextBg = this.m.THEMES[next].bg;
-        this.m.saveTheme(next); this.m.transition('radial', r.left + r.width / 2, r.top + r.height / 2, apply);
-      }
-    };
-  }
-}
-</script>
+  </div></section></main><div data-part="footer"><footer data-screen-label="Footer" style="background:#270402; color:#FBF6EE; padding:clamp(72px,9vw,128px) clamp(16px,5vw,72px) 40px; font-family:Jost, sans-serif">
+  <div style="max-width:1456px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(40px,5vw,72px)">
+    <div aria-hidden="true" style="display:flex; align-items:center; gap:20px">
+      <span style="flex:1; height:1px; background:rgba(251,246,238,.22)"></span>
+      <span style="width:28px; height:40px; background:#E29A64; -webkit-mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat; mask:url('assets/brand/logo/emblem-mono-currentColor.svg') center/contain no-repeat"></span>
+      <span style="flex:1; height:1px; background:rgba(251,246,238,.22)"></span>
+    </div>
+    <p style="margin:0; text-align:center; font-family:'Bodoni Moda', serif; font-weight:500; font-size:clamp(60px,14.5vw,236px); line-height:.9; letter-spacing:.04em; white-space:nowrap">THE FUEL</p>
+    <nav aria-label="Footer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 8px">
+      <a class="ps5" href="/" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Home</a>
+      <a class="ps5" href="/menu" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Menu</a>
+      <a class="ps5" href="/space" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Our Space</a>
+      <a class="ps5" href="/space?page=visit" style="min-height:44px; display:flex; align-items:center; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px">Visit</a>
+      <a class="ps5" href="https://instagram.com/thefuelespresso" style="min-height:44px; display:flex; align-items:center; gap:8px; padding:0 16px; border-radius:999px; color:#FBF6EE; text-decoration:none; font-size:16px"><i class="ph ph-instagram-logo" style="font-size:18px"></i>Instagram</a>
+    </nav>
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; padding-top:24px; border-top:1px solid rgba(251,246,238,.16); font:400 12px 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; color:#E3CBB3">
+      <span>Espresso Yourself!</span>
+      <span>8 AM to 2 AM · DHA Phase 6, Lahore</span>
+    </div>
+  </div></footer></div>
+</div></div>
+<script src="fuel-views.js"></script>
+<script src="fuel-parts.js"></script>
+<script src="space.js"></script>
 </body>
 </html>
